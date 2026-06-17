@@ -853,3 +853,23 @@ textarea {
   min-height: 78px;
   resize: vertical;
 }
+
+
+.article-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 28px 0 34px;
+}
+
+.article-gallery img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+@media (max-width: 640px) {
+  .article-gallery {
+    grid-template-columns: 1fr;
+  }
+}
