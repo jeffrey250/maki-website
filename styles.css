@@ -1208,7 +1208,7 @@ textarea {
   width: 155px;
   height: 155px;
   object-fit: cover;
-  filter: grayscale(100%);
+  filter: none;
 }
 
 /* ── FOOTER ── */
