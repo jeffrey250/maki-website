@@ -218,6 +218,94 @@ const posts = [
       { tag: "p", text: "Following the success of last summer's collaboration, MĀKI expects to extend its monitoring operations to additional lakes across the Waikato and beyond during the 2025-2026 season. With increasing attention on cyanobacteria (blue-green algae) and its impacts on freshwater ecosystems, this autonomous vessel is proving to be an effective platform for scientific study, research, and long-term environmental monitoring." },
       { tag: "p", text: "At MĀKI, we remain committed to advancing autonomous technologies that help researchers and regional authorities better understand, protect, and manage New Zealand's freshwater environments." }
     ]
+  },
+  {
+    slug: "maki-s-breakthrough-in-autonomous-water-quality-monitoring",
+    title: "MĀKI's Breakthrough in Autonomous Water Quality Monitoring",
+    image: asset("028-a6a664_c6e8747ce27f44a1b1876266520cac30-mv2.png"),
+    category: "Environmental Services",
+    date: "May 5, 2024",
+    readTime: "2 min read",
+    excerpt: "In March 2024, MĀKI partnered with the Waikato Regional Council on a pioneering autonomous water quality data collection initiative during a hazardous algae bloom event.",
+    content: [
+      { tag: "p", text: "In March 2024, MĀKI partnered with the Waikato Regional Council on a pioneering water quality data collection initiative. Led by lake scientist Mat Allan, the project aimed to autonomously gather water quality information during an algae bloom event." },
+      { tag: "p", text: "The algae bloom created hazardous conditions, making direct human contact unsafe and traditional watercraft navigation impractical. However, understanding water quality parameter distribution remained essential for analysis." },
+      { tag: "p", text: "MĀKI developed a specialised autonomous vessel equipped with remote sensing and water sampling apparatus. The vessel navigated designated areas along a pre-defined route, meticulously mapping out the region." },
+      { tag: "p", text: "To meet specific requirements, the equipment featured adjustable lowering mechanisms enabling data collection at varying water depths. The system maintained precision to prevent lake bed contact and equipment damage." },
+      { tag: "p", text: "This project represented a significant milestone, granting scientists access to innovative data collection methods. The initiative produced substantial insights demonstrating the effectiveness of MĀKI's approach to environmental monitoring." },
+      { tag: "p", text: "Looking forward, MĀKI plans to continue research and development efforts, aiming to deliver solutions addressing complex environmental challenges." }
+    ]
+  },
+  {
+    slug: "lakes-mapping-for-waikato-regional-council",
+    title: "Lakes Mapping for Waikato Regional Council",
+    image: asset("028-a6a664_c6e8747ce27f44a1b1876266520cac30-mv2.png"),
+    category: "Environmental Services",
+    date: "Dec 31, 2022",
+    readTime: "2 min read",
+    excerpt: "MĀKI secured a contract with the Waikato Regional Council to conduct bathymetric mapping of lakes using autonomous boats developed in-house.",
+    content: [
+      { tag: "p", text: "MĀKI has secured a contract with the Waikato Regional Council in New Zealand to conduct bathymetric mapping of lakes. The project involves using specialised equipment to measure and map underwater depths across various bodies of water." },
+      { tag: "p", text: "MĀKI employs autonomous boats developed in-house to execute these projects, enabling efficient and accurate data collection from lake environments. MĀKI is grateful to be working with the Waikato Regional Council on this important work and anticipates future collaboration opportunities." },
+      { tag: "p", text: "The initiative aims to support regional water quality improvements. MĀKI remains committed to using our skills and expertise to help protect and enhance the natural beauty of New Zealand." }
+    ]
+  },
+  {
+    slug: "ngaroto-lake-scanning",
+    title: "Ngaroto Lake Scanning",
+    image: asset("028-a6a664_c6e8747ce27f44a1b1876266520cac30-mv2.png"),
+    category: "Environmental Services",
+    date: "Feb 27, 2022",
+    readTime: "5 min read",
+    excerpt: "The MĀKI team conducted field trials at Lake Ngaroto using a CHIRP MEGA SI GPS scanner mounted on an inflatable e-kayak, producing comprehensive bathymetric mapping and 3D models.",
+    content: [
+      { tag: "p", text: "The MĀKI team recently acquired a CHIRP MEGA SI GPS scanner for underwater mapping capabilities. To properly test this equipment, we conducted field trials at Lake Ngaroto, a local body of water, combining technology testing with environmental investigation." },
+      { tag: "h3", text: "Background on Lake Ngaroto" },
+      { tag: "p", text: "Lake Ngaroto is the largest of the Waipa peat lakes, situated south of Hamilton and northwest of Te Awamutu. The lake suffers from poor water quality conditions, characterised by high nutrient levels, excessive microscopic algae growth (including algae blooms), suspended sediment, and minimal water clarity. Since 1995, Waipa District Council has implemented restoration efforts, including fencing marginal land strips and replanting native vegetation around the lake's perimeter." },
+      { tag: "h3", text: "The Scanning Process" },
+      { tag: "p", text: "Given the lake's 108-hectare area and motorboat restrictions, the team employed a MĀKI inflatable e-kayak equipped with the sonar scanner. This vessel choice offered advantages: lightweight yet rigid construction allowed navigation through reeds and marginal plants while withstanding potential collisions with submerged logs. An autopilot control system managed vessel navigation, with operators establishing waypoints to maintain consistent scanning width, minimise blind spots, and reduce necessary turns." },
+      { tag: "p", text: "Scanning took place over three days. Day 1 commenced from the lake's northern end under mild wind conditions — large colourful fish (presumed Koi Carp) were visible, some appearing on the kayak's FPV camera feed. Day 2 covered the middle section with stronger winds of 15–18 km/hr, which presented no operational challenges. Day 3 covered the southern lake section and completed the survey." },
+      { tag: "h3", text: "Results" },
+      { tag: "p", text: "Combined data analysis produced comprehensive bathymetric mapping and 3D modelling. The deepest measured point reached 3.2 metres, located centrally. The eastern shoreline demonstrated steeper gradients compared to western areas. High-resolution side-scan imagery revealed excellent detail quality despite shallow water conditions." },
+      { tag: "ul", items: ["A large 55-metre spoked structure of unknown origin", "Edge and shallow vegetation detection", "Minimal plant life beyond 1.2–1.5 metre depths", "Presumed sunken objects including boat-shaped formations", "Large fish shapes — severely limited water clarity with only brightly coloured carp visible"] },
+      { tag: "h3", text: "Next Steps" },
+      { tag: "p", text: "MĀKI envisions three progressive phases: Scan & Recording for routine monitoring, Monitoring & Reporting with continuous water quality systems, and Maintenance & Restoration using robotics for targeted pest species management — particularly carp culling — to support sustainable lake quality improvement." }
+    ]
+  },
+  {
+    slug: "advancements-in-bathymetry-mapping-for-efficient-settling-pond-management",
+    title: "Advancements in Bathymetry Mapping for Efficient Settling Pond Management",
+    image: asset("028-a6a664_c6e8747ce27f44a1b1876266520cac30-mv2.png"),
+    category: "Environmental Services",
+    date: "May 13, 2025",
+    readTime: "3 min read",
+    excerpt: "How bathymetry mapping has become a crucial tool for settling pond management — enabling operators to evaluate operations more effectively while conserving time and resources.",
+    content: [
+      { tag: "p", text: "Bathymetry mapping is emerging as an essential tool, particularly for settling pond management. This year, MĀKI has shifted focus to include mapping treatment plants and settling ponds, enabling operators to evaluate operations more effectively while conserving time and resources." },
+      { tag: "h3", text: "Understanding Bathymetry Mapping" },
+      { tag: "p", text: "Bathymetry mapping measures underwater depths in bodies of water like lakes, rivers, and settling ponds, revealing information about the underwater landscape, such as depth contours and sediment distribution. While historically used for navigation and research, it now serves critical functions in settling pond management." },
+      { tag: "p", text: "Settling ponds treat water through particle settling, yet without proper monitoring, sediment accumulation causes operational problems like overflows. Bathymetry mapping visualises sediment volume and distribution patterns, allowing targeted intervention." },
+      { tag: "h3", text: "Benefits for Settling Ponds" },
+      { tag: "ul", items: ["Accurate Monitoring — advanced sonar techniques deliver data with accuracy within a few centimetres, enabling informed maintenance scheduling", "Enhanced Decision-Making — integrating mapping data has been shown to reduce sediment overload incidences by 30%, with operational savings of up to 20% annually", "Time and Cost Savings — one facility implementing continuous sediment monitoring reported a 25% reduction in maintenance costs within the first year"] },
+      { tag: "h3", text: "The Future of Bathymetry in Environmental Management" },
+      { tag: "p", text: "Emerging technologies including remote sensing and autonomous underwater vehicles enable increasingly detailed data collection. Future innovations incorporating artificial intelligence and machine learning could identify sediment accumulation patterns, enabling proactive management strategy adaptation." },
+      { tag: "p", text: "Bathymetry mapping integration represents a substantial advancement in operational efficiency for treatment facilities — and its importance will only grow as technology advances." }
+    ]
+  },
+  {
+    slug: "maki-makes-the-news-at-fieldays-2025",
+    title: "MĀKI Makes the News at Fieldays 2025",
+    image: asset("028-a6a664_c6e8747ce27f44a1b1876266520cac30-mv2.png"),
+    category: "News",
+    date: "Jun 17, 2025",
+    readTime: "2 min read",
+    excerpt: "MĀKI was featured in a national Newsroom story following Fieldays 2025, spotlighted among innovative enterprises contributing to New Zealand's rural sector.",
+    content: [
+      { tag: "p", text: "MĀKI was featured in a national media story following Fieldays 2025. The piece, published by Newsroom, was titled \"Wool is making money again – and other rural success stories\" and spotlighted innovative enterprises contributing to New Zealand's rural sector development." },
+      { tag: "p", text: "It was a huge honour to be recognised among other forward-thinking businesses at Fieldays. We remain committed to delivering cutting-edge marine and environmental technologies that support smarter decision-making on land and water." },
+      { tag: "p", text: "Our services include autonomous vessels, remotely operated equipment, specialised sensor systems, and mapping capabilities designed for practical, scalable implementation." },
+      { tag: "p", text: "A big thank you to the organisers of Fieldays and everyone who visited our stand. The experience was both humbling and energising — and we're just getting started. We're always keen to collaborate and explore how our tech can help you achieve your goals." }
+    ]
   }
 ];
 
