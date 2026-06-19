@@ -851,6 +851,7 @@ section {
   background-size: cover;
   background-position: center;
   position: relative;
+  overflow: hidden;
 }
 
 .council-spot-img::after {
