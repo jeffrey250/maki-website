@@ -358,7 +358,7 @@ section {
 }
 
 .section-title {
-  margin: 0 0 18px;
+  margin: 48px 0 18px;
   font-family: var(--font-head);
   font-size: clamp(24px, 3.5vw, 38px);
   font-weight: 700;
