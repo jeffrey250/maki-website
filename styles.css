@@ -844,7 +844,8 @@ section {
 .council-spot {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 220px;
+  height: 220px;
+  overflow: hidden;
 }
 
 .council-spot-img {
