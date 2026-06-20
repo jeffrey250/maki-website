@@ -1,0 +1,56 @@
+# MĀKI Autonomous Systems
+
+MĀKI is a New Zealand company that designs, develops and operates autonomous marine systems, environmental monitoring technology, and unmanned vehicles for scientific, council and industry clients.
+
+## What MĀKI does
+
+- **Autonomous boats (USVs)** — Unmanned Surface Vehicles for bathymetric mapping, water quality monitoring, and water sampling in lakes, rivers, ponds and coastal environments
+- **ROVs** — Remotely Operated Vehicles for underwater inspection of submerged structures, dams, pipes and infrastructure
+- **Drones / UAVs** — Aerial photogrammetry and topographic mapping
+- **IoT monitoring systems** — Custom environmental sensor platforms, AI cameras, and remote monitoring buoys
+- **Bathymetric mapping** — High-resolution underwater depth surveys using sonar and RTK GPS
+- **Topo-bathymetric surveys** — Combined above-water and underwater mapping in a single dataset
+- **Stormwater & treatment pond surveys** — Sediment volume analysis for councils and infrastructure managers
+- **Water quality monitoring** — Autonomous real-time data collection for chlorophyll-a, phycocyanin, turbidity, dissolved oxygen, pH and temperature
+
+## Who MĀKI works with
+
+Regional councils, environmental scientists, infrastructure managers, engineering firms, and researchers across New Zealand — including Waikato Regional Council and Ōtorohanga District Council.
+
+## Key facts
+
+- Based in New Zealand
+- Fully in-house hardware, electronics, firmware, software and AI development
+- Systems operate up to 2.5 km from controller or indefinitely via cellular connectivity
+- IP67-rated equipment, biosecurity-compliant decontamination protocols
+- RTK-enabled centimetre-level GPS accuracy
+
+## Contact
+
+- Website: https://www.maki.nz
+- Email: info@maki.nz
+- Phone: +64 20 4194 1275
+- Facebook: https://www.facebook.com/FB.MAKI.NZ/
+
+## Site map
+
+- Homepage: https://www.maki.nz/
+- Services: https://www.maki.nz/services/
+- Solutions: https://www.maki.nz/solutions/
+- Products: https://www.maki.nz/products/
+- About: https://www.maki.nz/about/
+- News & Articles: https://www.maki.nz/blog/
+- Enquire: https://www.maki.nz/enquire/
+
+## Recent articles
+
+- Building Smart Monitoring for Remote Environments: MĀKI's IoT AI Camera Solution — https://www.maki.nz/post/building-smart-monitoring-for-remote-environments-maki-s-iot-ai-camera-solution/
+- Final Testing Completed: Integrated Marine IoT Monitoring System — https://www.maki.nz/post/final-testing-completed-integrated-marine-iot-monitoring-system/
+- MĀKI at Freshwater Conference 2025 — https://www.maki.nz/post/maki-at-freshwater-conference-2025-connections-innovation-and-new-possibilities/
+- Topo-Bathymetric Mapping at Aotea Harbour — https://www.maki.nz/post/topo-bathymetric-mapping-at-aotea-harbour/
+- Autonomous Water Monitoring During Algae Bloom Events — https://www.maki.nz/post/autonomous-water-monitoring-and-sampling-during-algae-bloom-events/
+- MĀKI Makes the News at Fieldays 2025 — https://www.maki.nz/post/maki-makes-the-news-at-fieldays-2025/
+- Advancements in Bathymetry Mapping for Settling Pond Management — https://www.maki.nz/post/advancements-in-bathymetry-mapping-for-efficient-settling-pond-management/
+- MĀKI's Breakthrough in Autonomous Water Quality Monitoring — https://www.maki.nz/post/maki-s-breakthrough-in-autonomous-water-quality-monitoring/
+- Lakes Mapping for Waikato Regional Council — https://www.maki.nz/post/lakes-mapping-for-waikato-regional-council/
+- Ngaroto Lake Scanning — https://www.maki.nz/post/ngaroto-lake-scanning/
