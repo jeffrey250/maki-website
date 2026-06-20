@@ -102,7 +102,7 @@ const posts = [
       { tag: "p", text: "Key features include:" },
       { tag: "ul", items: ["Edge AI processing - detection and classification are performed directly on the device, reducing reliance on cloud services", "Low-power system design - optimised for operation with limited energy sources such as batteries or solar", "Efficient data communication - only relevant data is transmitted, minimising bandwidth usage", "Robust hardware integration - designed to operate reliably in harsh field conditions"] },
       { tag: "p", text: "This approach ensures the system can continue to function even with limited connectivity, while maintaining high detection capability." },
-      { tag: "image", src: A.ai, alt: "IoT AI camera solution", width: "147px", height: "66px" },
+      { tag: "image", src: A.ai, alt: "IoT AI camera solution" },
       { tag: "h3", text: "A Practical Solution for Real-World Applications" },
       { tag: "p", text: "The IoT AI camera can be trained to detect specific targets, such as:" },
       { tag: "ul", items: ["Pest species", "Wildlife activity", "Objects of interest in environmental or infrastructure settings"] },
@@ -166,7 +166,7 @@ const posts = [
     excerpt: "MĀKI exhibited at Freshwater Conference 2025, sharing autonomous boat, ROV, mapping and monitoring capabilities with councils, researchers and environmental scientists.",
     content: [
       { tag: "p", text: "MAKI has just wrapped up an exciting few days exhibiting at the Freshwater Conference 2025, and the experience has been both energising and valuable. The event brought together scientists, councils, innovators, and solution-builders working towards better environmental outcomes across Aotearoa - a space we feel proud to be contributing to." },
-      { tag: "image", src: asset("049-a6a664_151a6b9ef05d48969b0bd3d9bdc40aee-mv2-original.jpg"), alt: "MAKI Freshwater Conference display", width: "147px", height: "66px" },
+      { tag: "image", src: asset("049-a6a664_151a6b9ef05d48969b0bd3d9bdc40aee-mv2-original.jpg"), alt: "MAKI Freshwater Conference display" },
       { tag: "h3", text: "Showcasing MAKI's Technology" },
       { tag: "p", text: "As an exhibitor, we had the opportunity to share our autonomous boat and ROV capabilities with a wide range of delegates. Many were particularly interested in our:" },
       { tag: "ul", items: ["Water-quality sampling system", "Multi-beam and sonar mapping workflows", "Underwater inspection tools", "AI-assisted data processing"] },
@@ -211,12 +211,55 @@ const posts = [
     content: [
       { tag: "p", text: "During the summer of 2024-2025, MĀKI collaborated with the Waikato Regional Council to deploy our MĀKI Boat V2 for environmental monitoring and water sampling across several freshwater locations. This initiative supported the council's efforts to collect reliable data during algae bloom events, when accurate and timely information is essential for effective water quality management." },
       { tag: "p", text: "The MĀKI Boat V2 is a compact, fully autonomous surface vessel designed for scientific-grade data acquisition and automated water sampling. Measuring approximately 1.5 m x 1 m and weighing 15-20 kg, it can be transported and launched by a single operator. Its wide, stable hull allows for precise profiling and sensor deployment, even under moderate field conditions." },
-      { tag: "image", src: asset("055-a6a664_0a5a64e510244aedb040b2b13b83de3b-mv2.jpg"), alt: "MĀKI autonomous water monitoring field deployment", width: "129px", height: "189px" },
+      { tag: "image", src: asset("055-a6a664_0a5a64e510244aedb040b2b13b83de3b-mv2.jpg"), alt: "MĀKI autonomous water monitoring field deployment" },
       { tag: "p", text: "Equipped with a Trilux 2000 sensor (chlorophyll-a, phycocyanin, turbidity), a dissolved oxygen probe with pH and temperature sensing, and a single-beam sonar (with optional multi-beam upgrade), the system provides a comprehensive view of aquatic environments. The integrated 15 m winch collects discrete-depth water samples of up to 3 litres, enabling high-fidelity analysis for nutrient and biological studies." },
       { tag: "p", text: "All readings are georeferenced, with GPS position-holding and RTK-enabled precision providing centimetre-level accuracy for repeat surveys. The system's IP67-rated design and rapid decontamination process ensure safe deployment across multiple sites while maintaining biosecurity compliance." },
       { tag: "p", text: "The MĀKI Boat V2 operates up to 2.5 km from the controller or indefinitely via cellular connectivity, with real-time data streaming and flexible data-output formats for seamless integration with analytical platforms." },
       { tag: "p", text: "Following the success of last summer's collaboration, MĀKI expects to extend its monitoring operations to additional lakes across the Waikato and beyond during the 2025-2026 season. With increasing attention on cyanobacteria (blue-green algae) and its impacts on freshwater ecosystems, this autonomous vessel is proving to be an effective platform for scientific study, research, and long-term environmental monitoring." },
       { tag: "p", text: "At MĀKI, we remain committed to advancing autonomous technologies that help researchers and regional authorities better understand, protect, and manage New Zealand's freshwater environments." }
+    ]
+  },
+  {
+    slug: "maki-makes-the-news-at-fieldays-2025",
+    title: "MĀKI Makes the News at Fieldays 2025",
+    image: asset("088-fieldays-cover.jpg"),
+    category: "News",
+    date: "Jun 17, 2025",
+    readTime: "2 min read",
+    excerpt: "MĀKI was featured in a national Newsroom story following Fieldays 2025 — spotlighted among innovative enterprises contributing to New Zealand's rural sector development.",
+    content: [
+      { tag: "image", src: asset("088-fieldays-cover.jpg"), alt: "MĀKI at Fieldays 2025" },
+      { tag: "p", text: "MĀKI was featured in a national media story following Fieldays 2025. The piece, published by Newsroom, was titled \"Wool is making money again – and other rural success stories\" and spotlighted innovative enterprises contributing to New Zealand's rural sector development." },
+      { tag: "p", text: "It was a huge honour to be recognised among other forward-thinking businesses at Fieldays. MĀKI remains committed to delivering cutting-edge marine and environmental technologies that support smarter decision-making on land and water." },
+      { tag: "image", src: asset("089-fieldays-newsroom.jpg"), alt: "MĀKI Newsroom feature at Fieldays 2025" },
+      { tag: "p", text: "Our offerings include autonomous vessels, remotely operated vehicles, custom sensor systems, and mapping solutions designed for practical, scalable implementation." },
+      { tag: "p", text: "A big thank you to the organisers of Fieldays and everyone who visited our stand. The experience was both humbling and energising — and we're just getting started. We're always keen to collaborate and explore how our tech can help you achieve your goals." }
+    ]
+  },
+  {
+    slug: "advancements-in-bathymetry-mapping-for-efficient-settling-pond-management",
+    title: "Advancements in Bathymetry Mapping for Efficient Settling Pond Management",
+    image: asset("094-bathymetry-settling-pond.jpg"),
+    category: "Environmental Services",
+    date: "May 13, 2025",
+    readTime: "3 min read",
+    excerpt: "In recent years, bathymetry mapping has emerged as an essential tool for settling pond management — allowing owners and operators to evaluate operations effectively, saving both time and resources.",
+    content: [
+      { tag: "p", text: "In recent years, bathymetry mapping has emerged as an essential tool across various fields, particularly in managing settling ponds. This year, our business has shifted its focus to include mapping treatment plants and settling ponds. This shift is critical as it allows owners and operators to evaluate their operations effectively, saving both time and resources." },
+      { tag: "h3", text: "Understanding Bathymetry Mapping" },
+      { tag: "p", text: "Bathymetry mapping refers to the measurement of underwater depths in lakes, rivers, and settling ponds. It reveals important information about the underwater landscape, such as depth contours and sediment distribution. Traditionally, bathymetry was used for navigation and environmental research. However, its application has now become vital for settling pond management." },
+      { tag: "p", text: "Settling ponds function to treat water by allowing particles to settle out of the liquid. Yet, without proper monitoring, these ponds can fill up with sediment. This can lead to overflows, resulting in costly operational issues. Bathymetry mapping serves as a tool to visualise sediment volume and distribution, providing a clearer picture of what needs to be addressed." },
+      { tag: "image", src: asset("094-bathymetry-settling-pond.jpg"), alt: "Bathymetric mapping of settling pond" },
+      { tag: "h3", text: "Accurate Monitoring" },
+      { tag: "p", text: "One of the main benefits of mapping settling ponds is the accuracy it provides. Traditional sediment measurement methods can be cumbersome and lead to errors. Advanced mapping techniques, such as sonar and laser scanning, can yield data with an accuracy level of within a few centimetres. Using bathymetric mapping, operators can identify sediment accumulation spots in real time, allowing them to make informed decisions on maintenance schedules." },
+      { tag: "h3", text: "Enhanced Decision-Making" },
+      { tag: "p", text: "Bathymetry data enhances decision-making when managing settling ponds. A case study conducted in a large industrial facility found that integrating mapping data reduced sediment overload incidences by 30%. When data highlights regions with high sediment buildup, operators can target these areas for maintenance, minimising risks of non-compliance with environmental regulations." },
+      { tag: "p", text: "Access to reliable data not only boosts efficiency but also helps facility owners make better financial decisions regarding upgrades and maintenance. Investing in specific areas can result in operational savings of up to 20% annually." },
+      { tag: "h3", text: "Time and Cost Savings" },
+      { tag: "p", text: "Utilising bathymetry mapping proactively allows owners to bypass costly delays caused by exceeding sediment capacity. A facility that adopted continuous sediment monitoring reported a 25% reduction in maintenance costs within the first year. This not only enhances efficiency but also allows operators to manage their resources more effectively, ensuring maintenance work causes minimal disruption to daily activities." },
+      { tag: "h3", text: "The Future of Bathymetry in Environmental Management" },
+      { tag: "p", text: "Emerging technologies, like remote sensing and autonomous underwater vehicles, enable even more detailed data collection. As technology evolves, bathymetry mapping may incorporate artificial intelligence and machine learning — lending insight into sediment accumulation patterns and allowing operators to adapt their management strategies proactively." },
+      { tag: "p", text: "The integration of bathymetry mapping into settling pond management signifies a substantial advancement in operational efficiency for treatment facilities. As technology matures, bathymetry mapping will continue to shape how we monitor and manage our aquatic resources more effectively." }
     ]
   },
   {
@@ -263,6 +306,7 @@ const posts = [
     excerpt: "The MĀKI team conducted field trials at Lake Ngaroto using a new CHIRP MEGA SI GPS scanner mounted on an inflatable e-kayak — producing comprehensive bathymetric mapping, 3D models and side-scan imagery.",
     content: [
       { tag: "p", text: "A few weeks ago, the MĀKI team invested in a new piece of kit — a CHIRP MEGA SI GPS scanner — for advanced underwater scanning and mapping. To properly test this equipment, we conducted field trials at Lake Ngaroto." },
+      { tag: "image", src: asset("099-ngaroto-map.png"), alt: "Lake Ngaroto location map" },
       { tag: "h3", text: "Background on Lake Ngaroto" },
       { tag: "p", text: "Lake Ngaroto is the largest of the Waipa peat lakes. It is located south of Hamilton city and north-west of Te Awamutu. The lake is hypertrophic — meaning it suffers poor water quality with a very high level of nutrients, over abundance of microscopic algae (including algae-blooms), lots of suspended sediment, and low water clarity." },
       { tag: "p", text: "Since 1995, Waipa District Council has implemented restoration efforts, including fencing marginal land strips and replanting native vegetation around the lake's perimeter, despite the primarily pastoral catchment surrounding it." },
@@ -282,49 +326,6 @@ const posts = [
       { tag: "image", src: asset("108-ngaroto-features.jpg"), alt: "Ngaroto Lake features of interest" },
       { tag: "h3", text: "Next Steps" },
       { tag: "ul", items: ["Scan & Recording — simplify scanning for efficient, routine monitoring on consistent schedules to document longitudinal changes and seasonal trends", "Monitoring & Reporting — continuous water quality monitoring systems providing data for environmental experts to identify issues and causes", "Maintenance & Restoration — robotic systems for targeted pest species management, particularly carp culling, to minimise nutrient runoff and support sustainable lake quality improvement"] }
-    ]
-  },
-  {
-    slug: "advancements-in-bathymetry-mapping-for-efficient-settling-pond-management",
-    title: "Advancements in Bathymetry Mapping for Efficient Settling Pond Management",
-    image: asset("094-bathymetry-settling-pond.jpg"),
-    category: "Environmental Services",
-    date: "May 13, 2025",
-    readTime: "3 min read",
-    excerpt: "In recent years, bathymetry mapping has emerged as an essential tool for settling pond management — allowing owners and operators to evaluate operations effectively, saving both time and resources.",
-    content: [
-      { tag: "p", text: "In recent years, bathymetry mapping has emerged as an essential tool across various fields, particularly in managing settling ponds. This year, our business has shifted its focus to include mapping treatment plants and settling ponds. This shift is critical as it allows owners and operators to evaluate their operations effectively, saving both time and resources." },
-      { tag: "h3", text: "Understanding Bathymetry Mapping" },
-      { tag: "p", text: "Bathymetry mapping refers to the measurement of underwater depths in lakes, rivers, and settling ponds. It reveals important information about the underwater landscape, such as depth contours and sediment distribution. Traditionally, bathymetry was used for navigation and environmental research. However, its application has now become vital for settling pond management." },
-      { tag: "p", text: "Settling ponds function to treat water by allowing particles to settle out of the liquid. Yet, without proper monitoring, these ponds can fill up with sediment. This can lead to overflows, resulting in costly operational issues. Bathymetry mapping serves as a tool to visualise sediment volume and distribution, providing a clearer picture of what needs to be addressed." },
-      { tag: "image", src: asset("094-bathymetry-settling-pond.jpg"), alt: "Bathymetric mapping of settling pond" },
-      { tag: "h3", text: "Accurate Monitoring" },
-      { tag: "p", text: "One of the main benefits of mapping settling ponds is the accuracy it provides. Traditional sediment measurement methods can be cumbersome and lead to errors. Advanced mapping techniques, such as sonar and laser scanning, can yield data with an accuracy level of within a few centimetres. Using bathymetric mapping, operators can identify sediment accumulation spots in real time, allowing them to make informed decisions on maintenance schedules." },
-      { tag: "h3", text: "Enhanced Decision-Making" },
-      { tag: "p", text: "Bathymetry data enhances decision-making when managing settling ponds. A case study conducted in a large industrial facility found that integrating mapping data reduced sediment overload incidences by 30%. When data highlights regions with high sediment buildup, operators can target these areas for maintenance, minimising risks of non-compliance with environmental regulations." },
-      { tag: "p", text: "Access to reliable data not only boosts efficiency but also helps facility owners make better financial decisions regarding upgrades and maintenance. Investing in specific areas can result in operational savings of up to 20% annually." },
-      { tag: "h3", text: "Time and Cost Savings" },
-      { tag: "p", text: "Utilising bathymetry mapping proactively allows owners to bypass costly delays caused by exceeding sediment capacity. A facility that adopted continuous sediment monitoring reported a 25% reduction in maintenance costs within the first year. This not only enhances efficiency but also allows operators to manage their resources more effectively, ensuring maintenance work causes minimal disruption to daily activities." },
-      { tag: "h3", text: "The Future of Bathymetry in Environmental Management" },
-      { tag: "p", text: "Emerging technologies, like remote sensing and autonomous underwater vehicles, enable even more detailed data collection. As technology evolves, bathymetry mapping may incorporate artificial intelligence and machine learning — lending insight into sediment accumulation patterns and allowing operators to adapt their management strategies proactively." },
-      { tag: "p", text: "The integration of bathymetry mapping into settling pond management signifies a substantial advancement in operational efficiency for treatment facilities. As technology matures, bathymetry mapping will continue to shape how we monitor and manage our aquatic resources more effectively." }
-    ]
-  },
-  {
-    slug: "maki-makes-the-news-at-fieldays-2025",
-    title: "MĀKI Makes the News at Fieldays 2025",
-    image: asset("088-fieldays-cover.jpg"),
-    category: "News",
-    date: "Jun 17, 2025",
-    readTime: "2 min read",
-    excerpt: "MĀKI was featured in a national Newsroom story following Fieldays 2025 — spotlighted among innovative enterprises contributing to New Zealand's rural sector development.",
-    content: [
-      { tag: "image", src: asset("088-fieldays-cover.jpg"), alt: "MĀKI at Fieldays 2025" },
-      { tag: "p", text: "MĀKI was featured in a national media story following Fieldays 2025. The piece, published by Newsroom, was titled \"Wool is making money again – and other rural success stories\" and spotlighted innovative enterprises contributing to New Zealand's rural sector development." },
-      { tag: "p", text: "It was a huge honour to be recognised among other forward-thinking businesses at Fieldays. MĀKI remains committed to delivering cutting-edge marine and environmental technologies that support smarter decision-making on land and water." },
-      { tag: "image", src: asset("089-fieldays-newsroom.jpg"), alt: "MĀKI Newsroom feature at Fieldays 2025" },
-      { tag: "p", text: "Our offerings include autonomous vessels, remotely operated vehicles, custom sensor systems, and mapping solutions designed for practical, scalable implementation." },
-      { tag: "p", text: "A big thank you to the organisers of Fieldays and everyone who visited our stand. The experience was both humbling and energising — and we're just getting started. We're always keen to collaborate and explore how our tech can help you achieve your goals." }
     ]
   }
 ];
