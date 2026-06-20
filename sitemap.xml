@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://www.maki.nz/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://www.maki.nz/services</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.maki.nz/solutions</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.maki.nz/products</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.maki.nz/recreational</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.maki.nz/vehicles</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.maki.nz/about</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.maki.nz/blog</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.maki.nz/enquire</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.maki.nz/services/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.maki.nz/solutions/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.maki.nz/products/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.maki.nz/vehicles/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.maki.nz/recreational/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.maki.nz/about/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.maki.nz/blog/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.maki.nz/enquire/</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.maki.nz/post/building-smart-monitoring-for-remote-environments-maki-s-iot-ai-camera-solution/</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.maki.nz/post/final-testing-completed-integrated-marine-iot-monitoring-system/</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.maki.nz/post/maki-at-freshwater-conference-2025-connections-innovation-and-new-possibilities/</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.maki.nz/post/topo-bathymetric-mapping-at-aotea-harbour/</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.maki.nz/post/autonomous-water-monitoring-and-sampling-during-algae-bloom-events/</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.maki.nz/post/maki-makes-the-news-at-fieldays-2025/</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.maki.nz/post/advancements-in-bathymetry-mapping-for-efficient-settling-pond-management/</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.maki.nz/post/maki-s-breakthrough-in-autonomous-water-quality-monitoring/</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.maki.nz/post/lakes-mapping-for-waikato-regional-council/</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.maki.nz/post/ngaroto-lake-scanning/</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
 </urlset>
