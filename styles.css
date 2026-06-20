@@ -60,6 +60,7 @@ img {
 
 .brand {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background: rgba(51, 51, 51, 0.8);
@@ -67,11 +68,20 @@ img {
   min-width: 180px;
   flex-shrink: 0;
   text-decoration: none;
+  gap: 5px;
 }
 
 .brand img {
   width: 145px;
   height: auto;
+}
+
+.brand-tag {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 10px;
+  font-family: var(--font-head);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
 }
 
 .menu-toggle {
