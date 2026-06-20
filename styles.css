@@ -844,7 +844,7 @@ section {
 .council-spot {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  height: 220px;
+  height: 660px;
   overflow: hidden;
 }
 
