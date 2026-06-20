@@ -843,11 +843,45 @@ section {
 .sl-sludge{ color: #D4A96A; border-left: 3px solid #8B6914; }
 .sl-drone { color: #88FF88; border-left: 3px solid #44CC44; }
 
+/* ── SONAR CONTROLS ── */
+.sonar-controls {
+  position: absolute;
+  bottom: 18px;
+  right: 18px;
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.sonar-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.35);
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  font-size: 17px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s;
+  backdrop-filter: blur(6px);
+  line-height: 1;
+}
+
+.sonar-btn:hover {
+  background: rgba(0,162,210,0.65);
+  border-color: rgba(0,162,210,0.9);
+}
+
 @media (max-width: 600px) {
   .sonar-canvas { height: 300px; }
   .sonar-overlay { padding: 18px 20px; }
   .sonar-depth-key { display: none; }
   .sonar-desc { font-size: 12px; }
+  .sonar-controls { bottom: 12px; right: 12px; gap: 8px; }
+  .sonar-btn { width: 36px; height: 36px; font-size: 15px; }
 }
 
 /* ── COUNCIL SPOTLIGHT ── */

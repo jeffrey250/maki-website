@@ -349,8 +349,11 @@
     let startTime     = null;
     let droneLaunched = false;
     let animId;
+    let paused   = false;
+    let pausedAt = 0;
 
     function animate(ts) {
+      if (paused) return;
       animId = requestAnimationFrame(animate);
       if (!startTime) startTime = ts;
       const elapsed = (ts - startTime) / 1000;
@@ -459,11 +462,40 @@
       renderer.render(scene, camera);
     }
 
-    requestAnimationFrame(animate);
+    animId = requestAnimationFrame(animate);
 
-    return function cleanup() {
+    function resetState() {
       cancelAnimationFrame(animId);
-      ro.disconnect();
+      paused = false;
+      startTime = null;
+      droneLaunched = false;
+      droneAngle = 0;
+      droneR = PA + 2.8;
+      usvX = 0;
+      usvZ = -PB + 1.2;
+      usvDir = 1;
+      bedRev.fill(0); sludgeRev.fill(0); landRev.fill(0);
+      for (let i = 0; i < vCount; i++) {
+        bPos.setY(i, -15); bWirePos.setY(i, -15);
+        sPos.setY(i, -15);
+        lPos.setY(i, -15); lWirePos.setY(i, -15);
+      }
+      bPos.needsUpdate = true; bWirePos.needsUpdate = true;
+      sPos.needsUpdate = true; lPos.needsUpdate = true; lWirePos.needsUpdate = true;
+      bedGeo.computeVertexNormals(); bWireGeo.computeVertexNormals();
+      sludgeGeo.computeVertexNormals(); landGeo.computeVertexNormals(); lWireGeo.computeVertexNormals();
+      bedMat.opacity = 0; bWireMat.opacity = 0;
+      sludgeMat.opacity = 0; landMat.opacity = 0; lWireMat.opacity = 0;
+      waterMat.opacity = 0.28; fpMat.opacity = 0; scanMat.opacity = 0;
+      droneGroup.position.set(0, 200, 0);
+      rings.forEach((ring, k) => { ring.userData.phase = k / NRINGS; });
+    }
+
+    return {
+      pause()   { if (!paused) { paused = true; pausedAt = performance.now(); cancelAnimationFrame(animId); } },
+      play()    { if (paused)  { paused = false; if (startTime !== null) startTime += performance.now() - pausedAt; animId = requestAnimationFrame(animate); } },
+      restart() { resetState(); animId = requestAnimationFrame(animate); },
+      cleanup() { cancelAnimationFrame(animId); ro.disconnect(); }
     };
   };
 })();
