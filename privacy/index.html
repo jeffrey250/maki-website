@@ -8,16 +8,22 @@
     <meta name="description" content="Privacy Policy for MĀKI Autonomous Systems — how we collect, use and protect your personal information.">
     <link rel="canonical" href="https://www.maki.nz/privacy/">
     <meta name="robots" content="noindex">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css?v=14">
-    <script defer src="../app.js?v=14"></script>
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XFVGYCS8RH"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-XFVGYCS8RH');</script>
     <style>
+      .priv-header {
+        background: #1a2a35;
+        padding: 0;
+      }
       .privacy-wrap {
         max-width: 800px;
         margin: 0 auto;
-        padding: 140px 24px 80px;
+        padding: 56px 24px 80px;
       }
       .privacy-wrap h1 {
         font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
@@ -30,6 +36,7 @@
         color: #888;
         font-size: 14px;
         margin: 0 0 40px;
+        display: block;
       }
       .privacy-wrap h2 {
         font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
@@ -47,13 +54,65 @@
         padding-left: 20px;
       }
       .privacy-wrap a { color: #00A2D2; }
+      .priv-footer {
+        background: #222;
+        color: rgba(255,255,255,0.5);
+        text-align: center;
+        padding: 24px;
+        font-size: 14px;
+      }
+      .priv-footer a { color: #71C7E1; }
     </style>
   </head>
   <body>
-    <div id="app"></div>
+
+    <!-- Nav -->
+    <header class="site-header priv-header">
+      <nav class="nav">
+        <a href="/" class="brand">
+          <img src="/assets/media/001-MAKI-logo-inverse-strap_500pxSQ.png" alt="MAKI-logo" width="165" height="auto">
+          <span class="brand-tag">Together, we'll make waves.</span>
+        </a>
+        <button class="menu-toggle" type="button" aria-label="Open navigation">☰</button>
+        <div class="nav-links">
+          <div class="nav-item">
+            <a href="/services/" class="nav-link">Services</a>
+            <div class="dropdown">
+              <a href="/services/?tab=environmental">Environmental Monitoring &amp; Water Sampling</a>
+              <a href="/services/?tab=bathymetry">Bathymetry</a>
+              <a href="/services/?tab=topography">Topography</a>
+              <a href="/services/?tab=topobathy">Bathymetry &amp; Topography</a>
+              <a href="/services/stormwater/">Stormwater &amp; Treatment Pond Surveys</a>
+              <a href="/services/?tab=asset">Asset Management (Inspection)</a>
+            </div>
+          </div>
+          <div class="nav-item">
+            <a href="/solutions/" class="nav-link">Solutions</a>
+            <div class="dropdown">
+              <a href="/solutions/?tab=usvs">Customised USV Boats</a>
+              <a href="/solutions/?tab=rovs">Customised ROVs</a>
+              <a href="/solutions/?tab=auvs">Customised AUVs</a>
+              <a href="/solutions/?tab=drones">Customised Drones</a>
+              <a href="/solutions/?tab=iot">IoT Solutions</a>
+              <a href="/solutions/?tab=ai">Software &amp; AI Camera</a>
+              <a href="/solutions/?tab=satellite">Satellite Imagery</a>
+            </div>
+          </div>
+          <div class="nav-item">
+            <a href="/products/" class="nav-link">Products</a>
+            <div class="dropdown">
+              <a href="/products/?tab=recreational">Recreational Products</a>
+              <a href="/products/?tab=technical">Technical Products</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Content -->
     <div class="privacy-wrap">
       <h1>Privacy Policy</h1>
-      <p class="updated">Last updated: June 2025</p>
+      <span class="updated">Last updated: June 2025</span>
 
       <p>MĀKI Autonomous Systems Limited ("<strong>MĀKI</strong>", "<strong>we</strong>", "<strong>us</strong>") is committed to protecting your personal information in accordance with the New Zealand Privacy Act 2020. This policy explains what information we collect, how we use it, and your rights.</p>
 
@@ -99,5 +158,16 @@
       <h2>7. Changes to this policy</h2>
       <p>We may update this Privacy Policy from time to time. The current version will always be available at <a href="https://www.maki.nz/privacy/">maki.nz/privacy</a>.</p>
     </div>
+
+    <!-- Footer -->
+    <footer class="priv-footer">
+      <p>&copy; 2025 MĀKI Autonomous Systems &bull; <a href="mailto:info@maki.nz">info@maki.nz</a> &bull; <a href="/">maki.nz</a></p>
+    </footer>
+
+    <script>
+      document.querySelector('.menu-toggle')?.addEventListener('click', () => {
+        document.querySelector('.nav-links')?.classList.toggle('open');
+      });
+    </script>
   </body>
 </html>
