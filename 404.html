@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en-NZ">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page Not Found | MĀKI</title>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <script>
+    (function(){
+      var redirects = {
+        '/product-page/m%C4%81ki-inflatable-kayak-double': '/recreational/',
+        '/product-page/maki-inflatable-kayak-double': '/recreational/',
+        '/shopkayaks': '/recreational/',
+        '/copy-of-maki-consultancy': '/about/',
+        '/home': '/'
+      };
+      var path = window.location.pathname.replace(/\/$/, '');
+      var dest = redirects[path] || redirects[decodeURIComponent(path)];
+      if (dest) { window.location.replace(dest); }
+    })();
+  </script>
+  <style>
+    body { margin: 0; font-family: 'Nunito Sans', sans-serif; background: #f5f7f9; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+    .wrap { text-align: center; padding: 40px 24px; }
+    h1 { font-size: 80px; margin: 0; color: #00A2D2; font-weight: 700; }
+    h2 { font-size: 24px; color: #222; margin: 8px 0 16px; }
+    p { color: #666; margin: 0 0 32px; }
+    a.btn { display: inline-block; background: #00A2D2; color: #fff; padding: 12px 28px; border-radius: 4px; text-decoration: none; font-weight: 600; }
+    a.btn:hover { background: #0088b5; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>404</h1>
+    <h2>Page not found</h2>
+    <p>The page you're looking for has moved or no longer exists.</p>
+    <a class="btn" href="/">Go to homepage</a>
+  </div>
+</body>
+</html>

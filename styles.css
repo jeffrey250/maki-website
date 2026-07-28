@@ -1130,6 +1130,12 @@ section {
   filter: grayscale(0) opacity(1);
 }
 
+.logo-track img[src*="buller"] {
+  background: #1a2a35;
+  border-radius: 6px;
+  padding: 8px 14px;
+}
+
 @keyframes scroll-logos {
   from { transform: translateX(0); }
   to   { transform: translateX(-33.333%); }
