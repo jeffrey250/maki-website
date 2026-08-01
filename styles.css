@@ -892,6 +892,13 @@ section {
   overflow: hidden;
 }
 
+.council-spot--reverse {
+  direction: rtl;
+}
+.council-spot--reverse > * {
+  direction: ltr;
+}
+
 .council-spot-img {
   background-size: cover;
   background-position: center;
