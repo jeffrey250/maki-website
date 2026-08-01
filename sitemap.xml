@@ -7,6 +7,12 @@
   <url><loc>https://www.maki.nz/services/bathymetry/</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
   <url><loc>https://www.maki.nz/services/topography/</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
   <url><loc>https://www.maki.nz/case-studies/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.maki.nz/case-studies/lakes-mapping/</loc><changefreq>yearly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.maki.nz/case-studies/aotea-harbour/</loc><changefreq>yearly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.maki.nz/case-studies/algae-bloom/</loc><changefreq>yearly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.maki.nz/case-studies/ngaroto/</loc><changefreq>yearly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.maki.nz/case-studies/rov-reservoir/</loc><changefreq>yearly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.maki.nz/case-studies/sediment-analysis/</loc><changefreq>yearly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.maki.nz/solutions/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://www.maki.nz/products/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.maki.nz/vehicles/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>

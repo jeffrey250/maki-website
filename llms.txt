@@ -12,10 +12,11 @@ MĀKI is a New Zealand company that designs, develops and operates autonomous ma
 - **Topo-bathymetric surveys** — Combined above-water and underwater mapping in a single dataset
 - **Stormwater & treatment pond surveys** — Sediment volume analysis for councils and infrastructure managers
 - **Water quality monitoring** — Autonomous real-time data collection for chlorophyll-a, phycocyanin, turbidity, dissolved oxygen, pH and temperature
+- **Water reservoir inspection** — Underwater ROV and surface rover inspection of reservoir walls, floors and inlet/outlet structures without dewatering or confined space entry
 
 ## Who MĀKI works with
 
-Regional councils, environmental scientists, infrastructure managers, engineering firms, and researchers across New Zealand — including Waikato Regional Council and Ōtorohanga District Council.
+Regional councils, environmental scientists, infrastructure managers, engineering firms, and researchers across New Zealand — including Waikato Regional Council, Ōtorohanga District Council, Western Bay of Plenty District Council, and Buller District Council.
 
 ## Key facts
 
@@ -41,6 +42,39 @@ Regional councils, environmental scientists, infrastructure managers, engineerin
 - About: https://www.maki.nz/about/
 - News & Articles: https://www.maki.nz/blog/
 - Enquire: https://www.maki.nz/enquire/
+- Case Studies: https://www.maki.nz/case-studies/
+- Case Study — Lakes Mapping for Waikato Regional Council: https://www.maki.nz/case-studies/lakes-mapping/
+- Case Study — Topo-Bathymetric Mapping at Aotea Harbour: https://www.maki.nz/case-studies/aotea-harbour/
+- Case Study — Autonomous Algae Bloom Monitoring: https://www.maki.nz/case-studies/algae-bloom/
+- Case Study — Ngaroto Lake Bathymetric Survey: https://www.maki.nz/case-studies/ngaroto/
+- Case Study — Water Reservoir Inspection with ROV: https://www.maki.nz/case-studies/rov-reservoir/
+- Case Study — Sediment Analysis for Stormwater & Wastewater Ponds: https://www.maki.nz/case-studies/sediment-analysis/
+
+## Case studies
+
+### Lakes Mapping for Waikato Regional Council
+MĀKI deployed autonomous USVs to map 12 lakes across the Waikato region for Waikato Regional Council. The project delivered high-resolution bathymetric data, sediment mapping and water quality profiles used to inform freshwater management decisions.
+URL: https://www.maki.nz/case-studies/lakes-mapping/
+
+### Topo-Bathymetric Mapping at Aotea Harbour
+MĀKI conducted an integrated topo-bathymetric survey of Aotea Harbour for Ōtorohanga District Council — combining USV sonar with drone photogrammetry to produce a seamless 3D dataset of the harbour floor and surrounding land.
+URL: https://www.maki.nz/case-studies/aotea-harbour/
+
+### Autonomous Algae Bloom Monitoring
+MĀKI deployed a USV during a cyanobacteria bloom event to autonomously collect real-time water quality data across an affected lake — providing Waikato Regional Council with spatial maps of chlorophyll-a and phycocyanin concentrations to guide public safety decisions.
+URL: https://www.maki.nz/case-studies/algae-bloom/
+
+### Ngaroto Lake Bathymetric Survey
+MĀKI carried out a full bathymetric survey of Ngaroto Lake, producing a high-resolution depth map and sediment volume estimates to support ecological restoration planning.
+URL: https://www.maki.nz/case-studies/ngaroto/
+
+### Water Reservoir Inspection with ROV
+MĀKI deployed an underwater ROV and surface rover to inspect a drinking water reservoir — capturing HD video of submerged walls, floors and inlet/outlet structures without dewatering or confined space entry. The survey enabled asset condition assessment with zero operational disruption.
+URL: https://www.maki.nz/case-studies/rov-reservoir/
+
+### Sediment Analysis for Stormwater & Wastewater Ponds
+MĀKI used autonomous USVs to survey stormwater retention ponds and wastewater treatment ponds, generating bathymetric maps and sediment volume calculations to help infrastructure managers plan desludging programmes and meet consent obligations.
+URL: https://www.maki.nz/case-studies/sediment-analysis/
 
 ## Recent articles
 
