@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en-NZ">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lakes Bathymetric Mapping — Waikato Regional Council | MĀKI Case Study</title>
+  <meta name="description" content="MĀKI is contracted to conduct bathymetric mapping of lakes across the Waikato region using autonomous surface vessels, providing depth data for lake management and restoration planning.">
+  <link rel="canonical" href="https://www.maki.nz/case-studies/lakes-mapping/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css?v=16">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XFVGYCS8RH"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-XFVGYCS8RH');</script>
+  <style>
+    .cs-hero { position: relative; height: 420px; overflow: hidden; }
+    .cs-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cs-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 100%); display: flex; align-items: flex-end; padding: 40px 48px; }
+    .cs-hero-overlay .tag { display: inline-block; background: #00A2D2; color: #fff; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 4px 12px; border-radius: 4px; margin-bottom: 12px; }
+    .cs-hero-overlay h1 { font-family: 'Ubuntu', sans-serif; font-size: clamp(26px, 4vw, 42px); font-weight: 700; color: #fff; margin: 0; line-height: 1.15; }
+    .cs-wrap { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
+    .cs-breadcrumb { font-size: 13px; color: #888; padding: 20px 0 32px; }
+    .cs-breadcrumb a { color: #00A2D2; text-decoration: none; }
+    .cs-breadcrumb a:hover { text-decoration: underline; }
+    .cs-meta { display: flex; flex-wrap: wrap; gap: 24px; background: #f4f7f9; border-radius: 8px; padding: 20px 28px; margin-bottom: 40px; }
+    .cs-meta-item { font-size: 14px; }
+    .cs-meta-item strong { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: #888; margin-bottom: 3px; }
+    .cs-meta-item span { color: #1a2a35; font-weight: 600; }
+    .cs-section { margin-bottom: 36px; }
+    .cs-section h2 { font-family: 'Ubuntu', sans-serif; font-size: 22px; font-weight: 700; color: #1a2a35; margin: 0 0 12px; padding-bottom: 8px; border-bottom: 2px solid #00A2D2; display: inline-block; }
+    .cs-section p { color: #444; line-height: 1.8; margin: 0 0 14px; }
+    .cs-outcomes { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin: 20px 0; }
+    .cs-outcome-item { background: #f4f7f9; border-left: 4px solid #00A2D2; border-radius: 4px; padding: 16px 20px; }
+    .cs-outcome-item strong { display: block; font-family: 'Ubuntu', sans-serif; font-size: 22px; color: #00A2D2; margin-bottom: 4px; }
+    .cs-outcome-item span { font-size: 13px; color: #555; }
+    .cs-article-link { display: flex; align-items: center; gap: 14px; background: #f0faff; border: 1px solid #b3e0f0; border-radius: 8px; padding: 18px 24px; margin: 32px 0; text-decoration: none; color: inherit; }
+    .cs-article-link:hover { background: #e0f4fc; }
+    .cs-article-link .icon { font-size: 28px; }
+    .cs-article-link .text strong { display: block; color: #1a2a35; font-size: 15px; margin-bottom: 2px; }
+    .cs-article-link .text span { color: #00A2D2; font-size: 13px; }
+    .cs-cta-box { background: #00A2D2; border-radius: 10px; padding: 40px; text-align: center; color: #fff; margin-top: 48px; }
+    .cs-cta-box h2 { font-family: 'Ubuntu', sans-serif; font-size: 24px; margin: 0 0 10px; }
+    .cs-cta-box p { margin: 0 0 24px; opacity: 0.9; }
+    .cs-cta-box a { display: inline-block; background: #fff; color: #00A2D2; font-weight: 700; font-family: 'Ubuntu', sans-serif; padding: 12px 32px; border-radius: 6px; text-decoration: none; }
+    .cs-cta-box a:hover { background: #006C8C; color: #fff; }
+    footer.cs-footer { background: #222; color: rgba(255,255,255,0.6); text-align: center; padding: 24px; font-size: 14px; }
+    footer.cs-footer a { color: #71C7E1; }
+    @media (max-width: 600px) { .cs-hero-overlay { padding: 24px; } .cs-outcomes { grid-template-columns: 1fr 1fr; } }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <a href="/" class="brand">
+        <img src="/assets/media/001-MAKI-logo-inverse-strap_500pxSQ.png" alt="MAKI-logo" width="165" height="auto">
+        <span class="brand-tag">Together, we'll make waves.</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Open navigation">☰</button>
+      <div class="nav-links">
+        <div class="nav-item">
+          <a href="/services/" class="nav-link">Services</a>
+          <div class="dropdown">
+            <a href="/services/environmental/">Environmental Monitoring &amp; Water Sampling</a>
+            <a href="/services/bathymetry/">Bathymetry</a>
+            <a href="/services/topography/">Topography</a>
+            <a href="/services/?tab=topobathy">Bathymetry &amp; Topography</a>
+            <a href="/services/stormwater/">Stormwater &amp; Treatment Pond Surveys</a>
+            <a href="/services/?tab=asset">Asset Management (Inspection)</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="/solutions/" class="nav-link">Solutions</a>
+          <div class="dropdown">
+            <a href="/solutions/?tab=usvs">Customised USV Boats</a>
+            <a href="/solutions/?tab=rovs">Customised ROVs</a>
+            <a href="/solutions/?tab=auvs">Customised AUVs</a>
+            <a href="/solutions/?tab=drones">Customised Drones</a>
+            <a href="/solutions/?tab=iot">IoT Solutions</a>
+            <a href="/solutions/?tab=ai">Software &amp; AI Camera</a>
+            <a href="/solutions/?tab=satellite">Satellite Imagery</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="/products/" class="nav-link">Products</a>
+          <div class="dropdown">
+            <a href="/products/?tab=recreational">Recreational Products</a>
+            <a href="/products/?tab=technical">Technical Products</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="/case-studies/" class="nav-link active">Case Studies</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="cs-hero">
+    <img src="/assets/media/095-lakes-mapping-wrc.png" alt="Lakes bathymetric mapping for Waikato Regional Council">
+    <div class="cs-hero-overlay">
+      <div>
+        <div class="tag">Bathymetric Mapping</div>
+        <h1>Lakes Bathymetric Mapping Programme</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-wrap">
+    <div class="cs-breadcrumb"><a href="/case-studies/">← Case Studies</a> / Lakes Bathymetric Mapping</div>
+
+    <div class="cs-meta">
+      <div class="cs-meta-item"><strong>Client</strong><span>Waikato Regional Council</span></div>
+      <div class="cs-meta-item"><strong>Service</strong><span>Bathymetric Mapping</span></div>
+      <div class="cs-meta-item"><strong>Location</strong><span>Waikato Region, New Zealand</span></div>
+      <div class="cs-meta-item"><strong>Platform</strong><span>Autonomous USV</span></div>
+    </div>
+
+    <div class="cs-section">
+      <h2>Overview</h2>
+      <p>MĀKI is contracted by Waikato Regional Council to conduct a systematic bathymetric mapping programme across lakes in the Waikato region. Using in-house autonomous surface vessels equipped with single and multi-beam sonar, the programme delivers reliable, high-resolution depth data to support lake management, ecological monitoring and restoration planning across one of New Zealand's most ecologically significant regions.</p>
+    </div>
+
+    <div class="cs-section">
+      <h2>The Challenge</h2>
+      <p>Regional councils are responsible for monitoring and managing the health of freshwater bodies across their rohe. Accurate bathymetric data is foundational to this work — informing decisions on sediment loading, water volume calculations, habitat assessment and restoration interventions. However, traditional manned survey vessels are expensive, logistically complex, and in many cases restricted or impractical on smaller or ecologically sensitive lakes.</p>
+      <p>Waikato Regional Council needed a scalable, cost-effective approach to systematically survey multiple lakes to a consistent standard within a single programme.</p>
+    </div>
+
+    <div class="cs-section">
+      <h2>Our Approach</h2>
+      <p>MĀKI deployed compact autonomous surface vessels programmed to follow precise survey transect lines across each lake. The vessels operate independently once launched, collecting continuous depth readings georeferenced with RTK GPS for sub-metre positional accuracy. The autonomous approach allowed surveys to be completed with minimal on-site staffing and without disturbing the lake environment.</p>
+      <p>Data was post-processed into depth grids and 3D bathymetric models, delivered in GIS-compatible formats aligned with the council's existing data infrastructure.</p>
+    </div>
+
+    <div class="cs-section">
+      <h2>Outcomes</h2>
+      <div class="cs-outcomes">
+        <div class="cs-outcome-item"><strong>Multiple lakes</strong><span>Surveyed across the Waikato region in a single programme</span></div>
+        <div class="cs-outcome-item"><strong>RTK GPS</strong><span>Sub-metre positional accuracy on all depth readings</span></div>
+        <div class="cs-outcome-item"><strong>GIS-ready</strong><span>Data delivered in council-compatible formats</span></div>
+        <div class="cs-outcome-item"><strong>Autonomous</strong><span>Surveys completed with minimal on-site staffing</span></div>
+      </div>
+      <p>The programme provides Waikato Regional Council with a consistent, repeatable baseline of lake bathymetry that can be revisited over time to detect changes in sediment accumulation, lake volume and underwater habitat — supporting long-term freshwater management objectives.</p>
+    </div>
+
+    <a class="cs-article-link" href="/post/lakes-mapping-for-waikato-regional-council/">
+      <span class="icon">📰</span>
+      <span class="text">
+        <strong>Read the full project article</strong>
+        <span>Lakes Mapping for Waikato Regional Council →</span>
+      </span>
+    </a>
+
+    <div class="cs-cta-box">
+      <h2>Need bathymetric mapping for your lakes?</h2>
+      <p>Talk to the MĀKI team about your survey requirements.</p>
+      <a href="/enquire/">Get in touch</a>
+    </div>
+  </div>
+
+  <footer class="cs-footer">
+    <p>&copy; 2025 MĀKI Autonomous Systems &bull; <a href="mailto:info@maki.nz">info@maki.nz</a> &bull; <a href="/">maki.nz</a></p>
+  </footer>
+  <script>document.querySelector('.menu-toggle')?.addEventListener('click',()=>{document.querySelector('.nav-links')?.classList.toggle('open');});</script>
+</body>
+</html>

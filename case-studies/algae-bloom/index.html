@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en-NZ">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Autonomous Monitoring During Algae Bloom Events — Waikato Regional Council | MĀKI Case Study</title>
+  <meta name="description" content="MĀKI deployed autonomous USVs to collect water quality data and physical samples during cyanobacteria bloom events across Waikato lakes, eliminating safety risks of manual sampling.">
+  <link rel="canonical" href="https://www.maki.nz/case-studies/algae-bloom/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css?v=16">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XFVGYCS8RH"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-XFVGYCS8RH');</script>
+  <style>
+    .cs-hero { position: relative; height: 420px; overflow: hidden; }
+    .cs-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cs-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 100%); display: flex; align-items: flex-end; padding: 40px 48px; }
+    .cs-hero-overlay .tag { display: inline-block; background: #0077b6; color: #fff; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 4px 12px; border-radius: 4px; margin-bottom: 12px; }
+    .cs-hero-overlay h1 { font-family: 'Ubuntu', sans-serif; font-size: clamp(26px, 4vw, 42px); font-weight: 700; color: #fff; margin: 0; line-height: 1.15; }
+    .cs-wrap { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
+    .cs-breadcrumb { font-size: 13px; color: #888; padding: 20px 0 32px; }
+    .cs-breadcrumb a { color: #00A2D2; text-decoration: none; }
+    .cs-breadcrumb a:hover { text-decoration: underline; }
+    .cs-meta { display: flex; flex-wrap: wrap; gap: 24px; background: #f4f7f9; border-radius: 8px; padding: 20px 28px; margin-bottom: 40px; }
+    .cs-meta-item { font-size: 14px; }
+    .cs-meta-item strong { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: #888; margin-bottom: 3px; }
+    .cs-meta-item span { color: #1a2a35; font-weight: 600; }
+    .cs-section { margin-bottom: 36px; }
+    .cs-section h2 { font-family: 'Ubuntu', sans-serif; font-size: 22px; font-weight: 700; color: #1a2a35; margin: 0 0 12px; padding-bottom: 8px; border-bottom: 2px solid #0077b6; display: inline-block; }
+    .cs-section p { color: #444; line-height: 1.8; margin: 0 0 14px; }
+    .cs-outcomes { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin: 20px 0; }
+    .cs-outcome-item { background: #f4f7f9; border-left: 4px solid #0077b6; border-radius: 4px; padding: 16px 20px; }
+    .cs-outcome-item strong { display: block; font-family: 'Ubuntu', sans-serif; font-size: 22px; color: #0077b6; margin-bottom: 4px; }
+    .cs-outcome-item span { font-size: 13px; color: #555; }
+    .cs-article-link { display: flex; align-items: center; gap: 14px; background: #f0faff; border: 1px solid #b3e0f0; border-radius: 8px; padding: 18px 24px; margin: 32px 0; text-decoration: none; color: inherit; }
+    .cs-article-link:hover { background: #e0f4fc; }
+    .cs-article-link .icon { font-size: 28px; }
+    .cs-article-link .text strong { display: block; color: #1a2a35; font-size: 15px; margin-bottom: 2px; }
+    .cs-article-link .text span { color: #00A2D2; font-size: 13px; }
+    .cs-cta-box { background: #0077b6; border-radius: 10px; padding: 40px; text-align: center; color: #fff; margin-top: 48px; }
+    .cs-cta-box h2 { font-family: 'Ubuntu', sans-serif; font-size: 24px; margin: 0 0 10px; }
+    .cs-cta-box p { margin: 0 0 24px; opacity: 0.9; }
+    .cs-cta-box a { display: inline-block; background: #fff; color: #0077b6; font-weight: 700; font-family: 'Ubuntu', sans-serif; padding: 12px 32px; border-radius: 6px; text-decoration: none; }
+    .cs-cta-box a:hover { background: #1a2a35; color: #fff; }
+    footer.cs-footer { background: #222; color: rgba(255,255,255,0.6); text-align: center; padding: 24px; font-size: 14px; }
+    footer.cs-footer a { color: #71C7E1; }
+    @media (max-width: 600px) { .cs-hero-overlay { padding: 24px; } .cs-outcomes { grid-template-columns: 1fr 1fr; } }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <a href="/" class="brand">
+        <img src="/assets/media/001-MAKI-logo-inverse-strap_500pxSQ.png" alt="MAKI-logo" width="165" height="auto">
+        <span class="brand-tag">Together, we'll make waves.</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Open navigation">☰</button>
+      <div class="nav-links">
+        <div class="nav-item">
+          <a href="/services/" class="nav-link">Services</a>
+          <div class="dropdown">
+            <a href="/services/environmental/">Environmental Monitoring &amp; Water Sampling</a>
+            <a href="/services/bathymetry/">Bathymetry</a>
+            <a href="/services/topography/">Topography</a>
+            <a href="/services/?tab=topobathy">Bathymetry &amp; Topography</a>
+            <a href="/services/stormwater/">Stormwater &amp; Treatment Pond Surveys</a>
+            <a href="/services/?tab=asset">Asset Management (Inspection)</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="/solutions/" class="nav-link">Solutions</a>
+          <div class="dropdown">
+            <a href="/solutions/?tab=usvs">Customised USV Boats</a>
+            <a href="/solutions/?tab=rovs">Customised ROVs</a>
+            <a href="/solutions/?tab=auvs">Customised AUVs</a>
+            <a href="/solutions/?tab=drones">Customised Drones</a>
+            <a href="/solutions/?tab=iot">IoT Solutions</a>
+            <a href="/solutions/?tab=ai">Software &amp; AI Camera</a>
+            <a href="/solutions/?tab=satellite">Satellite Imagery</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="/products/" class="nav-link">Products</a>
+          <div class="dropdown">
+            <a href="/products/?tab=recreational">Recreational Products</a>
+            <a href="/products/?tab=technical">Technical Products</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="/case-studies/" class="nav-link active">Case Studies</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="cs-hero">
+    <img src="/assets/media/090-water-quality-1.jpg" alt="Autonomous water quality monitoring during algae bloom events">
+    <div class="cs-hero-overlay">
+      <div>
+        <div class="tag">Water Quality Monitoring</div>
+        <h1>Autonomous Monitoring During Algae Bloom Events</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-wrap">
+    <div class="cs-breadcrumb"><a href="/case-studies/">← Case Studies</a> / Algae Bloom Monitoring</div>
+
+    <div class="cs-meta">
+      <div class="cs-meta-item"><strong>Client</strong><span>Waikato Regional Council</span></div>
+      <div class="cs-meta-item"><strong>Service</strong><span>Environmental Monitoring &amp; Water Sampling</span></div>
+      <div class="cs-meta-item"><strong>Location</strong><span>Waikato Lakes, New Zealand</span></div>
+      <div class="cs-meta-item"><strong>Platform</strong><span>MĀKI Boat V2 (Autonomous USV)</span></div>
+    </div>
+
+    <div class="cs-section">
+      <h2>Overview</h2>
+      <p>During the summer of 2024–2025, MĀKI deployed the autonomous MĀKI Boat V2 across multiple Waikato lakes to collect spatially comprehensive water quality data and physical water samples during active cyanobacteria (blue-green algae) bloom events. The autonomous deployment allowed safe, thorough monitoring of hazardous conditions that would otherwise put field staff at risk.</p>
+    </div>
+
+    <div class="cs-section">
+      <h2>The Challenge</h2>
+      <p>Cyanobacteria blooms pose serious public health risks and present a significant management challenge for regional councils responsible for freshwater quality. During active bloom events, lakes can become hazardous — making manual water sampling by staff dangerous and limiting the number and frequency of samples that can safely be collected.</p>
+      <p>Traditional point sampling from jetties or manned boats captures only a small number of fixed locations, making it difficult to understand how blooms are distributed spatially across a lake or how conditions are changing in near real-time. Waikato Regional Council needed a safer, more spatially comprehensive approach to monitoring bloom events.</p>
+    </div>
+
+    <div class="cs-section">
+      <h2>Our Approach</h2>
+      <p>MĀKI deployed the MĀKI Boat V2 — an autonomous surface vessel equipped with a multi-parameter water quality sensor suite and an integrated 15-metre winch sampler. The vessel followed programmed survey transects across each lake, collecting continuous readings of chlorophyll-a, phycocyanin (cyanobacteria indicator), turbidity, dissolved oxygen, pH and temperature at the surface and at depth.</p>
+      <p>At pre-selected locations, the winch sampler collected discrete water samples of up to 3 litres for laboratory analysis of nutrients, biological parameters and toxin concentrations. All sensor data and sample positions were georeferenced using RTK GPS, producing spatial maps of bloom distribution across the entire lake in a single deployment — something impossible to achieve with point sampling alone.</p>
+    </div>
+
+    <div class="cs-section">
+      <h2>Outcomes</h2>
+      <div class="cs-outcomes">
+        <div class="cs-outcome-item"><strong>Zero staff</strong><span>In hazardous bloom conditions during monitoring</span></div>
+        <div class="cs-outcome-item"><strong>Spatial maps</strong><span>Full-lake bloom distribution from a single deployment</span></div>
+        <div class="cs-outcome-item"><strong>6 parameters</strong><span>Measured continuously including phycocyanin for cyanobacteria</span></div>
+        <div class="cs-outcome-item"><strong>Depth samples</strong><span>Physical water samples collected at targeted depths via winch</span></div>
+      </div>
+      <p>The programme gave Waikato Regional Council spatially rich, rapidly collected water quality data during bloom events — enabling more targeted management responses, better-informed public safety decisions, and a replicable monitoring approach that can be deployed repeatedly at scale across the region.</p>
+    </div>
+
+    <a class="cs-article-link" href="/post/autonomous-water-monitoring-and-sampling-during-algae-bloom-events/">
+      <span class="icon">📰</span>
+      <span class="text">
+        <strong>Read the full project article</strong>
+        <span>Autonomous Water Monitoring and Sampling During Algae Bloom Events →</span>
+      </span>
+    </a>
+
+    <div class="cs-cta-box">
+      <h2>Need autonomous water quality monitoring?</h2>
+      <p>Talk to the MĀKI team about monitoring your lakes, rivers or ponds.</p>
+      <a href="/enquire/">Get in touch</a>
+    </div>
+  </div>
+
+  <footer class="cs-footer">
+    <p>&copy; 2025 MĀKI Autonomous Systems &bull; <a href="mailto:info@maki.nz">info@maki.nz</a> &bull; <a href="/">maki.nz</a></p>
+  </footer>
+  <script>document.querySelector('.menu-toggle')?.addEventListener('click',()=>{document.querySelector('.nav-links')?.classList.toggle('open');});</script>
+</body>
+</html>
