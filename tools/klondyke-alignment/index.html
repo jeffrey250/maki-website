@@ -533,7 +533,17 @@ LAYER_ORDER.forEach(k => { LABEL_TO_KEY[LAYER_META[k].label] = k; });
 
 // Built-in presets, baked into this page so anyone opening the link can load them
 // with one click (no file needed). [] is replaced at publish time.
-const BUILT_IN_PRESETS = [];
+const BUILT_IN_PRESETS = [
+  {
+    name: "Jeff (baseline 2026-08-04)",
+    offsets: {
+      "1962": { east_m: 0, north_m: 0 },
+      "1978": { east_m: 0, north_m: 0 },
+      "1995": { east_m: 0, north_m: 0 },
+      "1996": { east_m: 0, north_m: 0 }
+    }
+  }
+];
 
 const STORAGE_KEY = "klondyke_align_v1";
 
@@ -970,6 +980,9 @@ const restored = loadSaved();
 if (restored) {
   LAYER_ORDER.filter(k => k !== "A_RIVER").forEach(syncControls);
   document.getElementById("autosaveHint").textContent = "Restored your last adjustment from this browser. “Save adjustment” downloads a copy any time.";
+} else if (BUILT_IN_PRESETS.length) {
+  applyOffsetsByLabel(BUILT_IN_PRESETS[0].offsets, null, null);
+  document.getElementById("autosaveHint").textContent = "";
 }
 renderAll();
 
