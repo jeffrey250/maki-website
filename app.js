@@ -70,6 +70,8 @@ const products = [
 ];
 
 const videos = [
+  ["NTquxWB_fjI", "Underwater Stormwater Inspection Using ROV Technology | MAKI × Dutton Stormwater"],
+  ["3tJPJQ17WJo", "Robotics Inspection Project | MAKI"],
   ["ussr6TPOOxU", "Autonomous Bathymetry & Sediment Volume Analysis | MAKI USV Survey Systems"],
   ["9WVC_UHBu2U", "MAKI MK-III USV Platform - Integrated RTK, 4G & Multibeam Survey System"],
   ["hRby6IODy0k", "Autonomous Boat Mapping Water Quality | Chlorophyll-a, Phycocyanin, Turbidity & Water Sampling"],
