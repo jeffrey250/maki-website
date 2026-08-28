@@ -74,8 +74,10 @@
     --mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
     --sans: -apple-system, "Segoe UI", system-ui, sans-serif;
     --c-cp: #23d18b; --c-ref: #e0473a; --c-line: #ffd166;
-    --c-2012: #c957d6; --c-2017: #4f9fe0; --c-2020: #34c2ab; --c-2024: #e07a3a;
+    --c-1978: #8d8f9a; --c-2001: #b07cd6; --c-2012: #c957d6; --c-2017: #4f9fe0;
+    --c-2020: #34c2ab; --c-2024: #e07a3a;
   }
+  .lnote { color: var(--text-dim); font-size: 10.5px; margin: 1px 0 3px 20px; }
   * { box-sizing: border-box; }
   body { margin:0; background:var(--bg); color:var(--text); font-family:var(--sans); font-size:13px; }
   .shell { display:grid; grid-template-columns: 208px 1fr 322px; min-height:100vh; }
@@ -226,6 +228,8 @@ const PXPM = SCENE.imgW / SCENE.w_m;
 // mid-year is used for the rate arithmetic, since a flight spanning two summers
 // cannot be pinned to a single date
 const YEARS = [
+  { key:"1978",      label:"1978",      mid:1978.9, file:"img/linz_1978.jpg",      colour:"--c-1978", on:false, op:1, note:"black &amp; white, 0.75 m" },
+  { key:"2001",      label:"2001",      mid:2001.9, file:"img/linz_2001.jpg",      colour:"--c-2001", on:false, op:1, note:"false-colour film, 0.75 m" },
   { key:"2012-2013", label:"2012-2013", mid:2012.5, file:"img/linz_2012-2013.jpg", colour:"--c-2012", on:false, op:1 },
   { key:"2017-2018", label:"2017-2018", mid:2017.5, file:"img/linz_2017-2018.jpg", colour:"--c-2017", on:false, op:1 },
   { key:"2020-2021", label:"2020-2021", mid:2020.9, file:"img/linz_2020-2021.jpg", colour:"--c-2020", on:false, op:1 },
@@ -461,6 +465,7 @@ function buildLayers(){
       + '<span class="sw" style="background:' + css(y.colour) + '"></span>'
       + '<label><input type="checkbox" ' + (y.on ? "checked" : "") + ' data-k="' + y.key + '" class="vis"> ' + y.label + '</label>'
       + '<span class="pct" id="pct-' + y.key + '">' + Math.round(y.op*100) + '%</span></div>'
+      + (y.note ? '<div class="lnote">' + y.note + '</div>' : '')
       + '<input type="range" min="0" max="100" value="' + Math.round(y.op*100) + '" data-k="' + y.key + '" class="op">';
     box.appendChild(d);
   });
@@ -595,7 +600,8 @@ document.getElementById("copyBtn").addEventListener("click", function(){
 });
 document.getElementById("aboutLink").addEventListener("click", function(e){
   e.preventDefault();
-  alert("Imagery: LINZ Canterbury aerial (CC BY 4.0), cropped to a common extent so the years register with one another.\n\n"
+  alert("Imagery: LINZ Canterbury aerial (CC BY 4.0), cropped to a common extent so the years register with one another. Six flights, 1978 to 2024.\n\n"
+      + "1978 is black and white and 2001 is false-colour film, both scanned at 0.75 m; 2012 onward are digital colour at 0.3 m or better. The older two are coarser, so read their bank edge with more caution -- but they extend the record back another 34 years, which is worth far more than the extra metre of uncertainty." + "\n\n"
       + "Control points: RDR 049 Bridge 3, surveyed April 2024, NZTM2000, 3D quality about 4 mm. They sit on the road / fenceline, not on the bank, so a line from one out to the bank is the distance being tracked.\n\n"
       + "Distances are along the line you draw, in metres on the ground. Rates use the middle of each flight window, since a flight spanning two summers has no single date.");
 });
