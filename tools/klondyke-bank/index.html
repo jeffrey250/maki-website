@@ -153,6 +153,7 @@
     <div class="grp">Tools</div>
     <a href="../klondyke-alignment/">Historical alignment</a>
     <a href="./" class="active">Bank movement</a>
+    <a href="../klondyke-flow/">River flow events</a>
     <div class="grp">Reference</div>
     <a href="#" id="aboutLink">About the data</a>
   </nav>
@@ -163,6 +164,13 @@
       <div class="sub">Draw a line from a surveyed control point out to the bank, then mark where the
         bank sat in each year. The retreat and its rate are worked out below.</div>
     </header>
+    <div style="display:flex;align-items:center;gap:7px;margin-bottom:9px;flex-wrap:wrap;">
+      <button class="ghost" id="zoomOut" title="Zoom out">&minus;</button>
+      <span id="zoomLabel" style="font-family:var(--mono);min-width:36px;text-align:center;color:var(--text-muted);">1.0&times;</span>
+      <button class="ghost" id="zoomIn" title="Zoom in">+</button>
+      <button class="ghost" id="resetViewBtn">Reset view</button>
+      <span class="dim">Scroll to zoom &middot; drag to pan &middot; double-click to zoom in</span>
+    </div>
     <div class="hintbar" id="hint">Step 1 &mdash; click one of the green control points to start.</div>
     <div class="stagewrap"><canvas id="cv"></canvas></div>
     <div class="dim" style="margin-top:8px;">
@@ -180,6 +188,7 @@
       <div class="actions">
         <button class="ghost" id="undoBtn">Undo last</button>
         <button class="ghost" id="resetBtn">Start again</button>
+        <button class="ghost" id="resetAllBtn">Reset everything</button>
       </div>
     </div>
 
@@ -271,10 +280,52 @@ function pointAt(d){
   return { x: state.anchor.x + v.dx * d, y: state.anchor.y + v.dy * d };
 }
 
+
+// ---- view: zoom and pan ----
+// The canvas buffer stays a fixed 2000 x 1825 so the imagery is always drawn at
+// full resolution; zooming applies a transform at draw time instead of resizing
+// anything. Markers and line widths are divided by the scale so they stay the
+// same size on screen however far in you are - a control point that grew to
+// fill the view at 8x would be useless to click on.
+let view = { k: 1, tx: 0, ty: 0 };
+const MIN_K = 1, MAX_K = 12;
+
+function clampView(){
+  view.k = Math.max(MIN_K, Math.min(MAX_K, view.k));
+  // keep the image covering the canvas, so panning cannot strand you on blank space
+  const minTx = SCENE.imgW - SCENE.imgW * view.k, minTy = SCENE.imgH - SCENE.imgH * view.k;
+  view.tx = Math.max(minTx, Math.min(0, view.tx));
+  view.ty = Math.max(minTy, Math.min(0, view.ty));
+}
+function resetView(){ view = { k:1, tx:0, ty:0 }; render(); updateZoomLabel(); }
+function zoomAt(bufX, bufY, factor){
+  const k0 = view.k;
+  view.k = Math.max(MIN_K, Math.min(MAX_K, view.k * factor));
+  // hold the point under the cursor still while the scale changes
+  view.tx = bufX - (bufX - view.tx) * (view.k / k0);
+  view.ty = bufY - (bufY - view.ty) * (view.k / k0);
+  clampView(); render(); updateZoomLabel();
+}
+function updateZoomLabel(){
+  const el = document.getElementById('zoomLabel');
+  if(el) el.textContent = view.k.toFixed(1) + '\u00d7';
+}
+// screen event -> canvas buffer coordinates
+function eventToBuffer(e){
+  const r = cv.getBoundingClientRect();
+  return [ (e.clientX - r.left) * (cv.width / r.width),
+           (e.clientY - r.top)  * (cv.height / r.height) ];
+}
+// canvas buffer -> unzoomed buffer (undo the view transform)
+function bufferToImage(bx, by){ return [ (bx - view.tx) / view.k, (by - view.ty) / view.k ]; }
+
 // ---- drawing ----
 function render(){
   cv.width = SCENE.imgW; cv.height = SCENE.imgH;
+  ctx.setTransform(1,0,0,1,0,0);
   ctx.fillStyle = "#0d1116"; ctx.fillRect(0, 0, cv.width, cv.height);
+  ctx.setTransform(view.k, 0, 0, view.k, view.tx, view.ty);
+  const K = view.k;   // divide on-screen sizes by this so they stay constant
   YEARS.forEach(y => {
     if(!y.on || !images[y.key]) return;
     ctx.globalAlpha = y.op;
@@ -286,23 +337,23 @@ function render(){
   if(state.anchor && state.far && v){
     const a = toPx(state.anchor), b = toPx(state.far);
     ctx.save();
-    ctx.strokeStyle = css("--c-line"); ctx.lineWidth = 3;
+    ctx.strokeStyle = css("--c-line"); ctx.lineWidth = 3 / K;
     ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.stroke();
     // a tick every 20 m, so distances can be read straight off the picture
     const nx = -(b[1]-a[1]), ny = (b[0]-a[0]), m = Math.hypot(nx, ny) || 1;
-    ctx.lineWidth = 1.5; ctx.strokeStyle = css("--c-line") + "88";
+    ctx.lineWidth = 1.5 / K; ctx.strokeStyle = css("--c-line") + "88";
     for(let d = 20; d < v.len; d += 20){
       const p = toPx(pointAt(d));
       ctx.beginPath();
-      ctx.moveTo(p[0] - nx/m*5, p[1] - ny/m*5);
-      ctx.lineTo(p[0] + nx/m*5, p[1] + ny/m*5);
+      ctx.moveTo(p[0] - nx/m*5/K, p[1] - ny/m*5/K);
+      ctx.lineTo(p[0] + nx/m*5/K, p[1] + ny/m*5/K);
       ctx.stroke();
     }
     ctx.restore();
   } else if(state.anchor){
     const a = toPx(state.anchor);
-    ctx.save(); ctx.strokeStyle = css("--c-line"); ctx.setLineDash([6,5]); ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.arc(a[0], a[1], 16, 0, Math.PI*2); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.strokeStyle = css("--c-line"); ctx.setLineDash([6/K,5/K]); ctx.lineWidth = 2 / K;
+    ctx.beginPath(); ctx.arc(a[0], a[1], 16/K, 0, Math.PI*2); ctx.stroke(); ctx.restore();
   }
 
   Object.keys(state.marks).forEach(k => {
@@ -310,11 +361,11 @@ function render(){
     const p = pointAt(state.marks[k]); if(!p) return;
     const q = toPx(p);
     ctx.save();
-    ctx.beginPath(); ctx.arc(q[0], q[1], 7, 0, Math.PI*2);
+    ctx.beginPath(); ctx.arc(q[0], q[1], 7/K, 0, Math.PI*2);
     ctx.fillStyle = css(y.colour); ctx.fill();
-    ctx.lineWidth = 2; ctx.strokeStyle = "#0b0d10"; ctx.stroke();
-    ctx.font = "600 15px system-ui, sans-serif"; ctx.fillStyle = css(y.colour);
-    ctx.textBaseline = "middle"; ctx.fillText(y.label, q[0] + 13, q[1] - 12);
+    ctx.lineWidth = 2/K; ctx.strokeStyle = "#0b0d10"; ctx.stroke();
+    ctx.font = "600 " + (15/K) + "px system-ui, sans-serif"; ctx.fillStyle = css(y.colour);
+    ctx.textBaseline = "middle"; ctx.fillText(y.label, q[0] + 13/K, q[1] - 12/K);
     ctx.restore();
   });
 
@@ -322,24 +373,57 @@ function render(){
   CONTROL_POINTS.forEach(cp => {
     const p = toPx(cp);
     ctx.save();
-    ctx.beginPath(); ctx.arc(p[0], p[1], 8, 0, Math.PI*2);
+    ctx.beginPath(); ctx.arc(p[0], p[1], 8/K, 0, Math.PI*2);
     ctx.fillStyle = css("--c-cp"); ctx.fill();
-    ctx.lineWidth = 2; ctx.strokeStyle = "#0b0d10"; ctx.stroke();
-    ctx.beginPath(); ctx.arc(p[0], p[1], 15, 0, Math.PI*2);
-    ctx.strokeStyle = css("--c-cp") + "88"; ctx.lineWidth = 1.5; ctx.stroke();
-    ctx.font = "600 15px system-ui, sans-serif"; ctx.fillStyle = css("--c-cp");
-    ctx.textBaseline = "middle"; ctx.fillText(cp.name, p[0] + 20, p[1]);
+    ctx.lineWidth = 2/K; ctx.strokeStyle = "#0b0d10"; ctx.stroke();
+    ctx.beginPath(); ctx.arc(p[0], p[1], 15/K, 0, Math.PI*2);
+    ctx.strokeStyle = css("--c-cp") + "88"; ctx.lineWidth = 1.5/K; ctx.stroke();
+    ctx.font = "600 " + (15/K) + "px system-ui, sans-serif"; ctx.fillStyle = css("--c-cp");
+    ctx.textBaseline = "middle"; ctx.fillText(cp.name, p[0] + 20/K, p[1]);
     ctx.restore();
   });
 }
 
 // ---- interaction ----
-cv.addEventListener("click", function(e){
-  const r = cv.getBoundingClientRect();
-  const px = (e.clientX - r.left) * (cv.width / r.width);
-  const py = (e.clientY - r.top) * (cv.height / r.height);
-  const p = toLocal(px, py);
+// A press that moves is a pan; a press that does not is a measurement click.
+// Sharing the left button this way keeps the tool to one obvious gesture each
+// without a mode switch to forget about.
+let drag = null;
+cv.addEventListener("mousedown", function(e){
+  const [bx, by] = eventToBuffer(e);
+  drag = { bx: bx, by: by, tx0: view.tx, ty0: view.ty, moved: false };
+});
+window.addEventListener("mousemove", function(e){
+  if(!drag) return;
+  const [bx, by] = eventToBuffer(e);
+  if(Math.abs(bx-drag.bx) > 4 || Math.abs(by-drag.by) > 4) drag.moved = true;
+  if(drag.moved){
+    view.tx = drag.tx0 + (bx - drag.bx);
+    view.ty = drag.ty0 + (by - drag.by);
+    clampView(); render();
+  }
+});
+window.addEventListener("mouseup", function(e){
+  if(!drag) return;
+  const wasDrag = drag.moved;
+  drag = null;
+  if(wasDrag) return;
+  const [bx, by] = eventToBuffer(e);
+  if(bx < 0 || by < 0 || bx > cv.width || by > cv.height) return;
+  const [ix, iy] = bufferToImage(bx, by);
+  handleClick(toLocal(ix, iy));
+});
+cv.addEventListener("wheel", function(e){
+  e.preventDefault();
+  const [bx, by] = eventToBuffer(e);
+  zoomAt(bx, by, e.deltaY < 0 ? 1.18 : 1/1.18);
+}, { passive: false });
+cv.addEventListener("dblclick", function(e){
+  const [bx, by] = eventToBuffer(e);
+  zoomAt(bx, by, 1.6);
+});
 
+function handleClick(p){
   if(!state.anchor){
     let best = null;
     CONTROL_POINTS.forEach(cp => {
@@ -347,17 +431,17 @@ cv.addEventListener("click", function(e){
       if(d < 25 && (!best || d < best.d)) best = { cp: cp, d: d };
     });
     if(best) state.anchor = { x: best.cp.x, y: best.cp.y, name: best.cp.name };
-    else flash("Start on a control point (green) — that is the surveyed end of the line.");
+    else flash("Start on a control point (green) \u2014 that is the surveyed end of the line.");
   } else if(!state.far){
     state.far = p;
     if(!state.markYear) state.markYear = YEARS[0].key;
   } else if(state.markYear){
     const d = projectOnLine(p);
-    if(d > lineVec().len) flash("That is past the end of the line — start again with a longer one.");
+    if(d > lineVec().len) flash("That is past the end of the line \u2014 start again with a longer one.");
     else state.marks[state.markYear] = d;
   }
   update();
-});
+}
 
 function flash(msg){
   const h = document.getElementById("hint");
@@ -516,8 +600,25 @@ document.getElementById("aboutLink").addEventListener("click", function(e){
       + "Distances are along the line you draw, in metres on the ground. Rates use the middle of each flight window, since a flight spanning two summers has no single date.");
 });
 
+document.getElementById("zoomIn").addEventListener("click", function(){
+  zoomAt(cv.width/2, cv.height/2, 1.4);
+});
+document.getElementById("zoomOut").addEventListener("click", function(){
+  zoomAt(cv.width/2, cv.height/2, 1/1.4);
+});
+document.getElementById("resetViewBtn").addEventListener("click", resetView);
+document.getElementById("resetAllBtn").addEventListener("click", function(){
+  // everything back to how the page opens: no measurement, no zoom, default layers
+  state = { anchor:null, far:null, marks:{}, markYear:null };
+  YEARS.forEach(function(y, i){ y.on = (y.key === "2024"); y.op = 1; });
+  resetView();
+  buildLayers();
+  update();
+});
+
 buildLayers();
 loadImages();
+updateZoomLabel();
 update();
 
 async function checkLogin(){

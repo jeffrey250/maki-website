@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Klondyke Bend &mdash; River Flow Events</title>
+<style>
+/* ── Google Fonts for login gate ── */
+  @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&family=Nunito+Sans:wght@300;400;600;700&display=swap');
+
+  /* ── Login gate ── */
+  #login-gate {
+    position: fixed; inset: 0; z-index: 9999;
+    background: #1a2a35;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Nunito Sans', Helvetica, Arial, sans-serif;
+  }
+  #login-gate.hidden { display: none; }
+  .login-box {
+    background: #ffffff;
+    border-radius: 12px; overflow: hidden;
+    width: 360px; max-width: 90vw; text-align: center;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.35);
+  }
+  .login-box .login-logo {
+    background: #1a2a35;
+    padding: 28px 40px;
+  }
+  .login-box .login-logo img {
+    height: 48px; width: auto; margin: 0 auto; display: block;
+  }
+  .login-box .login-body {
+    padding: 32px 40px 36px;
+  }
+  .login-box h1 {
+    font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+    font-size: 20px; font-weight: 700; color: #1a2a35;
+    margin: 0 0 6px;
+  }
+  .login-box p {
+    font-size: 14px; color: #666666; margin: 0 0 24px; line-height: 1.5;
+  }
+  .login-box input {
+    width: 100%; box-sizing: border-box;
+    background: #fafafa; border: 1px solid #e6e6e6;
+    border-radius: 6px; color: #333333;
+    font-family: 'Nunito Sans', Helvetica, Arial, sans-serif;
+    font-size: 15px; padding: 11px 14px;
+    margin-bottom: 12px; outline: none;
+    transition: border-color 0.2s;
+  }
+  .login-box input:focus { border-color: #00A2D2; }
+  .login-box button {
+    width: 100%;
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: 44px; padding: 0 24px;
+    background: #00A2D2; border: 2px solid #00A2D2; color: #ffffff;
+    font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+    font-weight: 700; font-size: 15px;
+    border-radius: 6px; cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    margin-top: 4px;
+  }
+  .login-box button:hover { background: #006C8C; border-color: #006C8C; }
+  .login-error {
+    font-size: 13px; color: #cc3333;
+    margin-top: 12px; min-height: 18px;
+  }
+
+      :root {
+    --bg: #12161c; --panel: #1a2029; --panel-2: #212836; --border: #2b3342;
+    --text: #e7ebf1; --text-muted: #8792a3; --text-dim: #5b6577;
+    --accent: #d9a441; --accent-soft: rgba(217,164,65,0.14);
+    --mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+    --sans: -apple-system, "Segoe UI", system-ui, sans-serif;
+    --c-road: #e0473a; --c-far: #34c2ab; --c-mid: #8792a3;
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family:var(--sans); font-size:13px; }
+  .shell { display:grid; grid-template-columns: 208px 1fr; min-height:100vh; }
+  nav.side { background:var(--panel); border-right:1px solid var(--border); padding:16px 0; }
+  nav.side .brand { padding:0 16px 14px; border-bottom:1px solid var(--border); margin-bottom:10px; }
+  nav.side .brand strong { display:block; font-size:13px; }
+  nav.side .brand span { color:var(--text-dim); font-size:11px; }
+  nav.side a { display:block; padding:9px 16px; color:var(--text-muted); text-decoration:none;
+               border-left:3px solid transparent; font-size:13px; }
+  nav.side a:hover { color:var(--text); background:var(--panel-2); }
+  nav.side a.active { color:var(--text); border-left-color:var(--accent); background:var(--accent-soft); }
+  nav.side .grp { padding:14px 16px 5px; color:var(--text-dim); font-size:10.5px;
+                  text-transform:uppercase; letter-spacing:.09em; }
+  main { padding:18px 22px 40px; min-width:0; max-width:1180px; }
+  h1 { font-size:19px; margin:0 0 4px; font-weight:600; }
+  .sub { color:var(--text-muted); font-size:12.5px; line-height:1.6; margin-bottom:18px; max-width:760px; }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(168px,1fr)); gap:11px; margin-bottom:20px; }
+  .kpi { background:var(--panel-2); border:1px solid var(--border); border-radius:8px; padding:12px 14px; }
+  .kpi .v { font-size:24px; font-family:var(--mono); line-height:1.15; }
+  .kpi .l { color:var(--text-muted); font-size:11.5px; margin-top:3px; line-height:1.45; }
+  .card { background:var(--panel-2); border:1px solid var(--border); border-radius:8px;
+          padding:14px 16px; margin-bottom:18px; }
+  .card h2 { font-size:12px; text-transform:uppercase; letter-spacing:.07em;
+             color:var(--text-muted); margin:0 0 4px; font-weight:600; }
+  .card .note { color:var(--text-dim); font-size:11.5px; line-height:1.55; margin-bottom:12px; }
+  .legend { display:flex; gap:16px; flex-wrap:wrap; font-size:11.5px; color:var(--text-muted); margin-top:9px; }
+  .legend i { display:inline-block; width:11px; height:11px; border-radius:2px; margin-right:5px;
+              vertical-align:-1px; }
+  table.ev { width:100%; border-collapse:collapse; font-size:12.5px; }
+  table.ev th { text-align:left; color:var(--text-dim); font-weight:500; font-size:10.5px;
+                text-transform:uppercase; letter-spacing:.05em; padding:6px 8px;
+                border-bottom:1px solid var(--border); }
+  table.ev td { padding:7px 8px; border-bottom:1px solid var(--border); }
+  table.ev td.n { font-family:var(--mono); }
+  table.ev tr:hover td { background:rgba(255,255,255,0.02); }
+  .sev { display:inline-block; padding:2px 7px; border-radius:10px; font-size:10.5px; font-weight:600; }
+  .sev.hi { background:rgba(224,71,58,0.18); color:#ff8a7d; }
+  .sev.md { background:rgba(217,164,65,0.16); color:#e8bf72; }
+  .dim { color:var(--text-dim); font-size:11.5px; line-height:1.55; }
+  svg { display:block; width:100%; height:auto; }
+  .tl-row { cursor:default; }
+</style>
+</head>
+<body>
+<div id="login-gate">
+  <div class="login-box">
+    <div class="login-logo">
+      <img src="/assets/media/001-MAKI-logo-inverse-strap_500pxSQ.png" alt="MĀKI Autonomous Systems">
+    </div>
+    <div class="login-body">
+      <h1>Klondyke Bend Tool</h1>
+      <p>Enter your credentials to continue</p>
+      <input id="login-user" type="text" placeholder="Username" autocomplete="username" />
+      <input id="login-pass" type="password" placeholder="Password" autocomplete="current-password" />
+      <button onclick="checkLogin()">Sign in</button>
+      <div class="login-error" id="login-error"></div>
+    </div>
+  </div>
+</div>
+
+<div class="shell">
+  <nav class="side">
+    <div class="brand"><strong>Klondyke Bend</strong><span>Rangitata River</span></div>
+    <div class="grp">Tools</div>
+    <a href="../klondyke-alignment/">Historical alignment</a>
+    <a href="../klondyke-bank/">Bank movement</a>
+    <a href="./" class="active">River flow events</a>
+  </nav>
+
+  <main>
+    <h1>River flow events</h1>
+    <div class="sub">
+      The Rangitata normally runs down the far side of the gravel at Klondyke Bend. Now and then it
+      swings across to the Klondyke&nbsp;Terrace side. Those swings are what put the road at risk, and
+      they happen long before the bank itself shows any change &mdash; so they are worth watching on
+      their own.
+    </div>
+
+    <div class="cards" id="kpis"></div>
+
+    <div class="card">
+      <h2>Where the river has been running</h2>
+      <div class="note">
+        Every satellite pass, scored from 0 to 1: <b>0</b> means the flow is hard against
+        Klondyke&nbsp;Terrace, <b>1</b> means it is against the far bank. Measured as a share of the
+        gravel&rsquo;s width, so it stays comparable where the braidplain is wide at one end of the
+        bend and narrow at the other. Shaded bands are the events picked out below.
+      </div>
+      <div id="chart"></div>
+      <div class="legend">
+        <span><i style="background:var(--c-far)"></i>Average across the frontage</span>
+        <span><i style="background:var(--accent)"></i>Closest cross-section on that pass</span>
+        <span><i style="background:rgba(224,71,58,0.35)"></i>Flow on the road side</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Timeline</h2>
+      <div class="note">
+        Each bar is one event &mdash; a spell when the flow sat on the road half of the gravel, and
+        further over than that cross-section normally sits. Longer bars lasted longer.
+      </div>
+      <div id="timeline"></div>
+    </div>
+
+    <div class="card">
+      <h2>The events</h2>
+      <div class="note">
+        &ldquo;How far across&rdquo; is the lowest score reached: smaller means further onto the road
+        side. &ldquo;Closest water&rdquo; is how near the flow actually came to the road.
+      </div>
+      <table class="ev" id="evTable"></table>
+      <div class="dim" id="repeatNote" style="margin-top:12px;"></div>
+    </div>
+
+    <div class="card">
+      <h2>How an event is decided</h2>
+      <div class="dim" id="method"></div>
+    </div>
+  </main>
+</div>
+
+
+<script>
+const DATA = {"series":[{"d":"2021-08-31","mean":0.668,"min":0.534,"nf":0,"nt":26,"wd":156.0},{"d":"2021-09-08","mean":0.621,"min":0.497,"nf":0,"nt":27,"wd":106.1},{"d":"2021-09-10","mean":0.614,"min":0.409,"nf":2,"nt":27,"wd":83.6},{"d":"2021-09-23","mean":0.628,"min":0.511,"nf":0,"nt":27,"wd":138.0},{"d":"2021-09-28","mean":0.598,"min":0.497,"nf":0,"nt":27,"wd":83.6},{"d":"2021-09-30","mean":0.608,"min":0.458,"nf":1,"nt":27,"wd":137.2},{"d":"2021-10-13","mean":0.607,"min":0.412,"nf":2,"nt":27,"wd":127.5},{"d":"2021-10-30","mean":0.615,"min":0.449,"nf":3,"nt":27,"wd":127.5},{"d":"2021-11-04","mean":0.592,"min":0.31,"nf":5,"nt":27,"wd":129.8},{"d":"2021-11-07","mean":0.613,"min":0.43,"nf":2,"nt":27,"wd":137.2},{"d":"2021-11-14","mean":0.619,"min":0.515,"nf":0,"nt":26,"wd":83.6},{"d":"2021-11-17","mean":0.599,"min":0.459,"nf":1,"nt":27,"wd":83.6},{"d":"2021-12-29","mean":0.623,"min":0.481,"nf":2,"nt":27,"wd":126.7},{"d":"2022-01-13","mean":0.599,"min":0.491,"nf":2,"nt":27,"wd":80.6},{"d":"2022-01-28","mean":0.6,"min":0.497,"nf":1,"nt":27,"wd":80.6},{"d":"2022-02-07","mean":0.587,"min":0.485,"nf":2,"nt":27,"wd":86.5},{"d":"2022-02-20","mean":0.621,"min":0.503,"nf":0,"nt":27,"wd":87.4},{"d":"2022-03-02","mean":0.638,"min":0.561,"nf":0,"nt":26,"wd":143.8},{"d":"2022-03-07","mean":0.656,"min":0.46,"nf":1,"nt":27,"wd":89.1},{"d":"2022-03-22","mean":0.643,"min":0.521,"nf":0,"nt":26,"wd":127.5},{"d":"2022-03-27","mean":0.642,"min":0.495,"nf":1,"nt":27,"wd":88.5},{"d":"2022-04-01","mean":0.667,"min":0.553,"nf":0,"nt":26,"wd":144.8},{"d":"2022-04-06","mean":0.662,"min":0.555,"nf":0,"nt":26,"wd":158.8},{"d":"2022-04-08","mean":0.67,"min":0.577,"nf":0,"nt":26,"wd":159.9},{"d":"2022-04-13","mean":0.67,"min":0.559,"nf":0,"nt":26,"wd":162.4},{"d":"2022-04-26","mean":0.668,"min":0.587,"nf":0,"nt":26,"wd":143.8},{"d":"2022-04-28","mean":0.67,"min":0.585,"nf":0,"nt":26,"wd":151.4},{"d":"2022-05-01","mean":0.647,"min":0.495,"nf":1,"nt":27,"wd":136.7},{"d":"2022-05-03","mean":0.652,"min":0.547,"nf":0,"nt":27,"wd":146.0},{"d":"2022-05-11","mean":0.667,"min":0.582,"nf":0,"nt":26,"wd":137.0},{"d":"2022-05-16","mean":0.674,"min":0.605,"nf":0,"nt":26,"wd":161.1},{"d":"2022-05-21","mean":0.667,"min":0.476,"nf":0,"nt":26,"wd":161.1},{"d":"2022-05-23","mean":0.67,"min":0.476,"nf":0,"nt":26,"wd":163.7},{"d":"2022-05-26","mean":0.662,"min":0.476,"nf":0,"nt":26,"wd":161.1},{"d":"2022-05-28","mean":0.661,"min":0.476,"nf":0,"nt":26,"wd":166.7},{"d":"2022-06-05","mean":0.665,"min":0.539,"nf":0,"nt":27,"wd":137.0},{"d":"2022-06-20","mean":0.693,"min":0.595,"nf":0,"nt":26,"wd":159.1},{"d":"2022-06-25","mean":0.687,"min":0.548,"nf":0,"nt":26,"wd":163.7},{"d":"2022-06-30","mean":0.674,"min":0.476,"nf":0,"nt":26,"wd":161.1},{"d":"2022-07-02","mean":0.675,"min":0.529,"nf":0,"nt":26,"wd":161.1},{"d":"2022-07-05","mean":0.67,"min":0.476,"nf":0,"nt":26,"wd":163.7},{"d":"2022-07-15","mean":0.617,"min":0.472,"nf":2,"nt":26,"wd":151.4},{"d":"2022-07-30","mean":0.614,"min":0.445,"nf":3,"nt":27,"wd":79.2},{"d":"2022-08-26","mean":0.681,"min":0.582,"nf":0,"nt":27,"wd":143.8},{"d":"2022-08-29","mean":0.695,"min":0.558,"nf":0,"nt":26,"wd":157.3},{"d":"2022-09-03","mean":0.649,"min":0.5,"nf":0,"nt":27,"wd":153.4},{"d":"2022-09-05","mean":0.657,"min":0.5,"nf":0,"nt":26,"wd":143.8},{"d":"2022-09-08","mean":0.608,"min":0.507,"nf":0,"nt":26,"wd":143.8},{"d":"2022-09-13","mean":0.621,"min":0.507,"nf":0,"nt":26,"wd":144.8},{"d":"2022-09-23","mean":0.591,"min":0.442,"nf":0,"nt":27,"wd":89.1},{"d":"2022-10-08","mean":0.64,"min":0.485,"nf":1,"nt":26,"wd":136.7},{"d":"2022-10-10","mean":0.668,"min":0.5,"nf":0,"nt":26,"wd":144.8},{"d":"2022-10-13","mean":0.656,"min":0.479,"nf":0,"nt":27,"wd":144.8},{"d":"2022-10-18","mean":0.704,"min":0.596,"nf":0,"nt":11,"wd":178.8},{"d":"2022-10-20","mean":0.676,"min":0.498,"nf":0,"nt":26,"wd":165.3},{"d":"2022-11-02","mean":0.633,"min":0.525,"nf":0,"nt":27,"wd":126.1},{"d":"2022-11-12","mean":0.675,"min":0.579,"nf":0,"nt":26,"wd":145.0},{"d":"2022-11-22","mean":0.644,"min":0.438,"nf":1,"nt":27,"wd":90.0},{"d":"2022-11-27","mean":0.669,"min":0.538,"nf":0,"nt":27,"wd":152.5},{"d":"2022-12-24","mean":0.639,"min":0.516,"nf":0,"nt":26,"wd":127.5},{"d":"2022-12-27","mean":0.65,"min":0.483,"nf":0,"nt":26,"wd":136.7},{"d":"2023-01-08","mean":0.668,"min":0.457,"nf":0,"nt":26,"wd":156.6},{"d":"2023-01-18","mean":0.661,"min":0.498,"nf":0,"nt":26,"wd":138.0},{"d":"2023-01-21","mean":0.633,"min":0.429,"nf":0,"nt":26,"wd":90.6},{"d":"2023-01-26","mean":0.65,"min":0.433,"nf":0,"nt":27,"wd":90.6},{"d":"2023-02-05","mean":0.631,"min":0.497,"nf":1,"nt":27,"wd":98.5},{"d":"2023-02-07","mean":0.639,"min":0.547,"nf":0,"nt":27,"wd":136.7},{"d":"2023-02-12","mean":0.638,"min":0.386,"nf":0,"nt":26,"wd":126.7},{"d":"2023-02-20","mean":0.662,"min":0.498,"nf":0,"nt":26,"wd":146.0},{"d":"2023-02-27","mean":0.669,"min":0.483,"nf":0,"nt":26,"wd":138.0},{"d":"2023-03-17","mean":0.686,"min":0.629,"nf":0,"nt":26,"wd":120.0},{"d":"2023-03-22","mean":0.69,"min":0.567,"nf":0,"nt":26,"wd":157.3},{"d":"2023-04-03","mean":0.692,"min":0.498,"nf":0,"nt":26,"wd":161.1},{"d":"2023-04-08","mean":0.697,"min":0.483,"nf":0,"nt":26,"wd":163.7},{"d":"2023-04-21","mean":0.691,"min":0.558,"nf":0,"nt":26,"wd":144.8},{"d":"2023-04-23","mean":0.711,"min":0.567,"nf":0,"nt":26,"wd":161.1},{"d":"2023-04-26","mean":0.712,"min":0.476,"nf":0,"nt":26,"wd":157.3},{"d":"2023-04-28","mean":0.697,"min":0.476,"nf":0,"nt":26,"wd":161.1},{"d":"2023-06-02","mean":0.729,"min":0.657,"nf":0,"nt":26,"wd":157.3},{"d":"2023-06-05","mean":0.723,"min":0.567,"nf":0,"nt":26,"wd":157.3},{"d":"2023-06-07","mean":0.727,"min":0.62,"nf":0,"nt":26,"wd":161.1},{"d":"2023-06-15","mean":0.712,"min":0.476,"nf":0,"nt":26,"wd":161.1},{"d":"2023-06-30","mean":0.715,"min":0.396,"nf":1,"nt":26,"wd":166.7},{"d":"2023-07-20","mean":0.708,"min":0.513,"nf":0,"nt":26,"wd":144.8},{"d":"2023-07-25","mean":0.71,"min":0.433,"nf":1,"nt":26,"wd":163.7},{"d":"2023-07-27","mean":0.701,"min":0.433,"nf":1,"nt":26,"wd":165.3},{"d":"2023-07-30","mean":0.686,"min":0.411,"nf":1,"nt":26,"wd":164.6},{"d":"2023-08-09","mean":0.677,"min":0.43,"nf":1,"nt":26,"wd":161.4},{"d":"2023-08-16","mean":0.68,"min":0.405,"nf":1,"nt":26,"wd":166.7},{"d":"2023-08-19","mean":0.682,"min":0.407,"nf":1,"nt":26,"wd":161.0},{"d":"2023-08-21","mean":0.704,"min":0.405,"nf":1,"nt":26,"wd":166.7},{"d":"2023-08-24","mean":0.683,"min":0.404,"nf":1,"nt":26,"wd":163.4},{"d":"2023-08-29","mean":0.704,"min":0.426,"nf":1,"nt":26,"wd":166.7},{"d":"2023-09-08","mean":0.702,"min":0.433,"nf":1,"nt":26,"wd":163.7},{"d":"2023-09-18","mean":0.683,"min":0.584,"nf":0,"nt":26,"wd":152.5},{"d":"2023-09-25","mean":0.653,"min":0.584,"nf":0,"nt":26,"wd":144.8},{"d":"2023-09-28","mean":0.67,"min":0.578,"nf":0,"nt":26,"wd":136.7},{"d":"2023-10-10","mean":0.684,"min":0.476,"nf":0,"nt":26,"wd":161.1},{"d":"2023-10-15","mean":0.676,"min":0.476,"nf":0,"nt":26,"wd":156.5},{"d":"2023-10-18","mean":0.676,"min":0.45,"nf":0,"nt":26,"wd":154.7},{"d":"2023-10-28","mean":0.703,"min":0.57,"nf":0,"nt":26,"wd":145.0},{"d":"2023-11-12","mean":0.684,"min":0.479,"nf":0,"nt":26,"wd":164.6},{"d":"2023-11-17","mean":0.686,"min":0.462,"nf":0,"nt":26,"wd":161.1},{"d":"2023-12-07","mean":0.676,"min":0.438,"nf":0,"nt":27,"wd":147.9},{"d":"2023-12-19","mean":0.655,"min":0.457,"nf":0,"nt":27,"wd":126.7},{"d":"2024-01-01","mean":0.686,"min":0.438,"nf":0,"nt":26,"wd":155.7},{"d":"2024-01-26","mean":0.652,"min":0.507,"nf":0,"nt":27,"wd":154.9},{"d":"2024-01-28","mean":0.697,"min":0.589,"nf":0,"nt":26,"wd":145.0},{"d":"2024-02-10","mean":0.705,"min":0.476,"nf":0,"nt":26,"wd":163.7},{"d":"2024-02-12","mean":0.736,"min":0.672,"nf":0,"nt":14,"wd":198.8},{"d":"2024-02-17","mean":0.704,"min":0.498,"nf":0,"nt":26,"wd":153.4},{"d":"2024-02-20","mean":0.702,"min":0.498,"nf":0,"nt":26,"wd":161.1},{"d":"2024-02-22","mean":0.702,"min":0.498,"nf":0,"nt":26,"wd":153.4},{"d":"2024-03-06","mean":0.698,"min":0.476,"nf":0,"nt":26,"wd":163.7},{"d":"2024-03-13","mean":0.708,"min":0.476,"nf":0,"nt":26,"wd":163.7},{"d":"2024-03-23","mean":0.707,"min":0.476,"nf":0,"nt":26,"wd":161.1},{"d":"2024-03-28","mean":0.611,"min":0.476,"nf":1,"nt":26,"wd":163.7},{"d":"2024-04-07","mean":0.729,"min":0.498,"nf":0,"nt":26,"wd":161.1},{"d":"2024-04-17","mean":0.716,"min":0.567,"nf":0,"nt":26,"wd":163.7},{"d":"2024-04-20","mean":0.734,"min":0.574,"nf":0,"nt":27,"wd":161.1},{"d":"2024-04-22","mean":0.721,"min":0.498,"nf":0,"nt":26,"wd":163.7},{"d":"2024-04-27","mean":0.713,"min":0.476,"nf":0,"nt":26,"wd":153.4},{"d":"2024-05-02","mean":0.717,"min":0.476,"nf":0,"nt":26,"wd":163.7},{"d":"2024-05-07","mean":0.715,"min":0.476,"nf":0,"nt":26,"wd":161.2},{"d":"2024-05-10","mean":0.718,"min":0.476,"nf":0,"nt":26,"wd":161.1},{"d":"2024-05-25","mean":0.72,"min":0.476,"nf":0,"nt":26,"wd":163.7},{"d":"2024-06-01","mean":0.725,"min":0.538,"nf":0,"nt":25,"wd":163.7},{"d":"2024-06-06","mean":0.759,"min":0.609,"nf":0,"nt":26,"wd":163.7},{"d":"2024-06-26","mean":0.753,"min":0.62,"nf":0,"nt":26,"wd":161.2},{"d":"2024-07-04","mean":0.745,"min":0.62,"nf":0,"nt":26,"wd":161.1},{"d":"2024-07-06","mean":0.742,"min":0.609,"nf":0,"nt":26,"wd":161.1},{"d":"2024-07-24","mean":0.702,"min":0.38,"nf":0,"nt":26,"wd":166.7},{"d":"2024-07-31","mean":0.717,"min":0.564,"nf":0,"nt":27,"wd":127.5},{"d":"2024-08-03","mean":0.699,"min":0.394,"nf":0,"nt":26,"wd":163.4},{"d":"2024-08-05","mean":0.726,"min":0.479,"nf":1,"nt":26,"wd":163.7},{"d":"2024-08-13","mean":0.712,"min":0.465,"nf":0,"nt":26,"wd":163.7},{"d":"2024-08-20","mean":0.724,"min":0.518,"nf":0,"nt":26,"wd":163.7},{"d":"2024-08-28","mean":0.735,"min":0.44,"nf":0,"nt":26,"wd":161.1},{"d":"2024-09-07","mean":0.734,"min":0.525,"nf":0,"nt":26,"wd":156.0},{"d":"2024-09-09","mean":0.708,"min":0.587,"nf":0,"nt":26,"wd":157.3},{"d":"2024-09-24","mean":0.711,"min":0.498,"nf":0,"nt":26,"wd":161.1},{"d":"2024-09-29","mean":0.709,"min":0.476,"nf":0,"nt":26,"wd":161.1},{"d":"2024-10-04","mean":0.707,"min":0.523,"nf":0,"nt":26,"wd":157.3},{"d":"2024-10-07","mean":0.702,"min":0.479,"nf":0,"nt":26,"wd":161.0},{"d":"2024-10-09","mean":0.709,"min":0.498,"nf":0,"nt":26,"wd":161.1},{"d":"2024-10-19","mean":0.669,"min":0.476,"nf":0,"nt":27,"wd":136.7},{"d":"2024-10-22","mean":0.67,"min":0.474,"nf":0,"nt":26,"wd":138.0},{"d":"2024-10-27","mean":0.668,"min":0.528,"nf":0,"nt":27,"wd":128.1},{"d":"2024-11-01","mean":0.715,"min":0.498,"nf":0,"nt":27,"wd":151.0},{"d":"2024-11-06","mean":0.706,"min":0.498,"nf":0,"nt":26,"wd":157.3},{"d":"2024-11-11","mean":0.718,"min":0.498,"nf":0,"nt":26,"wd":157.3},{"d":"2024-11-16","mean":0.71,"min":0.498,"nf":0,"nt":26,"wd":151.0},{"d":"2024-11-23","mean":0.682,"min":0.346,"nf":1,"nt":26,"wd":161.1},{"d":"2024-12-06","mean":0.702,"min":0.475,"nf":0,"nt":26,"wd":161.1},{"d":"2024-12-08","mean":0.572,"min":0.419,"nf":5,"nt":27,"wd":126.7},{"d":"2024-12-11","mean":0.549,"min":0.443,"nf":11,"nt":27,"wd":128.1},{"d":"2024-12-21","mean":0.543,"min":0.393,"nf":12,"nt":26,"wd":126.7},{"d":"2025-01-05","mean":0.59,"min":0.438,"nf":7,"nt":26,"wd":163.7},{"d":"2025-01-27","mean":0.719,"min":0.476,"nf":0,"nt":26,"wd":161.1},{"d":"2025-02-04","mean":0.711,"min":0.607,"nf":0,"nt":26,"wd":136.7},{"d":"2025-02-14","mean":0.705,"min":0.607,"nf":0,"nt":26,"wd":138.0},{"d":"2025-02-16","mean":0.707,"min":0.599,"nf":0,"nt":27,"wd":126.7},{"d":"2025-02-19","mean":0.707,"min":0.471,"nf":1,"nt":26,"wd":161.1},{"d":"2025-03-01","mean":0.688,"min":0.582,"nf":0,"nt":26,"wd":126.7},{"d":"2025-03-06","mean":0.73,"min":0.607,"nf":0,"nt":26,"wd":161.1},{"d":"2025-03-08","mean":0.722,"min":0.607,"nf":0,"nt":26,"wd":163.7},{"d":"2025-03-21","mean":0.721,"min":0.476,"nf":0,"nt":26,"wd":161.1},{"d":"2025-03-28","mean":0.724,"min":0.476,"nf":0,"nt":26,"wd":163.7},{"d":"2025-04-10","mean":0.724,"min":0.476,"nf":0,"nt":26,"wd":161.1},{"d":"2025-04-12","mean":0.727,"min":0.476,"nf":0,"nt":26,"wd":161.1},{"d":"2025-04-25","mean":0.719,"min":0.476,"nf":0,"nt":26,"wd":161.1},{"d":"2025-05-05","mean":0.719,"min":0.476,"nf":0,"nt":26,"wd":163.7},{"d":"2025-05-10","mean":0.718,"min":0.476,"nf":0,"nt":26,"wd":157.3},{"d":"2025-05-12","mean":0.725,"min":0.476,"nf":0,"nt":26,"wd":161.1},{"d":"2025-05-15","mean":0.723,"min":0.476,"nf":0,"nt":26,"wd":161.1},{"d":"2025-05-20","mean":0.726,"min":0.452,"nf":0,"nt":26,"wd":161.1},{"d":"2025-05-30","mean":0.717,"min":0.476,"nf":0,"nt":26,"wd":161.1},{"d":"2025-06-01","mean":0.725,"min":0.476,"nf":0,"nt":26,"wd":163.7},{"d":"2025-06-09","mean":0.76,"min":0.62,"nf":0,"nt":26,"wd":146.0},{"d":"2025-06-16","mean":0.626,"min":0.503,"nf":0,"nt":25,"wd":161.1},{"d":"2025-07-19","mean":0.583,"min":0.476,"nf":2,"nt":26,"wd":161.1},{"d":"2025-07-21","mean":0.602,"min":0.473,"nf":2,"nt":26,"wd":163.7},{"d":"2025-08-13","mean":0.576,"min":0.411,"nf":4,"nt":26,"wd":163.7},{"d":"2025-08-23","mean":0.578,"min":0.411,"nf":3,"nt":26,"wd":163.7},{"d":"2025-08-25","mean":0.58,"min":0.394,"nf":3,"nt":26,"wd":163.7},{"d":"2025-09-02","mean":0.657,"min":0.411,"nf":2,"nt":26,"wd":163.7},{"d":"2025-09-07","mean":0.717,"min":0.476,"nf":0,"nt":26,"wd":163.7},{"d":"2025-09-14","mean":0.712,"min":0.538,"nf":0,"nt":26,"wd":166.7},{"d":"2025-09-17","mean":0.705,"min":0.486,"nf":0,"nt":27,"wd":153.4},{"d":"2025-09-29","mean":0.716,"min":0.498,"nf":0,"nt":26,"wd":157.3},{"d":"2025-10-02","mean":0.672,"min":0.498,"nf":0,"nt":26,"wd":126.7},{"d":"2025-10-24","mean":0.689,"min":0.523,"nf":0,"nt":26,"wd":127.5},{"d":"2025-10-29","mean":0.704,"min":0.548,"nf":0,"nt":27,"wd":136.7},{"d":"2025-11-13","mean":0.715,"min":0.498,"nf":0,"nt":26,"wd":157.3},{"d":"2025-11-28","mean":0.679,"min":0.535,"nf":0,"nt":26,"wd":126.7},{"d":"2025-12-23","mean":0.718,"min":0.475,"nf":0,"nt":26,"wd":157.3},{"d":"2026-01-10","mean":0.691,"min":0.593,"nf":0,"nt":27,"wd":126.7},{"d":"2026-01-30","mean":0.733,"min":0.46,"nf":0,"nt":26,"wd":161.1},{"d":"2026-02-01","mean":0.727,"min":0.476,"nf":0,"nt":26,"wd":161.1},{"d":"2026-02-06","mean":0.735,"min":0.639,"nf":0,"nt":26,"wd":161.1},{"d":"2026-02-19","mean":0.726,"min":0.571,"nf":0,"nt":26,"wd":163.7},{"d":"2026-02-21","mean":0.731,"min":0.593,"nf":0,"nt":26,"wd":163.7},{"d":"2026-02-24","mean":0.737,"min":0.63,"nf":0,"nt":26,"wd":163.7},{"d":"2026-03-06","mean":0.728,"min":0.618,"nf":0,"nt":26,"wd":163.7},{"d":"2026-03-11","mean":0.736,"min":0.618,"nf":0,"nt":26,"wd":163.7},{"d":"2026-03-13","mean":0.722,"min":0.593,"nf":0,"nt":26,"wd":163.7},{"d":"2026-03-18","mean":0.575,"min":0.403,"nf":4,"nt":7,"wd":268.3},{"d":"2026-03-21","mean":0.724,"min":0.588,"nf":0,"nt":26,"wd":170.3},{"d":"2026-03-31","mean":0.731,"min":0.618,"nf":0,"nt":26,"wd":161.1},{"d":"2026-04-02","mean":0.728,"min":0.455,"nf":0,"nt":26,"wd":161.1},{"d":"2026-04-15","mean":0.739,"min":0.617,"nf":0,"nt":26,"wd":161.1},{"d":"2026-04-22","mean":0.727,"min":0.452,"nf":0,"nt":26,"wd":161.1},{"d":"2026-04-27","mean":0.727,"min":0.455,"nf":0,"nt":26,"wd":163.7},{"d":"2026-04-30","mean":0.733,"min":0.588,"nf":0,"nt":26,"wd":163.7},{"d":"2026-05-02","mean":0.73,"min":0.588,"nf":0,"nt":26,"wd":163.7},{"d":"2026-05-10","mean":0.715,"min":0.575,"nf":0,"nt":26,"wd":157.3},{"d":"2026-05-15","mean":0.73,"min":0.535,"nf":0,"nt":26,"wd":161.1},{"d":"2026-05-17","mean":0.732,"min":0.535,"nf":0,"nt":26,"wd":163.7},{"d":"2026-05-22","mean":0.726,"min":0.469,"nf":0,"nt":26,"wd":161.1},{"d":"2026-06-09","mean":0.726,"min":0.452,"nf":0,"nt":26,"wd":161.1},{"d":"2026-06-21","mean":0.779,"min":0.701,"nf":0,"nt":26,"wd":161.1},{"d":"2026-06-29","mean":0.752,"min":0.67,"nf":0,"nt":26,"wd":161.1},{"d":"2026-07-01","mean":0.76,"min":0.6,"nf":0,"nt":26,"wd":163.7},{"d":"2026-07-09","mean":0.748,"min":0.62,"nf":0,"nt":26,"wd":161.1},{"d":"2026-07-11","mean":0.768,"min":0.62,"nf":0,"nt":26,"wd":161.1},{"d":"2026-07-14","mean":0.742,"min":0.62,"nf":0,"nt":26,"wd":157.3},{"d":"2026-07-16","mean":0.76,"min":0.665,"nf":0,"nt":24,"wd":174.6},{"d":"2026-07-19","mean":0.733,"min":0.452,"nf":0,"nt":26,"wd":163.7},{"d":"2026-07-26","mean":0.75,"min":0.452,"nf":0,"nt":26,"wd":166.7},{"d":"2026-07-31","mean":0.729,"min":0.476,"nf":0,"nt":26,"wd":163.7},{"d":"2026-08-10","mean":0.725,"min":0.458,"nf":0,"nt":26,"wd":163.7},{"d":"2026-08-13","mean":0.72,"min":0.476,"nf":0,"nt":26,"wd":163.7},{"d":"2026-08-18","mean":0.65,"min":0.573,"nf":0,"nt":3,"wd":170.3},{"d":"2026-08-20","mean":0.714,"min":0.443,"nf":0,"nt":26,"wd":170.3}],"events":[{"start":"2021-09-10","end":"2021-09-10","days":0,"passes":1,"minIndex":0.409,"atPosition":220,"minWater":83.6},{"start":"2021-10-13","end":"2021-11-07","days":25,"passes":4,"minIndex":0.31,"atPosition":701,"minWater":127.5},{"start":"2021-12-29","end":"2022-01-13","days":15,"passes":2,"minIndex":0.481,"atPosition":621,"minWater":80.6},{"start":"2022-02-07","end":"2022-02-07","days":0,"passes":1,"minIndex":0.485,"atPosition":641,"minWater":86.5},{"start":"2022-07-15","end":"2022-07-30","days":15,"passes":2,"minIndex":0.445,"atPosition":521,"minWater":79.2},{"start":"2024-12-08","end":"2025-01-05","days":28,"passes":4,"minIndex":0.393,"atPosition":220,"minWater":126.7},{"start":"2025-07-19","end":"2025-07-21","days":2,"passes":2,"minIndex":0.473,"atPosition":300,"minWater":161.1},{"start":"2025-08-13","end":"2025-09-02","days":20,"passes":4,"minIndex":0.394,"atPosition":220,"minWater":163.7},{"start":"2026-03-18","end":"2026-03-18","days":0,"passes":1,"minIndex":0.403,"atPosition":561,"minWater":268.3}],"meta":{"scenes":247,"from":"2021-08-31","to":"2026-08-20","midline":0.5,"minTransects":2,"mads":2.0,"roadLength":null}};
+// Flow position runs 0 (hard against Klondyke Terrace) to 1 (against the far
+// bank). It is a share of the gravel's width rather than a distance, so a swing
+// means the same thing where the braidplain is 300 m wide and where it is 120 m.
+const S = DATA.series, EV = DATA.events, META = DATA.meta;
+const t = d => new Date(d + "T00:00:00Z").getTime();
+const fmt = d => { const x = new Date(d + "T00:00:00Z");
+  return x.toLocaleDateString("en-NZ", { day:"numeric", month:"short", year:"numeric", timeZone:"UTC" }); };
+const fmtShort = d => { const x = new Date(d + "T00:00:00Z");
+  return x.toLocaleDateString("en-NZ", { day:"numeric", month:"short", timeZone:"UTC" }); };
+
+const T0 = t(S[0].d), T1 = t(S[S.length-1].d), SPAN = T1 - T0;
+const DAY = 86400000;
+
+// ---- summary ----
+(function(){
+  const mean = S.reduce((a,r)=>a+r.mean,0) / S.length;
+  const longest = EV.reduce((a,e)=> e.days > a.days ? e : a, EV[0]);
+  const closest = EV.reduce((a,e)=> e.minWater < a.minWater ? e : a, EV[0]);
+  const yrs = SPAN / (365.25*DAY);
+  document.getElementById("kpis").innerHTML =
+      kpi(EV.length, "times the river swung to the road side", "in " + yrs.toFixed(1) + " years of watching")
+    + kpi((EV.length/yrs).toFixed(1), "events per year", "roughly one every " + Math.round(365/(EV.length/yrs)) + " days")
+    + kpi(longest.days + " days", "longest single spell", fmt(longest.start))
+    + kpi(closest.minWater.toFixed(0) + " m", "closest the water came", fmt(closest.start))
+    + kpi(mean.toFixed(2), "usual position on the gravel", mean > 0.5 ? "normally on the far side, away from the road" : "normally on the road side");
+})();
+function kpi(v,l,s){ return '<div class="kpi"><div class="v">'+v+'</div><div class="l">'+l
+  + (s ? '<br><span style="color:var(--text-dim)">'+s+'</span>' : '') + '</div></div>'; }
+
+// ---- chart ----
+(function(){
+  const W = 1100, H = 300, L = 46, R = 14, TP = 14, B = 34;
+  const x = d => L + (t(d) - T0) / SPAN * (W - L - R);
+  const y = v => TP + (1 - v) * (H - TP - B);
+  let g = '';
+
+  // shade the events first so the lines sit on top
+  EV.forEach(e => {
+    const x0 = x(e.start), x1 = Math.max(x(e.end), x(e.start) + 3);
+    g += `<rect x="${x0.toFixed(1)}" y="${TP}" width="${(x1-x0).toFixed(1)}" height="${H-TP-B}"
+           fill="rgba(224,71,58,0.28)"/>`;
+  });
+  // the midline: below this the flow is on the road half
+  g += `<line x1="${L}" y1="${y(0.5)}" x2="${W-R}" y2="${y(0.5)}" stroke="var(--c-road)"
+         stroke-width="1.2" stroke-dasharray="5 4"/>`;
+  g += `<text x="${W-R}" y="${y(0.5)-6}" text-anchor="end" font-size="11" fill="var(--c-road)">midline of the gravel</text>`;
+
+  [0, 0.5, 1].forEach(v => {
+    g += `<line x1="${L}" y1="${y(v)}" x2="${W-R}" y2="${y(v)}" stroke="var(--border)" stroke-width="1"/>`;
+    g += `<text x="${L-7}" y="${y(v)+4}" text-anchor="end" font-size="11" fill="var(--text-dim)">${v}</text>`;
+  });
+  g += `<text x="10" y="${TP+12}" font-size="11" fill="var(--text-dim)">far bank</text>`;
+  g += `<text x="10" y="${H-B-2}" font-size="11" fill="var(--c-road)">road</text>`;
+
+  const line = (key, colour, width) => {
+    let d = "";
+    S.forEach((r,i) => { d += (i?"L":"M") + x(r.d).toFixed(1) + "," + y(r[key]).toFixed(1); });
+    return `<path d="${d}" fill="none" stroke="${colour}" stroke-width="${width}"
+             stroke-linejoin="round" opacity="${key==='min'?0.75:1}"/>`;
+  };
+  g += line("min", "var(--accent)", 1.1);
+  g += line("mean", "var(--c-far)", 2);
+
+  // a year tick every January
+  const y0 = new Date(T0).getUTCFullYear(), y1 = new Date(T1).getUTCFullYear();
+  for(let yr = y0; yr <= y1; yr++){
+    const d = yr + "-01-01";
+    if(t(d) < T0 || t(d) > T1) continue;
+    g += `<line x1="${x(d)}" y1="${TP}" x2="${x(d)}" y2="${H-B}" stroke="var(--border)" stroke-width="1"/>`;
+    g += `<text x="${x(d)}" y="${H-B+16}" text-anchor="middle" font-size="11" fill="var(--text-dim)">${yr}</text>`;
+  }
+  document.getElementById("chart").innerHTML =
+    `<svg viewBox="0 0 ${W} ${H}" role="img"><title>Flow position at every satellite pass</title>${g}</svg>`;
+})();
+
+// ---- timeline ----
+(function(){
+  const W = 1100, rowH = 30, TP = 26, B = 30;
+  const H = TP + EV.length*rowH + B;
+  const L = 118, R = 14;
+  const x = d => L + (t(d) - T0) / SPAN * (W - L - R);
+  let g = '';
+
+  const y0 = new Date(T0).getUTCFullYear(), y1 = new Date(T1).getUTCFullYear();
+  for(let yr = y0; yr <= y1; yr++){
+    const d = yr + "-01-01";
+    if(t(d) < T0 || t(d) > T1) continue;
+    g += `<line x1="${x(d)}" y1="${TP-8}" x2="${x(d)}" y2="${H-B+4}" stroke="var(--border)" stroke-width="1"/>`;
+    g += `<text x="${x(d)}" y="${TP-13}" text-anchor="middle" font-size="11" fill="var(--text-dim)">${yr}</text>`;
+  }
+
+  EV.forEach((e,i) => {
+    const yy = TP + i*rowH + 10;
+    // a single-pass event has no width of its own, so give it a minimum so it
+    // is still visible and still clickable
+    const x0 = x(e.start), x1 = Math.max(x(e.end), x0 + 7);
+    const strong = e.minIndex < 0.42;
+    g += `<text x="${L-10}" y="${yy+5}" text-anchor="end" font-size="11.5" fill="var(--text-muted)">${fmtShort(e.start)} ${new Date(e.start+"T00:00:00Z").getUTCFullYear()}</text>`;
+    g += `<rect x="${x0.toFixed(1)}" y="${yy-6}" width="${(x1-x0).toFixed(1)}" height="13" rx="3"
+           fill="${strong ? 'var(--c-road)' : 'var(--accent)'}" opacity="0.92"/>`;
+    const lbl = (e.days > 0 ? e.days + " days" : "one pass") + " · at " + e.atPosition + " m";
+    g += `<text x="${(x1+9).toFixed(1)}" y="${yy+5}" font-size="11.5" fill="var(--text-muted)">${lbl}</text>`;
+  });
+  document.getElementById("timeline").innerHTML =
+    `<svg viewBox="0 0 ${W} ${H}" role="img"><title>Timeline of flow events</title>${g}</svg>`;
+})();
+
+// ---- table ----
+(function(){
+  let h = `<tr><th>When</th><th>Lasted</th><th>How far across</th>
+           <th>Where along the road</th><th>Closest water</th><th></th></tr>`;
+  EV.forEach(e => {
+    const strong = e.minIndex < 0.42;
+    h += `<tr class="tl-row">
+      <td>${fmt(e.start)}${e.days ? " &ndash; " + fmt(e.end) : ""}</td>
+      <td class="n">${e.days ? e.days + " days" : "one pass"}</td>
+      <td class="n">${e.minIndex.toFixed(2)}</td>
+      <td class="n">${e.atPosition} m</td>
+      <td class="n">${e.minWater.toFixed(0)} m</td>
+      <td><span class="sev ${strong?'hi':'md'}">${strong?'well across':'across'}</span></td></tr>`;
+  });
+  document.getElementById("evTable").innerHTML = h;
+
+  // Somewhere the river keeps returning to matters more than a one-off, so
+  // call it out rather than leaving it to be spotted in the table.
+  const byPos = {};
+  EV.forEach(e => { const k = Math.round(e.atPosition/40)*40; (byPos[k] = byPos[k] || []).push(e); });
+  const worst = Object.keys(byPos).map(k => [k, byPos[k]]).sort((a,b) => b[1].length - a[1].length)[0];
+  if(worst && worst[1].length > 1){
+    const yrsList = worst[1].map(e => new Date(e.start+"T00:00:00Z").getUTCFullYear()).join(", ");
+    document.getElementById("repeatNote").innerHTML =
+      `<b style="color:var(--text)">Around ${worst[0]} m along the road the flow has come across `
+      + `${worst[1].length} times</b> (${yrsList}). A spot the river keeps returning to is worth more `
+      + `attention than a one-off, because the same place is being worked repeatedly.`;
+  }
+})();
+
+// ---- method ----
+document.getElementById("method").innerHTML =
+  `A pass counts as an event when at least ${META.minTransects} cross-sections show the flow `
+  + `<b>both</b> on the road half of the gravel <b>and</b> more than ${META.mads} median-absolute-deviations `
+  + `further across than that cross-section normally sits.<br><br>`
+  + `Both tests have to pass. The first alone would flag a river that lives on the far bank for `
+  + `millimetre wobbles; the second alone would flag a cross-section where the flow always runs on `
+  + `the road side anyway. Consecutive flagged passes are merged into one event, because a flow that `
+  + `stays across for a fortnight is one occurrence, not three.<br><br>`
+  + `<span style="color:var(--text-dim)">Built from ${META.scenes} Sentinel-2 passes, `
+  + `${fmt(META.from)} to ${fmt(META.to)}. Cloudy passes are excluded. This tracks the flowing water, `
+  + `not the bank &mdash; the bank moves far more slowly, and is measured on the Bank movement page.</span>`;
+
+
+async function checkLogin(){
+  var u=document.getElementById('login-user').value.trim().toLowerCase();
+  var p=document.getElementById('login-pass').value;
+  var buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(p));
+  var hash=Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+  if(u==='kees' && hash==='2e8b9d1acd7912daafa64729a34f40cee502dc82a17d8a6b32b14c5969f71a25'){
+    sessionStorage.setItem('klondyke_auth','1');
+    document.getElementById('login-gate').classList.add('hidden');
+  } else {
+    document.getElementById('login-error').textContent='Incorrect username or password.';
+    document.getElementById('login-pass').value='';
+  }
+}
+
+
+(function(){
+  if(sessionStorage.getItem('klondyke_auth')==='1'){
+    document.getElementById('login-gate').classList.add('hidden');
+  }
+  document.getElementById('login-pass').addEventListener('keydown',function(e){
+    if(e.key==='Enter') checkLogin();
+  });
+  document.getElementById('login-user').addEventListener('keydown',function(e){
+    if(e.key==='Enter') document.getElementById('login-pass').focus();
+  });
+})();
+
+
+(function(){
+  if(sessionStorage.getItem('klondyke_auth')==='1'){
+    document.getElementById('login-gate').classList.add('hidden');
+  }
+  document.getElementById('login-pass').addEventListener('keydown',function(e){
+    if(e.key==='Enter') checkLogin();
+  });
+  document.getElementById('login-user').addEventListener('keydown',function(e){
+    if(e.key==='Enter') document.getElementById('login-pass').focus();
+  });
+})();
+</script>
+</body>
+</html>
