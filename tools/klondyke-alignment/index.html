@@ -87,30 +87,10 @@
     --c-ref: #e0473a;
     --c-cp: #23d18b;
   }
-  :root[data-theme="light"] {
-    --bg: #f3f1ec;
-    --panel: #ffffff;
-    --panel-2: #f7f5f0;
-    --border: #ddd8cc;
-    --text: #23262b;
-    --text-muted: #6b6f78;
-    --text-dim: #9a9d a3;
-    --accent: #b5791e;
-    --accent-soft: rgba(181,121,30,0.12);
-  }
-  @media (prefers-color-scheme: light) {
-    :root:not([data-theme="dark"]) {
-      --bg: #f3f1ec;
-      --panel: #ffffff;
-      --panel-2: #f7f5f0;
-      --border: #ddd8cc;
-      --text: #23262b;
-      --text-muted: #6b6f78;
-      --text-dim: #9a9da3;
-      --accent: #b5791e;
-      --accent-soft: rgba(181,121,30,0.12);
-    }
-  }
+  /* Dark only, to match the Bank movement and River flow pages. This page used
+     to follow the operating system's light-mode setting, which meant the same
+     tool looked like a different product depending on whose laptop it was
+     opened on. */
 
   * { box-sizing: border-box; }
   body {
@@ -469,6 +449,8 @@
   <a href="./" style="display:block;padding:9px 16px;color:var(--text);text-decoration:none;border-left:3px solid var(--accent);background:var(--accent-soft);font-size:13px;">Historical alignment</a>
   <a href="../klondyke-bank/" style="display:block;padding:9px 16px;color:var(--text-muted);text-decoration:none;border-left:3px solid transparent;font-size:13px;">Bank movement</a>
   <a href="../klondyke-flow/" style="display:block;padding:9px 16px;color:var(--text-muted);text-decoration:none;border-left:3px solid transparent;font-size:13px;">River flow events</a>
+  <div style="padding:14px 16px 5px;color:var(--text-dim);font-size:10.5px;text-transform:uppercase;letter-spacing:.09em;">Session</div>
+  <a href="#" id="logoutBtn" style="display:block;padding:9px 16px;color:var(--text-muted);text-decoration:none;border-left:3px solid transparent;font-size:13px;">Sign out</a>
 </nav>
 <header class="top">
     <div>
@@ -545,7 +527,8 @@ const LAYER_META = {
 };
 const LAYER_ORDER = ["P62_RIVER","P78_RIVER","P95_RIVER","P96_RIVER","A_RIVER"];
 const LABEL_TO_KEY = {};
-LAYER_ORDER.forEach(k => { LABEL_TO_KEY[LAYER_META[k].label] = k; });
+const KEY_TO_LABEL = {};
+LAYER_ORDER.forEach(k => { LABEL_TO_KEY[LAYER_META[k].label] = k; KEY_TO_LABEL[k] = LAYER_META[k].label; });
 
 // Built-in presets, baked into this page so anyone opening the link can load them
 // with one click (no file needed). [] is replaced at publish time.
@@ -578,21 +561,45 @@ const STORAGE_KEY = "klondyke_align_v1";
 const state = {};
 LAYER_ORDER.forEach(k => { state[k] = { dx: 0, dy: 0, visible: true }; });
 
-function loadSaved() {
+// Reads any adjustment saved in THIS browser, without applying it. Whether it
+// gets used is a separate decision - see the load sequence at the foot of the
+// page.
+function readSaved() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return false;
+    if (!raw) return null;
     const saved = JSON.parse(raw);
     let any = false;
+    const out = {};
     LAYER_ORDER.filter(k => k !== "A_RIVER").forEach(key => {
-      if (saved[key]) {
-        state[key].dx = saved[key].dx || 0;
-        state[key].dy = saved[key].dy || 0;
-        if (state[key].dx || state[key].dy) any = true;
-      }
+      const v = saved[key] || {};
+      out[key] = { dx: Number(v.dx) || 0, dy: Number(v.dy) || 0 };
+      if (out[key].dx || out[key].dy) any = true;
     });
-    return any;
-  } catch (e) { return false; }
+    return any ? out : null;
+  } catch (e) { return null; }
+}
+
+function applySaved(saved) {
+  LAYER_ORDER.filter(k => k !== "A_RIVER").forEach(key => {
+    if (!saved[key]) return;
+    state[key].dx = saved[key].dx;
+    state[key].dy = saved[key].dy;
+  });
+  LAYER_ORDER.filter(k => k !== "A_RIVER").forEach(syncControls);
+  renderAll();
+}
+
+// True when a saved adjustment says something different from the preset.
+function differsFrom(saved, offsets) {
+  return LAYER_ORDER.filter(k => k !== "A_RIVER").some(key => {
+    const label = KEY_TO_LABEL[key];
+    const o = (label && offsets[label]) || {};
+    const px = Number(o.east_m ?? o.dx ?? 0) || 0;
+    const py = Number(o.north_m ?? o.dy ?? 0) || 0;
+    const sv = saved[key] || { dx: 0, dy: 0 };
+    return Math.abs(sv.dx - px) > 0.01 || Math.abs(sv.dy - py) > 0.01;
+  });
 }
 
 function persist() {
@@ -1055,16 +1062,49 @@ document.getElementById("scalebar").innerHTML = `<span class="bar" style="width:
 document.getElementById("nameInput").value = loadName();
 document.getElementById("nameInput").addEventListener("input", (e) => persistName(e.target.value));
 
-const restored = loadSaved();
-if (restored) {
-  LAYER_ORDER.filter(k => k !== "A_RIVER").forEach(syncControls);
-  document.getElementById("autosaveHint").textContent = "Restored your last adjustment from this browser. “Save adjustment” downloads a copy any time.";
-} else if (BUILT_IN_PRESETS.length) {
+// Kees' alignment is the client's own judgement about where these layers
+// belong, so it is what the tool shows on opening - on every machine, every
+// time. An adjustment saved in one browser used to replace it silently, which
+// meant the same link showed different alignments to different people with
+// nothing on screen to say so. A local adjustment is now offered, not imposed.
+const savedAdjustment = readSaved();
+if (BUILT_IN_PRESETS.length) {
   applyOffsetsByLabel(BUILT_IN_PRESETS[0].offsets, null, null);
-  document.getElementById("autosaveHint").textContent = "";
+  document.getElementById("autosaveHint").textContent =
+    "Showing " + BUILT_IN_PRESETS[0].name + " — the client's alignment, loaded by default.";
+}
+if (savedAdjustment && (!BUILT_IN_PRESETS.length || differsFrom(savedAdjustment, BUILT_IN_PRESETS[0].offsets))) {
+  const hint = document.getElementById("autosaveHint");
+  hint.innerHTML = "Showing <b>" + (BUILT_IN_PRESETS.length ? BUILT_IN_PRESETS[0].name : "the default")
+    + "</b>. This browser also has an adjustment of your own saved. ";
+  const b = document.createElement("button");
+  b.type = "button";
+  b.textContent = "Restore my adjustment";
+  b.style.cssText = "margin-top:5px;font:inherit;font-size:11.5px;padding:3px 9px;border-radius:5px;"
+    + "border:1px solid var(--border);background:var(--panel-2);color:var(--text-muted);cursor:pointer;";
+  b.addEventListener("click", () => {
+    applySaved(savedAdjustment);
+    hint.textContent = "Restored your own adjustment from this browser. Reload the page to go back to "
+      + (BUILT_IN_PRESETS.length ? BUILT_IN_PRESETS[0].name : "the default") + ".";
+  });
+  hint.appendChild(document.createElement("br"));
+  hint.appendChild(b);
 }
 renderAll();
 
+
+// Signing out clears the session and returns to the main site. sessionStorage
+// is what the gate checks, so removing it genuinely locks the tool again
+// rather than only navigating away from it.
+(function(){
+  const b = document.getElementById("logoutBtn");
+  if(!b) return;
+  b.addEventListener("click", function(e){
+    e.preventDefault();
+    try { sessionStorage.removeItem("klondyke_auth"); } catch(err) {}
+    window.location.href = "https://www.maki.nz/";
+  });
+})();
 // ── Login gate ──
 (function(){
   if(sessionStorage.getItem('klondyke_auth')==='1'){

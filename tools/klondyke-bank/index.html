@@ -169,6 +169,8 @@
     <a href="../klondyke-flow/">River flow events</a>
     <div class="grp">Reference</div>
     <a href="#" id="aboutLink">About the data</a>
+    <div class="grp">Session</div>
+    <a href="#" id="logoutBtn">Sign out</a>
   </nav>
 
   <main>
@@ -794,6 +796,19 @@ buildLayers();
 loadImages();
 updateZoomLabel();
 update();
+
+// Signing out clears the session and returns to the main site. sessionStorage
+// is what the gate checks, so removing it genuinely locks the tool again
+// rather than only navigating away from it.
+(function(){
+  const b = document.getElementById("logoutBtn");
+  if(!b) return;
+  b.addEventListener("click", function(e){
+    e.preventDefault();
+    try { sessionStorage.removeItem("klondyke_auth"); } catch(err) {}
+    window.location.href = "https://www.maki.nz/";
+  });
+})();
 
 async function checkLogin(){
   var u=document.getElementById('login-user').value.trim().toLowerCase();
