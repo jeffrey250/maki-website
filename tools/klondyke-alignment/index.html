@@ -85,6 +85,7 @@
     --c-1996: #e0c23a;
     --c-1997: #9aa4b2;
     --c-ref: #e0473a;
+    --c-cp: #23d18b;
   }
   :root[data-theme="light"] {
     --bg: #f3f1ec;
@@ -482,6 +483,11 @@
       <div class="shift-readout" style="display:flex;flex-direction:column;gap:4px;">
         <span><span class="dot" style="display:inline-block;width:11px;height:3px;border-radius:2px;background:var(--c-ref);vertical-align:middle;margin-right:6px;"></span>Klondyke Terrace Rd (current)</span>
         <span><span class="dot" style="display:inline-block;width:11px;height:3px;border-radius:2px;background:var(--c-ref);vertical-align:middle;margin-right:6px;opacity:0.55;"></span>RDR canal (current)</span>
+        <label style="display:flex;align-items:center;gap:6px;cursor:pointer;margin-top:2px;">
+          <input type="checkbox" id="cpToggle" checked>
+          <span><span class="dot" style="display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--c-cp);vertical-align:middle;margin-right:4px;"></span>2024 survey control points</span>
+        </label>
+        <span style="opacity:0.6;font-size:11px;line-height:1.4;">Surveyed to millimetres (NZTM2000) - these are exact, and need no aligning.</span>
       </div>
     </div>
 
@@ -661,6 +667,48 @@ function drawPolyline(lines, dxM, dyM, color, width, dashed) {
   ctx.restore();
 }
 
+
+// ---- 2024 surveyed control points (RDR 049 Bridge 3) ----
+// Real NZTM2000 coordinates, quoted to millimetres with a 3D quality figure of
+// about 4 mm, so unlike every other layer here these need no aligning at all -
+// they are simply where they are. That makes them the one fixed thing on the
+// map to check an alignment against: screws in H4 pegs about 500 mm off the
+// fenceline, so a correctly placed layer should sit a sensible distance from
+// them rather than on top of them.
+// Scene coordinates are local metres; NZTM = local + (1459316.37, 5149200.82).
+const CONTROL_POINTS = [
+  {name:"CP 1", x:425.22, y:643.68, e:1459741.588, n:5149844.496, rl:363.204, qc:0.0038},
+  {name:"CP 2", x:537.93, y:373.90, e:1459854.297, n:5149574.721, rl:363.145, qc:0.0038},
+  {name:"CP 3", x:565.77, y:171.01, e:1459882.144, n:5149371.828, rl:362.881, qc:0.0042}
+];
+let showControlPoints = true;
+
+function drawControlPoints() {
+  if (!showControlPoints) return;
+  const col = resolveColor("var(--c-cp)");
+  ctx.save();
+  CONTROL_POINTS.forEach(cp => {
+    const [px, py] = toPx([cp.x, cp.y]);
+    ctx.beginPath();
+    ctx.arc(px, py, 7, 0, Math.PI * 2);
+    ctx.fillStyle = col;
+    ctx.fill();
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = "#0b0d10";
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(px, py, 13, 0, Math.PI * 2);
+    ctx.strokeStyle = col + "88";
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    ctx.font = "600 12px var(--sans)";
+    ctx.fillStyle = col;
+    ctx.textBaseline = "middle";
+    ctx.fillText(cp.name, px + 18, py);
+  });
+  ctx.restore();
+}
+
 function render() {
   const w = SCENE.px_w, h = SCENE.px_h;
   if (canvas.width !== w) canvas.width = w;
@@ -686,6 +734,8 @@ function render() {
     const meta = LAYER_META[key];
     drawPolyline(SCENE.layers[key].lines, state[key].dx, state[key].dy, resolveColor(meta.color), 3, false);
   });
+
+  drawControlPoints();
 }
 
 // ---- distance-to-road helper (metres, local coord space) ----
@@ -959,6 +1009,12 @@ function renderPresetsCard() {
 }
 renderPresetsCard();
 
+const cpToggle = document.getElementById("cpToggle");
+if (cpToggle) cpToggle.addEventListener("change", e => {
+  showControlPoints = e.target.checked;
+  render();
+});
+
 // legend
 document.getElementById("legend").innerHTML = `
   <div class="row"><span class="swatch" style="background:${resolveColor("var(--c-ref)")}"></span>Road (current)</div>
@@ -967,6 +1023,7 @@ document.getElementById("legend").innerHTML = `
   <div class="row"><span class="swatch" style="background:${resolveColor("var(--c-1978)")}"></span>1978</div>
   <div class="row"><span class="swatch" style="background:${resolveColor("var(--c-1995)")}"></span>1995</div>
   <div class="row"><span class="swatch" style="background:${resolveColor("var(--c-1996)")}"></span>1996</div>
+  <div class="row"><span class="swatch" style="background:${resolveColor("var(--c-cp)")};border-radius:50%"></span>2024 control points</div>
 `;
 
 // scale bar: 50 m reference
