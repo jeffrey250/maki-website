@@ -441,7 +441,7 @@
   ::selection { background: var(--accent-soft); }
 </style>
 </head>
-<body>
+<body style="padding-left:190px;">
 
 <div id="login-gate">
   <div class="login-box">
@@ -460,7 +460,16 @@
 </div>
 
 <div class="app">
-  <header class="top">
+  <nav class="side" style="position:fixed;left:0;top:0;bottom:0;width:190px;background:var(--panel);border-right:1px solid var(--border);padding:16px 0;z-index:50;overflow-y:auto;">
+  <div style="padding:0 16px 14px;border-bottom:1px solid var(--border);margin-bottom:10px;">
+    <strong style="display:block;font-size:13px;">Klondyke Bend</strong>
+    <span style="color:var(--text-dim);font-size:11px;">Rangitata River</span>
+  </div>
+  <div style="padding:14px 16px 5px;color:var(--text-dim);font-size:10.5px;text-transform:uppercase;letter-spacing:.09em;">Tools</div>
+  <a href="./" style="display:block;padding:9px 16px;color:var(--text);text-decoration:none;border-left:3px solid var(--accent);background:var(--accent-soft);font-size:13px;">Historical alignment</a>
+  <a href="../klondyke-bank/" style="display:block;padding:9px 16px;color:var(--text-muted);text-decoration:none;border-left:3px solid transparent;font-size:13px;">Bank movement</a>
+</nav>
+<header class="top">
     <div>
       <h1>Klondyke Bend — historical line alignment</h1>
       <div class="sub">Drag each year into visual alignment against the current road / canal, then read off the shift below.</div>
@@ -540,6 +549,18 @@ LAYER_ORDER.forEach(k => { LABEL_TO_KEY[LAYER_META[k].label] = k; });
 // Built-in presets, baked into this page so anyone opening the link can load them
 // with one click (no file needed). [] is replaced at publish time.
 const BUILT_IN_PRESETS = [
+  {
+    // Kees' own alignment, saved 24 Aug 2026. Loaded by default because it is
+    // the client's judgement about where these layers belong, and the offsets
+    // reproduce his own check distances for 1962, 1978 and 1995 to within 5 cm.
+    name: "Kees (aligned 2026-08-24)",
+    offsets: {
+      "1962": { east_m: -207, north_m: -6 },
+      "1978": { east_m: 0, north_m: 0 },
+      "1995": { east_m: 0, north_m: 0 },
+      "1996": { east_m: -203, north_m: -5.5 }
+    }
+  },
   {
     name: "Jeff (baseline 2026-08-04)",
     offsets: {
