@@ -162,6 +162,19 @@ table.ev tr.tl-row { cursor:pointer; }
                 border:1px solid var(--border); background:var(--panel-2); color:var(--text-dim); }
 .zacts button:hover { color:var(--text); }
 .zverdict { font-size:12px; line-height:1.55; margin-top:6px; }
+
+/* alert levels */
+.arow { border:1px solid var(--border); border-radius:7px; padding:10px 12px; margin-bottom:8px;
+        background:var(--panel); }
+.arow .ahead { display:flex; align-items:center; gap:8px; font-size:13px; }
+.arow .ahead .sw { width:12px; height:12px; border-radius:3px; flex:none; }
+.arow .actl { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin:7px 0 4px; }
+.arow .actl label { font-size:12px; color:var(--text-muted); }
+.arow input[type=number] { width:62px; font:inherit; font-size:12px; padding:3px 6px;
+        border-radius:5px; border:1px solid var(--border); background:var(--panel-2);
+        color:var(--text); }
+.arow input[type=range] { flex:1; min-width:180px; }
+.averdict { font-size:12px; line-height:1.55; margin-top:4px; }
 </style>
 </head>
 <body>
@@ -253,6 +266,22 @@ table.ev tr.tl-row { cursor:pointer; }
     </div>
 
     <div class="card">
+      <h2>How close is too close</h2>
+      <div class="note">
+        Set the distance at which each control point matters to you. Each setting is checked against
+        the whole record straight away, so you can see how often it would have gone off before
+        deciding it is the right one &mdash; a level nobody has tested is just a number. The levels
+        are drawn on the chart above.
+      </div>
+      <div id="alertRows"></div>
+      <div class="dim" id="alertSummary" style="margin-top:10px;"></div>
+      <div class="zonebar">
+        <button class="zbtn" id="alertReset">Back to 130 m</button>
+        <button class="zbtn" id="alertExport">Export these levels</button>
+      </div>
+    </div>
+
+    <div class="card">
       <h2>When the river moved in</h2>
       <div class="note">
         Occasions when the water came at least 25&nbsp;m closer to a control point than it had been
@@ -324,6 +353,8 @@ const cpFmt = d => new Date(d + "T00:00:00Z")
           cpFmt(CP.meta.from) + " to " + cpFmt(CP.meta.to));
 
   // ---- the chart ----
+  // Redrawable, because the alert levels are drawn on it and Kees can move them.
+  window.drawCpChart = function(){
   const W = 1100, H = 320, L = 52, R = 74, TP = 16, B = 34;
   const all = S.flatMap(r => CPN.map(n => r[n]));
   const maxD = Math.ceil(Math.max(...all)/50)*50;
@@ -356,8 +387,20 @@ const cpFmt = d => new Date(d + "T00:00:00Z")
     g += `<line x1="${x(d)}" y1="${TP}" x2="${x(d)}" y2="${H-B}" stroke="var(--border)" stroke-width="1"/>`;
     g += `<text x="${x(d)}" y="${H-B+16}" text-anchor="middle" font-size="11" fill="var(--text-dim)">${yr}</text>`;
   }
+  // the levels Kees has set, if any
+  const AL = (window.alertLevels && window.alertLevels()) || null;
+  if(AL){
+    CPN.forEach(n => {
+      if(!(AL[n] > 0) || AL[n] > maxD) return;
+      g += `<line x1="${L}" y1="${y(AL[n])}" x2="${W-R}" y2="${y(AL[n])}" stroke="${CPCOL[n]}"
+             stroke-width="1.2" stroke-dasharray="6 4" opacity="0.9"/>`;
+      g += `<text x="${L+5}" y="${y(AL[n])-5}" font-size="10.5" fill="${CPCOL[n]}">alert ${n} at ${AL[n]} m</text>`;
+    });
+  }
   document.getElementById("cpChart").innerHTML =
     `<svg viewBox="0 0 ${W} ${H}" role="img"><title>Distance from each control point to the river</title>${g}</svg>`;
+  };
+  window.drawCpChart();
 
   // ---- what it says ----
   const t = CP.trend;
@@ -401,6 +444,143 @@ const cpFmt = d => new Date(d + "T00:00:00Z")
     + `<b style="color:var(--text)">${recent} of them are 2022 or later</b>, so the river is still `
     + `moving in as often as it used to. What has changed is where it starts from: it now does this `
     + `from much further out, so the same movement leaves more bank standing.`;
+})();
+
+
+// ---- Alert levels ----
+// Kees sets the distance at which each control point matters to him. The
+// built-in occasions above answer "when did the river move in unusually?",
+// which is an analytical question. This answers his: "how close is too close,
+// and how often would that have gone off?"
+//
+// Every setting is checked against the whole record immediately, because a
+// threshold nobody has tested is just a number - the useful thing is knowing
+// it would have fired four times in eleven years rather than four hundred.
+(function(){
+  const wrap = document.getElementById("alertRows");
+  // CP is a lexical const from flow_cp.js, not a window property
+  if(!wrap || typeof CP === "undefined") return;
+  const STORE = "klondyke_alerts_v1";
+  const DEFAULT_M = 130;
+  const MAX_GAP_DAYS = 20;
+  const S = CP.series;
+
+  let levels = {};
+  try { levels = JSON.parse(localStorage.getItem(STORE)) || {}; } catch(e){ levels = {}; }
+  CPN.forEach(n => { if(!(levels[n] > 0)) levels[n] = DEFAULT_M; });
+  window.alertLevels = () => levels;
+
+  // consecutive passes below the level are one occasion, not five
+  function occasions(name){
+    const level = levels[name];
+    const out = [];
+    let cur = null;
+    S.forEach(r => {
+      if(r[name] < level){
+        const t = new Date(r.d + "T00:00:00Z").getTime();
+        if(cur && (t - cur.lastT) <= MAX_GAP_DAYS*86400000){
+          cur.end = r.d; cur.lastT = t; cur.passes++;
+          if(r[name] < cur.closest) cur.closest = r[name];
+        } else {
+          if(cur) out.push(cur);
+          cur = { start: r.d, end: r.d, lastT: t, passes: 1, closest: r[name] };
+        }
+      }
+    });
+    if(cur) out.push(cur);
+    return out;
+  }
+
+  function build(){
+    wrap.innerHTML = "";
+    CPN.forEach(n => {
+      const row = document.createElement("div");
+      row.className = "arow";
+      row.innerHTML =
+          '<div class="ahead"><span class="sw" style="background:' + CPCOL[n] + '"></span>'
+        + '<b>' + n + '</b><span class="dim" style="margin-left:6px">river is '
+        + CP.trend[n].now.toFixed(0) + ' m away now</span></div>'
+        + '<div class="actl">'
+        +   '<label>Alert when the river is within'
+        +   ' <input type="number" class="alvl" data-n="' + n + '" min="20" max="400" step="5" '
+        +   'value="' + levels[n] + '"> m</label>'
+        +   '<input type="range" class="alrg" data-n="' + n + '" min="20" max="400" step="5" '
+        +   'value="' + levels[n] + '">'
+        + '</div>'
+        + '<div class="averdict" id="av-' + n.replace(/\s/g,"") + '"></div>';
+      wrap.appendChild(row);
+    });
+    wrap.querySelectorAll(".alvl, .alrg").forEach(el =>
+      el.addEventListener("input", e => {
+        const n = e.target.dataset.n;
+        const v = Math.max(20, Math.min(400, Number(e.target.value) || DEFAULT_M));
+        levels[n] = v;
+        wrap.querySelectorAll('[data-n="' + n + '"]').forEach(o => { o.value = v; });
+        save(); update();
+      }));
+  }
+  function save(){ try { localStorage.setItem(STORE, JSON.stringify(levels)); } catch(e){} }
+
+  function update(){
+    CPN.forEach(n => {
+      const occ = occasions(n);
+      const el = document.getElementById("av-" + n.replace(/\s/g,""));
+      const since2022 = occ.filter(o => o.start >= "2022").length;
+      if(!occ.length){
+        el.innerHTML = '<b style="color:var(--c-far)">Never</b> <span class="dim">&mdash; the river '
+          + 'has not come within ' + levels[n] + ' m of ' + n + ' on any of the ' + S.length
+          + ' passes on record. The closest it has been is '
+          + Math.min(...S.map(r => r[n])).toFixed(0) + ' m.</span>';
+      } else {
+        const last = occ[occ.length-1], closest = Math.min(...occ.map(o => o.closest));
+        el.innerHTML = '<b style="color:' + (since2022 ? "var(--c-road)" : "var(--text)") + '">'
+          + 'Would have alerted ' + occ.length + (occ.length === 1 ? ' time' : ' times') + '</b> '
+          + '<span class="dim">in ' + S.length + ' passes. Most recently <b>' + cpFmt(last.start)
+          + '</b>, closest approach ' + closest.toFixed(0) + ' m. '
+          + (since2022 ? since2022 + ' of them 2022 or later.'
+                       : 'None since 2022.') + '</span>';
+      }
+    });
+    const total = CPN.reduce((a,n) => a + occasions(n).length, 0);
+    const recent = CPN.reduce((a,n) => a + occasions(n).filter(o => o.start >= "2022").length, 0);
+    document.getElementById("alertSummary").innerHTML =
+        'At these levels the tool would have raised <b style="color:var(--text)">' + total
+      + '</b> alert' + (total === 1 ? '' : 's') + ' across the eleven years on record, <b>' + recent
+      + '</b> of them since 2022. Set them high and you will hear about ordinary river behaviour; '
+      + 'set them low and you may only hear when there is little bank left. The record above is the '
+      + 'guide to where the useful line sits for each point.';
+    if(window.drawCpChart) window.drawCpChart();
+  }
+
+  document.getElementById("alertReset").addEventListener("click", () => {
+    CPN.forEach(n => { levels[n] = DEFAULT_M; });
+    save(); build(); update();
+  });
+  document.getElementById("alertExport").addEventListener("click", () => {
+    const payload = {
+      tool: "klondyke-alert-levels", version: 1,
+      saved: new Date().toISOString().slice(0,10),
+      crs: CP.meta.crs, source: CP.meta.source,
+      measured: "straight-line distance from the control point to the nearest water, "
+              + "Sentinel-2, 10 m pixels",
+      levels: CPN.map(n => {
+        const occ = occasions(n);
+        const p = CP.points.find(x => x.name === n);
+        return { name: n, easting: p.e, northing: p.n, alert_within_m: levels[n],
+                 river_now_m: CP.trend[n].now,
+                 would_have_alerted: occ.length,
+                 occasions: occ.map(o => ({ start: o.start, end: o.end,
+                                            closest_m: Math.round(o.closest) })) };
+      })
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "klondyke-alert-levels.json";
+    document.body.appendChild(a); a.click(); a.remove();
+  });
+
+  build(); update();
 })();
 
 
