@@ -142,6 +142,9 @@
   .hintbar { padding:7px 10px; background:var(--accent-soft); border:1px solid var(--border);
              border-radius:6px; font-size:12px; margin-bottom:10px; }
 </style>
+<!-- Google Analytics (same property as the rest of maki.nz) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XFVGYCS8RH"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-XFVGYCS8RH');</script>
 </head>
 <body>
 <div id="login-gate">
@@ -244,6 +247,7 @@
 </div>
 
 <script>
+const KLONDYKE_TOOL = "bank-movement";
 // ---- scene ----
 // The same local metre grid the alignment tool uses: NZTM = local + (1459316.37,
 // 5149200.82). That origin was derived from the tool's own canal geometry to
@@ -810,24 +814,60 @@ update();
   });
 })();
 
+// ── Accounts ──
+// One login per person, so the sign-in log can tell them apart. Passwords are
+// never stored here - only a SHA-256 of each, checked in the browser.
+//
+// `code` is what goes to Google Analytics, deliberately instead of the name.
+// Google's terms forbid uploading data that identifies an individual, and the
+// mapping below is all that is needed to read the reports:
+//
+//     u1 = Kees Beentjes (RDR Management)
+//     u2 = Jeffrey (MAKI)
+//
+// To add someone: generate sha256 of their password and add a row. Give them a
+// new code - reusing one makes two people indistinguishable, which is the whole
+// thing this is here to avoid.
+const USERS = [
+  { user: "kees",    code: "u1", hash: "2e8b9d1acd7912daafa64729a34f40cee502dc82a17d8a6b32b14c5969f71a25" },
+  { user: "jeffrey", code: "u2", hash: "182b801d9f8f278bc5f04ebae65dfd3bd12e2a3bb068acc61075934c437ddd5b" }
+];
+
 async function checkLogin(){
-  var u=document.getElementById('login-user').value.trim().toLowerCase();
-  var p=document.getElementById('login-pass').value;
-  var buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(p));
-  var hash=Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
-  if(u==='kees' && hash==='2e8b9d1acd7912daafa64729a34f40cee502dc82a17d8a6b32b14c5969f71a25'){
+  var u = document.getElementById('login-user').value.trim().toLowerCase();
+  var p = document.getElementById('login-pass').value;
+  var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(p));
+  var hash = Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+  var found = USERS.find(function(a){ return a.user === u && a.hash === hash; });
+  if(found){
     sessionStorage.setItem('klondyke_auth','1');
+    sessionStorage.setItem('klondyke_user', found.code);
     document.getElementById('login-gate').classList.add('hidden');
+    trackSignin(found.code);
   } else {
-    document.getElementById('login-error').textContent='Incorrect username or password.';
-    document.getElementById('login-pass').value='';
+    document.getElementById('login-error').textContent = 'Incorrect username or password.';
+    document.getElementById('login-pass').value = '';
   }
 }
 
+// Fires once per actual sign-in, not on every page load, so the count means
+// "someone opened the tool" rather than "someone refreshed".
+function trackSignin(code){
+  try {
+    if(typeof gtag === 'function'){
+      gtag('event', 'tool_signin', { maki_user: code, tool: KLONDYKE_TOOL });
+      gtag('set', { user_properties: { maki_user: code } });
+    }
+  } catch(e) {}
+}
 
 (function(){
   if(sessionStorage.getItem('klondyke_auth')==='1'){
     document.getElementById('login-gate').classList.add('hidden');
+    try {
+      var c = sessionStorage.getItem('klondyke_user');
+      if(c && typeof gtag === 'function') gtag('set', { user_properties: { maki_user: c } });
+    } catch(e) {}
   }
   document.getElementById('login-pass').addEventListener('keydown',function(e){
     if(e.key==='Enter') checkLogin();
@@ -836,6 +876,7 @@ async function checkLogin(){
     if(e.key==='Enter') document.getElementById('login-pass').focus();
   });
 })();
+
 </script>
 </body>
 </html>
