@@ -34,6 +34,7 @@
   logo10: asset("WBoP.png"),
   logo11: asset("buller-logo.png"),
   logo12: asset("Dutton-Stormwater-auckland.png"),
+  logo13: asset("conhur-logo.png"),
   softwareVid: asset("007-software.mp4"),
   hardwareVid: asset("008-hardware.mp4"),
   usvLake: asset("044-usv-lake.jpeg"),
@@ -354,7 +355,7 @@ function quickSubscribe(){loadHubspot();return `<div class="hs-form-wrap"><h3>Qu
 function contactBlock(t="We'd love to hear from you"){return `<section id="contact"><div class="container contact-panel"><div>${sectionTitle('- GET IN TOUCH -',t)}<p>Email <a href="mailto:info@maki.nz">info@maki.nz</a> or call <a href="tel:+642041941275">+64 20 4194 1275</a>.</p><p>Send us an <a href="${localPath('/enquire')}">Enquiry</a> instead.</p><div class="actions"><a class="button" href="${localPath('/enquire')}">Send Enquiry</a><a class="button secondary" href="https://www.facebook.com/FB.MAKI.NZ" target="_blank" rel="noopener">Find us on Facebook</a></div></div>${quickSubscribe()}</div></section>`}
 function feature(img,t,b,bul,vid=''){const media=vid?`<video class="feature-photo" autoplay muted loop playsinline poster="${img}"><source src="${vid}" type="video/mp4"></video>`:`<img class="feature-photo" src="${img}" alt="${t}">`;return `<article class="feature">${media}<div class="feature-body"><h3>${t}</h3><p>${b}</p><ul>${bul.map(x=>`<li>${x}</li>`).join('')}</ul></div></article>`}
 function cards(t,rows){const tiles=rows.map(r=>{const media=r[2]?`<video autoplay muted loop playsinline><source src="${r[2]}" type="video/mp4"></video>`:`<img src="${r[1]}" alt="${r[0]}">`;return `<div class="app-tile">${media}<div class="app-tile-label"><h3>${r[0]}</h3></div></div>`}).join('');return `<section><div class="container">${sectionTitle(t)}</div><div class="apps-strip">${tiles}</div><div class="container apps-cta"><p>Want to know more about what we can do for you?</p><div class="actions center"><a class="button" href="${localPath('/services')}">Our Services</a><a class="button secondary" href="${localPath('/solutions')}">Our Solutions</a></div></div></section>`}
-function clients(){const logos=[A.logo1,A.logo2,A.logo3,A.logo4,A.logo5,A.logo6,A.logo7,A.logo8,A.logo9,A.logo10,A.logo11,A.logo12];const imgs=logos.map((l,i)=>`<img src="${l}" alt="Client logo ${i+1}" loading="lazy">`).join('');return `<section class="band"><div class="container">${sectionTitle('- OUR CLIENTS & PARTNERS -')}</div><div class="logo-marquee"><div class="logo-track">${imgs}${imgs}${imgs}</div></div></section>`}
+function clients(){const logos=[A.logo1,A.logo2,A.logo3,A.logo4,A.logo5,A.logo6,A.logo7,A.logo8,A.logo9,A.logo10,A.logo11,A.logo12,A.logo13];const imgs=logos.map((l,i)=>`<img src="${l}" alt="Client logo ${i+1}" loading="lazy">`).join('');return `<section class="band"><div class="container">${sectionTitle('- OUR CLIENTS & PARTNERS -')}</div><div class="logo-marquee"><div class="logo-track">${imgs}${imgs}${imgs}</div></div></section>`}
 function getArticles(){try{const v=JSON.parse(localStorage.getItem('makiArticles')||'[]');return Array.isArray(v)?v:[]}catch{return []}}
 function getPosts(){return [...getArticles(),...posts]}
 function slugify(text){return (text||'new-article').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'new-article'}
