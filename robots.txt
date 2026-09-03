@@ -27,3 +27,7 @@ User-agent: cohere-ai
 Allow: /
 
 Sitemap: https://www.maki.nz/sitemap.xml
+
+# Client portal - unlisted, not for indexing
+User-agent: *
+Disallow: /tools/omokoroa-ponds/
