@@ -37,18 +37,24 @@ const USERS = [
   },
   {
     user: "jeffrey", code: "u2",
-    salt: "24801e1ce50b0008028c1e8fb0fe648b", iters: 600000, hash: "f078bdfdc11c7232af7b79eb5685eae7483c3c65d5abbf4ca587eb27821e75f3"
+    salt: "395c14851c254200dd59832c20888631", iters: 600000, hash: "1af5c945dd6c87df04d388f8234dfa2ace5cd0977b0b98e450417642089b7088"
   }
 ];
 
 const PORTAL_TOOL = "omokoroa_pond_portal";
 
-// ── Notification ──
-// Static pages cannot send mail, so this posts to an endpoint you own.
-// portal/notify_appscript.gs is a Google Apps Script that emails you; paste its
-// /exec URL here. Left empty, nothing is sent and nothing breaks.
+// ── Notification and sign-in log ──
+// A static page cannot send mail or keep a record, so a sign-in posts to an
+// endpoint you own: portal/notify_appscript.gs, a Google Apps Script that logs
+// the sign-in to a spreadsheet and emails you. Set it with
+//     python portal/set_notify.py <the /exec URL>
+// Left empty, nothing is sent and nothing breaks.
+//
+// Every sign-in is posted, including yours, so the log is a complete record.
+// Which of them are worth an email is decided in the Apps Script (EMAIL_FOR),
+// because that is a preference you will want to change without republishing
+// 46 MB of pond data.
 const NOTIFY_URL = "";
-const NOTIFY_USERS = ["kyna"];   // your own sign-ins are not worth an email
 
 function _hex(buf) {
   return Array.from(new Uint8Array(buf))
@@ -123,11 +129,11 @@ function trackSignin(code) {
 function notifySignin(user, code) {
   try {
     if (!NOTIFY_URL) return;
-    if (NOTIFY_USERS.length && NOTIFY_USERS.indexOf(user) === -1) return;
     var body = JSON.stringify({
       user: user, code: code, tool: PORTAL_TOOL,
       at: new Date().toISOString(),
-      page: location.pathname.split("/").pop() || "index.html"
+      page: location.pathname.split("/").pop() || "index.html",
+      agent: navigator.userAgent
     });
     navigator.sendBeacon(NOTIFY_URL,
       new Blob([body], { type: "text/plain;charset=utf-8" }));
