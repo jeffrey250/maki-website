@@ -104,9 +104,9 @@ footer{padding:16px 20px;color:var(--dim);font-size:12.5px;border-top:1px solid 
         <label><input type="checkbox" id="lGround" checked> Ground</label>
         <span id="gnote" style="display:none;color:#8fa4bd;font-size:12px"></span>
         <label><input type="checkbox" id="lWater" checked> Water surface</label>
-        <label><input type="checkbox" id="lBed" checked> Bed today</label>
-        <label><input type="checkbox" id="lHard"> As-built floor</label>
-        <label><input type="checkbox" id="lSed"> Colour bed by sediment</label>
+        <label><input type="checkbox" id="lBed" checked> Sediment surface</label>
+        <label><input type="checkbox" id="lHard"> Firm base</label>
+        <label><input type="checkbox" id="lSed"> Shade by sediment thickness</label>
         <label><input type="checkbox" id="lFull"> Full site height</label>
         <span style="color:#6ee7a8;font-size:12px">true scale — no vertical exaggeration</span>
       </div>
@@ -488,7 +488,7 @@ function readout(e){
     if(x<0||y<0||x>SITE_W||y>SITE_H) {if(z<zLo-50) break; continue;}
     const py=plany(y);
     let s=null,nm='';
-    if(LAYERS.bed && LAYERS.bed.visible){const v=samp(B,x,py); if(!Number.isNaN(v)){s=v;nm=BIG?'floor':(DRY?'floor':'bed');}}
+    if(LAYERS.bed && LAYERS.bed.visible){const v=samp(B,x,py); if(!Number.isNaN(v)){s=v;nm='sediment surface';}}
     if(LAYERS.ground.visible){const v=samp(G,x,py);
       if(!Number.isNaN(v) && (s===null||v>s)){s=Math.min(v,ZCAP);nm='ground';}}
     if(s!==null && z<=s){hit={z:s,nm:nm}; break;}
@@ -506,10 +506,6 @@ function bind(id,key){
   if(!LAYERS[key]){e.disabled=true;e.checked=false;e.parentElement.style.opacity=.4;return;}
   e.checked=LAYERS[key].visible;
   e.onchange=()=>{LAYERS[key].visible=e.checked; render3d();};
-}
-if(DRY && !BIG){
-  const lb=document.getElementById('lBed');
-  if(lb) lb.parentElement.lastChild.textContent=' Surveyed floor';
 }
 bind('lGround','ground');bind('lWater','water');bind('lHard','hard');
 // Where the bed is the ground there is no second surface to switch on, so the
@@ -653,10 +649,10 @@ function profile(){
   const hasH = H && h.some(v=>!Number.isNaN(v));
   const hasB = B && b.some(v=>!Number.isNaN(v));
   const tr=[{x:s,y:nn(g),name:'Ground',mode:'lines',line:{color:'#9fb4c9',width:2}}];
-  if(hasH) tr.push({x:s,y:nn(h),name:'As-built floor',mode:'lines',
+  if(hasH) tr.push({x:s,y:nn(h),name:'Firm base',mode:'lines',
                     line:{color:'#968676',width:2,dash:'dot'}});
-  if(hasB) tr.push({x:s,y:nn(b),name:BIG?(hasH?'Surveyed floor (sediment shaded)':'Surveyed floor')
-                                     :(hasH?'Bed today (sediment shaded)':'Bed today'),
+  if(hasB) tr.push({x:s,y:nn(b),name:hasH?'Sediment surface (thickness shaded)'
+                                        :'Sediment surface',
                     mode:'lines',line:{color:'#d8c07a',width:2.5},
                     fill:hasH?'tonexty':undefined,fillcolor:'rgba(226,116,44,0.42)'});
   if(D.wse!=null) tr.push({x:[0,len],y:[D.wse,D.wse],name:'Water',mode:'lines',
@@ -717,7 +713,7 @@ document.getElementById('res3d').textContent =
   '379×498 cells at 0.20 m';
 document.getElementById('mtab').innerHTML = "<tr><th>Figure</th><th style='text-align:right'>Value</th><th>Report field</th></tr><tr><td>Ponded area at spill level</td><td class='n'>1,494 m\u00b2</td><td style='color:#8fa4bd;font-size:12px'>ponded_area_at_spill_m2</td></tr><tr><td>Footprint</td><td class='n'>1,747 m\u00b2</td><td style='color:#8fa4bd;font-size:12px'>footprint_m2</td></tr><tr><td>Area sampled</td><td class='n'>937 m\u00b2</td><td style='color:#8fa4bd;font-size:12px'>soft_material_sampled_area_m2</td></tr><tr><td>Spill level</td><td class='n'>3.87 RL m</td><td style='color:#8fa4bd;font-size:12px'>spill_rl</td></tr><tr><td>Invert level</td><td class='n'>1.83 RL m</td><td style='color:#8fa4bd;font-size:12px'>invert_rl</td></tr><tr><td>Storage to spill level</td><td class='n'>1,620 m\u00b3</td><td style='color:#8fa4bd;font-size:12px'>storage_to_spill_m3</td></tr><tr><td>Soft material</td><td class='n'>87 m\u00b3</td><td style='color:#8fa4bd;font-size:12px'>soft_material_m3</td></tr><tr><td>Median thickness where found</td><td class='n'>0.089 m</td><td style='color:#8fa4bd;font-size:12px'>soft_material_median_where_found_m</td></tr><tr><td>Soft material as a share of storage</td><td class='n'>5 %</td><td style='color:#8fa4bd;font-size:12px'>soft_material_pct_of_storage</td></tr><tr><td>Catchment area (council record)</td><td class='n'>7.8 ha</td><td style='color:#8fa4bd;font-size:12px'>council_record.catchment_ha</td></tr><tr><td>Total pond volume (council record)</td><td class='n'>5,300 m\u00b3</td><td style='color:#8fa4bd;font-size:12px'>council_record.total_pond_volume_m3</td></tr><tr><td>Water quality volume (council record)</td><td class='n'>2,600 m\u00b3</td><td style='color:#8fa4bd;font-size:12px'>council_record.wqv_m3</td></tr><tr><td>Flood detention (council record)</td><td class='n'>2,700 m\u00b3</td><td style='color:#8fa4bd;font-size:12px'>council_record.flood_detention_m3</td></tr>";
 document.getElementById('mnote').innerHTML = "<b>This project does not store the measurement positions.</b> The report describes the basis as: DJI Matrice 4E aerial survey; RTK staff down the basin floor. Sections drawn here cannot be checked against real observations \u2014 treat every profile as interpolated.<br><b>No water surface is drawn.</b> The report describes this site as a dry grassed detention basin, and states no water level, water area or water volume. The level the project carries, RL 3.87 m, is the spill level -- where water would begin to leave, not where it stands. The floor is shown as surveyed, with the ground around it from the drone survey; storage and depth against a water level are omitted because there is no water level here.";
-document.getElementById('foot').innerHTML = "Every figure above is taken from the survey report you hold \u2014 Pond4_Western_Avenue_Survey_Report.docx \u2014 and each is checked against the text of that document before it is shown here, so nothing appears in this viewer that is not in your report. The 3D model and the cross-section tool are built from the same surveyed surfaces those figures came from, and the build is blocked if the model stops reproducing them. Measurements you take with the section tool are readings off that surface at the place you drew, not report figures. These are survey estimates for planning and prioritising, not a quantity take-off for pricing or tender: before sediment removal is priced, a targeted probe or core grid over the area to be removed is needed to fix the base of the removable material. Sections are sampled from the reduced viewer grid and are a reading of the surveyed surface, not an independent measurement. The ground around the pond is the drone survey's bare-earth surface, so it shows the bank rather than the tree canopy standing on it, and the narrow margin at the water's edge that the drone could not see the ground through is carried flat at the water line. The pond itself, and every figure above, comes from the sounded and staff-levelled surfaces and is untouched by either. Levels are NZVD2016, coordinates NZGD2000 / UTM zone 60S (EPSG:32760). This is a survey snapshot, not a live record \u2014 ponds continue to silt. Prepared by MAKI for Western Bay of Plenty District Council.";
+document.getElementById('foot').innerHTML = "Every figure above is taken from the survey report you hold \u2014 Pond4_Western_Avenue_Survey_Report.docx \u2014 and each is checked against the text of that document before it is shown here, so nothing appears in this viewer that is not in your report. The 3D model and the cross-section tool are built from the same surveyed surfaces those figures came from, and the build is blocked if the model stops reproducing them. Measurements you take with the section tool are readings off that surface at the place you drew, not report figures. These are survey estimates for planning and prioritising, not a quantity take-off for pricing or tender: before sediment removal is priced, a targeted probe or core grid over the area to be removed is needed to fix the base of the removable material. Sections are sampled from the reduced viewer grid and are a reading of the surveyed surface, not an independent measurement. The two surfaces inside the pond are the ones the report describes: the sediment surface, which is the top of the soft material and the level the water sits on, and the firm base beneath it, where the 30 kHz signal stops penetrating. The gap between them is the sediment. The ground around the pond is the drone survey's bare-earth surface, so it shows the bank rather than the tree canopy standing on it, and the narrow margin at the water's edge that the drone could not see the ground through is carried flat at the water line. The pond itself, and every figure above, comes from the sounded and staff-levelled surfaces and is untouched by either. Levels are NZVD2016, coordinates NZGD2000 / UTM zone 60S (EPSG:32760). This is a survey snapshot, not a live record \u2014 ponds continue to silt. Prepared by MAKI for Western Bay of Plenty District Council.";
 </script>
 <script src="gate.js"></script>
 </body></html>
