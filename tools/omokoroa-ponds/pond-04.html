@@ -162,7 +162,18 @@ const DIST=D.dist ? b64(D.dist,Uint8Array) : null;
 const NX=D.nx, NY=D.ny, R=D.res;
 const SITE_W=NX*R, SITE_H=NY*R;
 const xs=Array.from({length:NX},(_,i)=>(i+0.5)*R);
-const ys=Array.from({length:NY},(_,j)=>(j+0.5)*R);
+// Row 0 of every raster is the NORTH edge -- the projects are stored north-up,
+// checked against the georeferenced orthophoto. Mapping row 0 to y = 0 therefore
+// makes the scene's y axis a southing, and x east with y south and z up is a
+// left-handed frame: what Plotly then draws is a mirror image of the site, and
+// no amount of rotating fixes a mirror. Pond 8 was the giveaway -- the road, the
+// headwall and the houses all sat on the wrong side. So the north row is placed
+// at the far end of the axis and y is a northing.
+//
+// Only the 3D traces use this. The plan canvas keeps the image north-up with
+// world y running south down the page, which is what the section tool samples
+// with, and that was right all along.
+const ys=Array.from({length:NY},(_,j)=>(NY-0.5-j)*R);
 
 function rows(z){const o=new Array(NY);
   for(let j=0;j<NY;j++){const r=new Array(NX);
