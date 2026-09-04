@@ -651,10 +651,30 @@ function profile(){
   const tr=[{x:s,y:nn(g),name:'Ground',mode:'lines',line:{color:'#9fb4c9',width:2}}];
   if(hasH) tr.push({x:s,y:nn(h),name:'Firm base',mode:'lines',
                     line:{color:'#968676',width:2,dash:'dot'}});
+  // The band is drawn as one closed shape per run of pond, not as a fill from
+  // the sediment surface down to the firm base. Plotly's `tonexty` bridges the
+  // gaps: a line across Pond 11 that clips a side arm at 5 m and reaches the
+  // main channel at 53 m came back with a flat slab of sediment painted from
+  // 5 m to 20 m, across ground that is three metres above the water.
+  if(hasB && hasH){
+    let run=[];
+    const flush=()=>{
+      if(run.length>1){
+        tr.push({x:run.map(k=>s[k]).concat(run.map(k=>s[k]).reverse()),
+                 y:run.map(k=>b[k]).concat(run.map(k=>h[k]).reverse()),
+                 mode:'lines',fill:'toself',fillcolor:'rgba(226,116,44,0.42)',
+                 line:{width:0},hoverinfo:'skip',showlegend:false});
+      }
+      run=[];
+    };
+    for(let k=0;k<s.length;k++){
+      if(!Number.isNaN(b[k]) && !Number.isNaN(h[k])) run.push(k); else flush();
+    }
+    flush();
+  }
   if(hasB) tr.push({x:s,y:nn(b),name:hasH?'Sediment surface (thickness shaded)'
                                         :'Sediment surface',
-                    mode:'lines',line:{color:'#d8c07a',width:2.5},
-                    fill:hasH?'tonexty':undefined,fillcolor:'rgba(226,116,44,0.42)'});
+                    mode:'lines',line:{color:'#d8c07a',width:2.5}});
   if(D.wse!=null) tr.push({x:[0,len],y:[D.wse,D.wse],name:'Water',mode:'lines',
                     line:{color:'#2e86c1',width:2,dash:'dash'}});
   Plotly.newPlot('profile',tr,{

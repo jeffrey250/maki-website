@@ -651,10 +651,30 @@ function profile(){
   const tr=[{x:s,y:nn(g),name:'Ground',mode:'lines',line:{color:'#9fb4c9',width:2}}];
   if(hasH) tr.push({x:s,y:nn(h),name:'Firm base',mode:'lines',
                     line:{color:'#968676',width:2,dash:'dot'}});
+  // The band is drawn as one closed shape per run of pond, not as a fill from
+  // the sediment surface down to the firm base. Plotly's `tonexty` bridges the
+  // gaps: a line across Pond 11 that clips a side arm at 5 m and reaches the
+  // main channel at 53 m came back with a flat slab of sediment painted from
+  // 5 m to 20 m, across ground that is three metres above the water.
+  if(hasB && hasH){
+    let run=[];
+    const flush=()=>{
+      if(run.length>1){
+        tr.push({x:run.map(k=>s[k]).concat(run.map(k=>s[k]).reverse()),
+                 y:run.map(k=>b[k]).concat(run.map(k=>h[k]).reverse()),
+                 mode:'lines',fill:'toself',fillcolor:'rgba(226,116,44,0.42)',
+                 line:{width:0},hoverinfo:'skip',showlegend:false});
+      }
+      run=[];
+    };
+    for(let k=0;k<s.length;k++){
+      if(!Number.isNaN(b[k]) && !Number.isNaN(h[k])) run.push(k); else flush();
+    }
+    flush();
+  }
   if(hasB) tr.push({x:s,y:nn(b),name:hasH?'Sediment surface (thickness shaded)'
                                         :'Sediment surface',
-                    mode:'lines',line:{color:'#d8c07a',width:2.5},
-                    fill:hasH?'tonexty':undefined,fillcolor:'rgba(226,116,44,0.42)'});
+                    mode:'lines',line:{color:'#d8c07a',width:2.5}});
   if(D.wse!=null) tr.push({x:[0,len],y:[D.wse,D.wse],name:'Water',mode:'lines',
                     line:{color:'#2e86c1',width:2,dash:'dash'}});
   Plotly.newPlot('profile',tr,{
@@ -712,7 +732,7 @@ document.getElementById('cov').innerHTML =
 document.getElementById('res3d').textContent =
   '485×690 cells at 0.20 m';
 document.getElementById('mtab').innerHTML = "<tr><th>Figure</th><th style='text-align:right'>Value</th><th>Report field</th></tr><tr><td>Surveyed area</td><td class='n'>4,105 m\u00b2</td><td style='color:#8fa4bd;font-size:12px'>surveyed_area_m2</td></tr><tr><td>Spill level</td><td class='n'>5.12 RL m</td><td style='color:#8fa4bd;font-size:12px'>spill_rl</td></tr><tr><td>Invert level</td><td class='n'>3.20 RL m</td><td style='color:#8fa4bd;font-size:12px'>invert_rl</td></tr><tr><td>Storage to spill level</td><td class='n'>2,248 m\u00b3</td><td style='color:#8fa4bd;font-size:12px'>storage_to_spill_m3</td></tr><tr><td>Sediment volume</td><td class='n'>180 m\u00b3</td><td style='color:#8fa4bd;font-size:12px'>sediment_m3</td></tr><tr><td>Median sediment thickness where found</td><td class='n'>0.30 m</td><td style='color:#8fa4bd;font-size:12px'>sediment_median_where_found_m</td></tr><tr><td>Maximum sediment thickness</td><td class='n'>1.09 m</td><td style='color:#8fa4bd;font-size:12px'>sediment_max_m</td></tr><tr><td>Sediment quoted over a width of</td><td class='n'>3.0 m</td><td style='color:#8fa4bd;font-size:12px'>sediment_strip_width_m</td></tr><tr><td>Catchment area (council record)</td><td class='n'>25.1 ha</td><td style='color:#8fa4bd;font-size:12px'>council_record.catchment_ha</td></tr><tr><td>Total pond volume (council record)</td><td class='n'>18,000 m\u00b3</td><td style='color:#8fa4bd;font-size:12px'>council_record.total_pond_volume_m3</td></tr><tr><td>Water quality volume (council record)</td><td class='n'>8,200 m\u00b3</td><td style='color:#8fa4bd;font-size:12px'>council_record.wqv_m3</td></tr><tr><td>Flood detention (council record)</td><td class='n'>9,800 m\u00b3</td><td style='color:#8fa4bd;font-size:12px'>council_record.flood_detention_m3</td></tr>";
-document.getElementById('mnote').innerHTML = "<b>This project does not store the measurement positions.</b> The report describes the basis as: DJI Matrice 4E aerial survey; RTK staff along the stream. Sections drawn here cannot be checked against real observations \u2014 treat every profile as interpolated.<br><b>No water surface is drawn.</b> The report describes this site as a dry reserve with a stream along its margin, and states no water level, water area or water volume. The level the project carries, RL 5.12 m, is the spill level -- where water would begin to leave, not where it stands. The floor is shown as surveyed, with the ground around it from the drone survey; storage and depth against a water level are omitted because there is no water level here.";
+document.getElementById('mnote').innerHTML = "<b>This project does not store the measurement positions.</b> The report describes the basis as: DJI Matrice 4E aerial survey; RTK staff along the stream. Sections drawn here cannot be checked against real observations \u2014 treat every profile as interpolated.<br><b>No water surface is drawn.</b> The report describes this site as a dry reserve with a stream along its margin, and states no water level, water area or water volume. The level the project carries, RL 5.12 m, is the spill level -- where water would begin to leave, not where it stands. The floor is shown as surveyed, with the ground around it from the drone survey; storage and depth against a water level are omitted because there is no water level here.<br>Sediment is drawn only where it was measured \u2014 a walked strip or a set of sampled spots, as the report describes \u2014 so the edge of the shaded band is the edge of the measurement, not the edge of the deposit.";
 document.getElementById('foot').innerHTML = "Every figure above is taken from the survey report you hold \u2014 Pond7_Fairwayview_Drive_SWPO0007_Survey_Report.docx \u2014 and each is checked against the text of that document before it is shown here, so nothing appears in this viewer that is not in your report. The 3D model and the cross-section tool are built from the same surveyed surfaces those figures came from, and the build is blocked if the model stops reproducing them. Measurements you take with the section tool are readings off that surface at the place you drew, not report figures. These are survey estimates for planning and prioritising, not a quantity take-off for pricing or tender: before sediment removal is priced, a targeted probe or core grid over the area to be removed is needed to fix the base of the removable material. Sections are sampled from the reduced viewer grid and are a reading of the surveyed surface, not an independent measurement. The two surfaces inside the pond are the ones the report describes: the sediment surface, which is the top of the soft material and the level the water sits on, and the firm base beneath it, where the 30 kHz signal stops penetrating. The gap between them is the sediment. The ground around the pond is the drone survey's bare-earth surface, so it shows the bank rather than the tree canopy standing on it, and the narrow margin at the water's edge that the drone could not see the ground through is carried flat at the water line. The pond itself, and every figure above, comes from the sounded and staff-levelled surfaces and is untouched by either. Levels are NZVD2016, coordinates NZGD2000 / UTM zone 60S (EPSG:32760). This is a survey snapshot, not a live record \u2014 ponds continue to silt. Prepared by MAKI for Western Bay of Plenty District Council.";
 </script>
 <script src="gate.js"></script>
