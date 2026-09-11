@@ -82,7 +82,8 @@ const videos = [
   ["GH2vQ21odaQ", "MAKI's Topography and Bathymetry Services"],
   ["12vvZ3Ndte8", "MAKI - Photogrammetry service demo"],
   ["VHSSBvO95oQ", "MĀKI WATER TESTING & SAMPLING USV PROTOTYPE (MAKI - MKII)"],
-  ["hJysEh7TXTQ", "MAKI drop-stitch e-kayak with remote steering"]
+  ["hJysEh7TXTQ", "MAKI drop-stitch e-kayak with remote steering"],
+  ["x_8As6OCneA", "Water Reservoir Inspection Without Draining It | MĀKI ROV"]
 ];
 
 const posts = [
