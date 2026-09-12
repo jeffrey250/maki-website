@@ -70,6 +70,18 @@ for (const slug of vm.runInContext("posts.map(p => p.slug)", contextFor("/"))) {
 
 const ORIGIN = "https://www.maki.nz";
 
+// Post dates in app.js are display strings ("Aug 20, 2025"). Parse to ISO for
+// schema; return null for anything that does not yield a real date so the
+// caller can leave datePublished out rather than emit something invented.
+const MONTHS = { jan: 1, feb: 2, mar: 3, apr: 4, may: 5, jun: 6, jul: 7, aug: 8, sep: 9, oct: 10, nov: 11, dec: 12 };
+function isoDate(text) {
+  const m = /^([A-Za-z]{3})[a-z]*\s+(\d{1,2}),\s*(\d{4})$/.exec((text || "").trim());
+  if (!m) return null;
+  const month = MONTHS[m[1].toLowerCase()];
+  if (!month) return null;
+  return `${m[3]}-${String(month).padStart(2, "0")}-${m[2].padStart(2, "0")}`;
+}
+
 // JSON-LD is valid anywhere in the document, so it is emitted with the body
 // rather than surgically inserted into each hand-maintained <head>. That keeps
 // it regenerating in step with the content it describes.
@@ -93,8 +105,9 @@ function schemaFor(path, ctx) {
       description: post.excerpt,
       image: ORIGIN + "/assets/media/" + post.image.split("/assets/media/")[1],
       articleSection: post.category,
-      // No datePublished: the post dates in app.js carry no year ("Apr 7"), and
-      // inventing one to satisfy the schema would be worse than omitting it.
+      // Omitted rather than guessed if a post's date is ever left unparseable —
+      // a wrong datePublished is worse than none.
+      ...(isoDate(post.date) ? { datePublished: isoDate(post.date) } : {}),
       author: { "@id": ORIGIN + "/#organization" },
       publisher: { "@id": ORIGIN + "/#organization" },
       mainEntityOfPage: ORIGIN + path,

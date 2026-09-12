@@ -92,7 +92,7 @@ const posts = [
     title: "Building Smart Monitoring for Remote Environments: MAKI's IoT AI Camera Solution",
     image: asset("024-a6a664_984e0ed462174363ad7f8404e7e218ba-mv2.png"),
     category: "Environmental Services",
-    date: "Apr 7",
+    date: "Apr 7, 2026",
     readTime: "3 min read",
     excerpt: "A custom IoT AI camera solution for remote monitoring where power, connectivity, access and environmental conditions make standard systems unsuitable.",
     content: [
@@ -139,7 +139,7 @@ const posts = [
     title: "Final Testing Completed: Integrated Marine IoT Monitoring System",
     image: asset("025-a6a664_35afe8f80799498f8b5bc13895a96d27-mv2.png"),
     category: "Environmental Services",
-    date: "Jan 10",
+    date: "Jan 10, 2026",
     readTime: "2 min read",
     excerpt: "Final testing is complete for an in-house marine IoT platform integrating water-quality sensors, underwater camera footage and onboard lighting.",
     content: [

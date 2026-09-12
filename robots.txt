@@ -13,5 +13,8 @@
 User-agent: *
 Allow: /
 Disallow: /tools/omokoroa-ponds/
+Disallow: /tools/klondyke-alignment/
+Disallow: /tools/klondyke-bank/
+Disallow: /tools/klondyke-flow/
 
 Sitemap: https://www.maki.nz/sitemap.xml
