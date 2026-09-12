@@ -1,33 +1,17 @@
+# MĀKI — www.maki.nz
+#
+# Crawlers obey only the single most specific User-agent group that matches
+# them, and rules are NOT inherited between groups. So every group that should
+# respect the client-portal exclusion has to carry it; naming a bot in its own
+# group without repeating the Disallow would exempt it. One group for everyone
+# keeps that impossible to get wrong.
+#
+# AI crawlers (GPTBot, ClaudeBot, PerplexityBot, Applebot-Extended, Google-
+# Extended, CCBot, cohere-ai and the rest) are deliberately welcome here: they
+# match "*" below and are allowed the whole public site.
+
 User-agent: *
 Allow: /
-
-# AI crawlers — explicitly allowed
-User-agent: GPTBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: anthropic-ai
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: Googlebot
-Allow: /
-
-User-agent: Applebot
-Allow: /
-
-User-agent: cohere-ai
-Allow: /
+Disallow: /tools/omokoroa-ponds/
 
 Sitemap: https://www.maki.nz/sitemap.xml
-
-# Client portal - unlisted, not for indexing
-User-agent: *
-Disallow: /tools/omokoroa-ponds/
