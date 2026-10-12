@@ -12,7 +12,7 @@
 //   node prerender.mjs
 //
 // Pages that already hold real static HTML (services/*, case-studies/*,
-// tools/*) are left alone.
+// tools/*) are left alone, apart from the cache-busting stamps at the end.
 
 import { readFileSync, writeFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
@@ -192,6 +192,7 @@ const SITEMAP = [
   ["/services/environmental/", "services/environmental/index.html", "monthly", "0.85"],
   ["/services/bathymetry/", "services/bathymetry/index.html", "monthly", "0.85"],
   ["/services/topography/", "services/topography/index.html", "monthly", "0.85"],
+  ["/services/reservoir/", "services/reservoir/index.html", "monthly", "0.85"],
   ["/solutions/", "solutions/index.html", "monthly", "0.9"],
   ["/case-studies/", "case-studies/index.html", "monthly", "0.8"],
   ["/case-studies/lakes-mapping/", "case-studies/lakes-mapping/index.html", "yearly", "0.8"],
@@ -242,7 +243,7 @@ console.log(`sitemap.xml written with ${SITEMAP.length} urls.`);
 // ---------------------------------------------------------------------------
 
 const hash = (file) => createHash("sha1").update(readFileSync(join(root, file))).digest("hex").slice(0, 8);
-const versions = { "app.js": hash("app.js"), "styles.css": hash("styles.css") };
+const versions = { "app.js": hash("app.js"), "styles.css": hash("styles.css"), "site.js": hash("assets/site.js") };
 
 let stamped = 0;
 for (const file of [...new Set([...SITEMAP.map(([, f]) => f), "404.html", "privacy/index.html", "kayaksolo/index.html"])]) {
@@ -253,7 +254,7 @@ for (const file of [...new Set([...SITEMAP.map(([, f]) => f), "404.html", "priva
     continue;
   }
   const next = html.replace(
-    /((?:href|src)="[^"]*?\/?)(app\.js|styles\.css)(?:\?v=[^"]*)?"/g,
+    /((?:href|src)="[^"]*?\/?)(app\.js|styles\.css|site\.js)(?:\?v=[^"]*)?"/g,
     (_m, prefix, name) => `${prefix}${name}?v=${versions[name]}"`
   );
   if (next !== html) {
@@ -261,4 +262,4 @@ for (const file of [...new Set([...SITEMAP.map(([, f]) => f), "404.html", "priva
     stamped++;
   }
 }
-console.log(`cache-bust stamped ${stamped} file(s): app.js?v=${versions["app.js"]}, styles.css?v=${versions["styles.css"]}`);
+console.log(`cache-bust stamped ${stamped} file(s): app.js?v=${versions["app.js"]}, styles.css?v=${versions["styles.css"]}, site.js?v=${versions["site.js"]}`);

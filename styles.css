@@ -1853,3 +1853,119 @@ body.preview-mobile {
 body.preview-mobile .editor-panel {
   right: 18px;
 }
+
+/* ── LEAD CAPTURE: header quote button, hero actions, enquire sidebar ── */
+.nav-cta {
+  align-self: center;
+  min-height: 40px;
+  padding: 0 18px;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.hero .hero-actions {
+  margin: 0 auto 18px;
+}
+
+.hero .hero-trust {
+  max-width: 620px;
+  margin: 0 auto 28px;
+  font-size: 14px;
+  opacity: .85;
+}
+
+a.app-tile {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.council-spot-body .actions {
+  margin-top: 4px;
+}
+
+.council-spot-body .actions .button {
+  margin-top: 0;
+}
+
+.council-spot-body .button.light {
+  background: transparent;
+  color: var(--white);
+  border-color: rgba(255,255,255,.7);
+}
+
+.council-spot-body .button.light:hover {
+  background: var(--white);
+  color: var(--teal);
+}
+
+.enquire-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 40px;
+  align-items: start;
+}
+
+.enquire-aside {
+  padding: 24px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.enquire-aside h3 {
+  margin: 0 0 8px;
+  font-family: var(--font-head);
+  font-size: 18px;
+}
+
+.enquire-aside h3:not(:first-child) {
+  margin-top: 22px;
+}
+
+.enquire-aside p,
+.enquire-aside ul {
+  margin: 0;
+}
+
+.enquire-aside ul {
+  padding-left: 18px;
+}
+
+.enquire-aside a {
+  color: var(--teal-dark);
+}
+
+.enquire-aside .enquire-based {
+  margin-top: 22px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+@media (max-width: 900px) {
+  .nav-cta {
+    align-self: stretch;
+    margin: 12px 18px 0;
+  }
+
+  .enquire-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Room for the quote button on small laptops and tablets in landscape */
+@media (min-width: 901px) and (max-width: 1150px) {
+  .nav-links {
+    padding: 0 12px;
+  }
+
+  .nav-link {
+    padding: 4px 9px;
+    font-size: 17px;
+  }
+
+  .nav-cta {
+    padding: 0 14px;
+    font-size: 14px;
+  }
+}
