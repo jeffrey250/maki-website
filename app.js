@@ -77,6 +77,7 @@ const products = [
 ];
 
 const videos = [
+  ["mZN7Z2YUVyU", "Underwater 3D Mapping & Jetty Survey | MAKI USV Multibeam Sonar + RTK Drone | Auckland NZ"],
   ["x_8As6OCneA", "Water Reservoir Inspection Without Draining It | MĀKI ROV"],
   ["YuJ3vRNd-So", "Stormwater Pond Survey Demo | Bathymetry, Sediment Mapping & Drone Survey | MĀKI"],
   ["NTquxWB_fjI", "Underwater Stormwater Inspection Using ROV Technology | MAKI × Dutton Stormwater"],
