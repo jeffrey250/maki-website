@@ -1969,3 +1969,13 @@ a.app-tile {
     font-size: 14px;
   }
 }
+
+.article-related {
+  margin: 28px 0 0;
+  font-weight: 600;
+}
+
+.article-related a {
+  color: var(--teal-dark);
+  text-decoration: underline;
+}
