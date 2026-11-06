@@ -107,12 +107,27 @@ function schemaFor(path, ctx) {
       articleSection: post.category,
       // Omitted rather than guessed if a post's date is ever left unparseable —
       // a wrong datePublished is worse than none.
-      ...(isoDate(post.date) ? { datePublished: isoDate(post.date) } : {}),
+      ...(isoDate(post.date) ? { datePublished: isoDate(post.date), dateModified: isoDate(post.date) } : {}),
       author: { "@id": ORIGIN + "/#organization" },
       publisher: { "@id": ORIGIN + "/#organization" },
       mainEntityOfPage: ORIGIN + path,
       inLanguage: "en-NZ",
     });
+    // A youtube block is a real embedded player, so unlike the home page's
+    // link grid it can carry VideoObject markup.
+    for (const block of post.content.filter(b => b.tag === "youtube")) {
+      graph.push({
+        "@type": "VideoObject",
+        name: block.title.replace(/&amp;/g, "&"),
+        description: block.description,
+        thumbnailUrl: `https://i.ytimg.com/vi/${block.id}/hqdefault.jpg`,
+        uploadDate: block.uploadDate,
+        duration: block.duration,
+        embedUrl: `https://www.youtube-nocookie.com/embed/${block.id}`,
+        url: `https://www.youtube.com/watch?v=${block.id}`,
+        publisher: { "@id": ORIGIN + "/#organization" },
+      });
+    }
   } else if (path !== "/") {
     const label = { "/about/": "About", "/blog/": "News & Articles", "/services/": "Services", "/solutions/": "Solutions", "/products/": "Products", "/vehicles/": "Our Vehicles", "/recreational/": "Recreational", "/enquire/": "Enquire" }[path];
     if (!label) return "";
@@ -201,6 +216,7 @@ const SITEMAP = [
   ["/case-studies/ngaroto/", "case-studies/ngaroto/index.html", "yearly", "0.8"],
   ["/case-studies/rov-reservoir/", "case-studies/rov-reservoir/index.html", "yearly", "0.8"],
   ["/case-studies/sediment-analysis/", "case-studies/sediment-analysis/index.html", "yearly", "0.8"],
+  ["/case-studies/hobsonville-jetty/", "case-studies/hobsonville-jetty/index.html", "yearly", "0.8"],
   ["/products/", "products/index.html", "monthly", "0.8"],
   ["/vehicles/", "vehicles/index.html", "monthly", "0.8"],
   ["/recreational/", "recreational/index.html", "monthly", "0.7"],
@@ -212,7 +228,9 @@ for (const [path, file] of ROUTES.filter(([p]) => p.startsWith("/post/"))) {
   SITEMAP.push([path, file, "yearly", "0.6"]);
 }
 
-const today = new Date().toISOString().slice(0, 10);
+// Local date, not toISOString(): that is UTC, which is still yesterday for most
+// of a New Zealand morning.
+const today = new Date().toLocaleDateString("en-CA");
 function lastModified(file) {
   try {
     const out = execFileSync("git", ["log", "-1", "--format=%cs", "--", file], { cwd: root, encoding: "utf8" }).trim();
@@ -231,6 +249,20 @@ writeFileSync(
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries}\n</urlset>\n`
 );
 console.log(`sitemap.xml written with ${SITEMAP.length} urls.`);
+
+// Case studies are hand-written, so keep their Article dateModified in step with
+// git the same way sitemap lastmod is — search and AI answer engines weigh
+// freshness, and a stale date undersells work that has been updated.
+let dated = 0;
+for (const [, file] of SITEMAP.filter(([p]) => /^\/case-studies\/[^/]+\/$/.test(p))) {
+  const html = readFileSync(join(root, file), "utf8");
+  const next = html.replace(/("dateModified":\s*")\d{4}-\d{2}-\d{2}(")/, `$1${lastModified(file)}$2`);
+  if (next !== html) {
+    writeFileSync(join(root, file), next);
+    dated++;
+  }
+}
+console.log(`case-study dateModified refreshed in ${dated} file(s).`);
 
 // ---------------------------------------------------------------------------
 // Cache busting

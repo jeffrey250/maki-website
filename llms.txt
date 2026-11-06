@@ -33,6 +33,7 @@ Regional councils, water utilities, environmental scientists, infrastructure man
 - Email: info@maki.nz
 - Phone: +64 20 4194 1275
 - Facebook: https://www.facebook.com/FB.MAKI.NZ/
+- YouTube: https://www.youtube.com/@maki-nz
 
 ## Site map
 
@@ -55,8 +56,13 @@ Regional councils, water utilities, environmental scientists, infrastructure man
 - Case Study — Ngaroto Lake Bathymetric Survey: https://www.maki.nz/case-studies/ngaroto/
 - Case Study — Water Reservoir Inspection with ROV: https://www.maki.nz/case-studies/rov-reservoir/
 - Case Study — Sediment Analysis for Stormwater & Wastewater Ponds: https://www.maki.nz/case-studies/sediment-analysis/
+- Case Study — Underwater 3D Mapping & Jetty Survey at Hobsonville Point: https://www.maki.nz/case-studies/hobsonville-jetty/
 
 ## Case studies
+
+### Underwater 3D Mapping & Jetty Survey at Hobsonville Point (2026)
+With Glasgow Contractors, on behalf of Auckland Council's Healthy Waters and Flood Resilience department, MĀKI surveyed beneath a jetty at Hobsonville Point, Auckland, using its in-house uncrewed surface vessel (USV) with multibeam sonar — a confined space conventional crewed vessels struggle to reach. RTK drone photogrammetry captured the exposed coastal structures and surrounding topography, and the two datasets were combined into an integrated 3D model, delivered on a tight timeframe.
+URL: https://www.maki.nz/case-studies/hobsonville-jetty/
 
 ### Lakes Mapping for Waikato Regional Council
 MĀKI deployed autonomous USVs to map 12 lakes across the Waikato region for Waikato Regional Council. The project delivered high-resolution bathymetric data, sediment mapping and water quality profiles used to inform freshwater management decisions.
@@ -84,6 +90,7 @@ URL: https://www.maki.nz/case-studies/sediment-analysis/
 
 ## Recent articles
 
+- Underwater 3D Mapping and Jetty Survey at Hobsonville Point — https://www.maki.nz/post/underwater-3d-mapping-and-jetty-survey-at-hobsonville-point/
 - Building Smart Monitoring for Remote Environments: MĀKI's IoT AI Camera Solution — https://www.maki.nz/post/building-smart-monitoring-for-remote-environments-maki-s-iot-ai-camera-solution/
 - Final Testing Completed: Integrated Marine IoT Monitoring System — https://www.maki.nz/post/final-testing-completed-integrated-marine-iot-monitoring-system/
 - MĀKI at Freshwater Conference 2025 — https://www.maki.nz/post/maki-at-freshwater-conference-2025-connections-innovation-and-new-possibilities/
