@@ -135,7 +135,7 @@
   function loadModel(el) {
     if (modelLoading) return; modelLoading = true;
     function add(src, cb) { var s = document.createElement('script'); s.src = src; s.onload = cb; document.head.appendChild(s); }
-    add('/assets/profile/three.min.js', function () { add('/profile/model.js', function () { if (window.makiModel) window.makiModel(el); }); });
+    add('/assets/profile/three.min.js', function () { add('/profile/model.js?v=b1f2b9d8', function () { if (window.makiModel) window.makiModel(el); }); });
   }
 
   // ---------- YouTube: thumbnail until clicked ----------

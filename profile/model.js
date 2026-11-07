@@ -1,7 +1,8 @@
 // Interactive 3D demo model for the company profile. Ground and photo come
 // from a simplified (1.8 m) drone model; the pond bed is SYNTHETIC demo data:
 // ground with the drone photo draped over it, the pond bed coloured by depth,
-// and the water surface. "Drain the pond" fades the water to show the bed.
+// and the water surface. "Drain the pond" lowers the water level into the
+// pond (deepest parts empty last) and brings up the depth colours of the bed.
 // Vertical scale is exaggerated x3 so a 3.5 m deep pond reads at this size.
 window.makiModel = function (host) {
   'use strict';
@@ -16,15 +17,17 @@ window.makiModel = function (host) {
     var NX = D.nx, NY = D.ny, R = D.res, EW = D.ext[0], EH = D.ext[1];
     var cx = NX * R / 2, cy = NY * R / 2, zc = D.wse;
 
-    var RAMP = [[0, [226, 200, 128]], [0.3, [126, 172, 112]], [0.62, [36, 132, 156]], [1, [22, 52, 112]]];
+    var RAMP = [[0, [250, 228, 150]], [0.3, [242, 168, 74]], [0.65, [206, 86, 56]], [1, [112, 30, 62]]]; // warm, so the bed never reads as water
     function ramp(t) {
       t = Math.max(0, Math.min(1, t));
       for (var k = 1; k < RAMP.length; k++) if (t <= RAMP[k][0]) {
         var a = RAMP[k - 1], b = RAMP[k], f = (t - a[0]) / (b[0] - a[0]);
-        return [0, 1, 2].map(function (c) { return (a[1][c] + (b[1][c] - a[1][c]) * f) / 255; });
+        return [0, 1, 2].map(function (c) { return lin((a[1][c] + (b[1][c] - a[1][c]) * f) / 255); });
       }
       return RAMP[RAMP.length - 1][1].map(function (c) { return c / 255; });
     }
+    // Vertex colours are linear; the renderer outputs sRGB, so convert or they wash out.
+    function lin(c) { return Math.pow(c, 2.2); }
 
     function geom(z, opt) {
       var pos = new Float32Array(NX * NY * 3), uv = new Float32Array(NX * NY * 2), col = opt.color ? new Float32Array(NX * NY * 3) : null, ok = new Uint8Array(NX * NY);
@@ -69,11 +72,27 @@ window.makiModel = function (host) {
     var G2 = new Float32Array(G.length);
     for (var q = 0; q < G.length; q++) G2[q] = (W[q] && !isNaN(B[q])) ? B[q] - 0.05 : G[q];
     scene.add(new THREE.Mesh(geom(G2, {}), new THREE.MeshLambertMaterial({ map: tex, side: THREE.DoubleSide })));
-    scene.add(new THREE.Mesh(geom(B, { keep: function (n) { return W[n] === 1; }, color: function (n) { return ramp(Math.pow(Math.max(0, D.wse - B[n]) / D.depth_max, 0.7)); } }), new THREE.MeshLambertMaterial({ vertexColors: true, side: THREE.DoubleSide })));
+    var bedMat = new THREE.MeshLambertMaterial({ vertexColors: true, side: THREE.DoubleSide });
+    scene.add(new THREE.Mesh(geom(B, { keep: function (n) { return W[n] === 1; }, color: function (n) { return ramp(Math.pow(Math.max(0, D.wse - B[n]) / D.depth_max, 0.7)); } }), bedMat));
     var wz = new Float32Array(NX * NY);
     for (var n = 0; n < wz.length; n++) wz[n] = W[n] ? D.wse : NaN;
-    var waterMat = new THREE.MeshLambertMaterial({ color: 0x2e86c1, transparent: true, opacity: 0.62, depthWrite: false, side: THREE.DoubleSide });
+    var waterMat = new THREE.MeshLambertMaterial({ color: 0x1d6f9e, emissive: 0x06243a, transparent: true, opacity: 0.9, depthWrite: false, side: THREE.DoubleSide });
     var water = new THREE.Mesh(geom(wz, {}), waterMat); water.renderOrder = 2; scene.add(water);
+
+    // Drain state p: 0 = full, 1 = drained. Full water is nearly opaque and the
+    // bed beneath is dimmed; draining drops the level (the bed hides it where it
+    // is shallower), then the last of the water fades and the bed colours light up.
+    var DIM = new THREE.Color(0x40566a), FULLC = new THREE.Color(0xffffff), dp = 0;
+    function setDrain(p) {
+      dp = p;
+      var e = p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+      water.position.y = -e * D.depth_max * VEX * 1.05;
+      waterMat.opacity = 0.9 * (1 - Math.max(0, (e - 0.8) / 0.2));
+      water.visible = waterMat.opacity > 0.01;
+      bedMat.color.copy(DIM).lerp(FULLC, Math.min(1, e * 1.3));
+      if (leg) leg.style.opacity = e;
+    }
+    var leg = null;
 
     // Orbit: drag to rotate, wheel/pinch to zoom, slow spin until touched.
     var az = 0.6, el = 0.78, dist = Math.max(NX, NY) * R * 1.25, spin = true, raf = 0, visible = true;
@@ -92,7 +111,7 @@ window.makiModel = function (host) {
       raf = 0;
       if (!visible) return;
       if (spin) az += 0.0025;
-      if (fade) { var k = Math.min(1, (performance.now() - fade.t0) / 900); waterMat.opacity = fade.from + (fade.to - fade.from) * k; water.visible = waterMat.opacity > 0.01; if (k >= 1) fade = null; }
+      if (fade) { var k = Math.min(1, (performance.now() - fade.t0) / 2200); setDrain(fade.from + (fade.to - fade.from) * k); if (k >= 1) fade = null; }
       render();
       if (spin || fade) raf = requestAnimationFrame(loop);
     }
@@ -122,14 +141,15 @@ window.makiModel = function (host) {
     var btn = host.querySelector('[data-model-act="water"]'), drained = false;
     if (btn) btn.addEventListener('click', function () {
       drained = !drained;
-      fade = { t0: performance.now(), from: waterMat.opacity, to: drained ? 0 : 0.62 };
+      fade = { t0: performance.now(), from: dp, to: drained ? 1 : 0 };
       btn.textContent = drained ? 'Refill the pond' : 'Drain the pond';
-      water.visible = true; kick();
+      kick();
       if (typeof gtag === 'function') gtag('event', 'profile_model_interact', { action: drained ? 'drain' : 'refill' });
     });
-    var leg = document.createElement('div'); leg.className = 'model-legend';
+    leg = document.createElement('div'); leg.className = 'model-legend';
     leg.innerHTML = 'Demo depth <i></i> 0 – ' + D.depth_max.toFixed(1) + ' m · vertical ×' + VEX;
     host.appendChild(leg);
+    setDrain(0);
 
     // The book tells each page when it is showing; hidden leaves still
     // "intersect" the viewport, so IntersectionObserver can't be used here.
@@ -138,8 +158,8 @@ window.makiModel = function (host) {
     size(); render(); kick();
     host.classList.add('is-live');
     // Used once to export the still image that prints in the PDF.
-    window.makiModelSnap = function (w, h) {
-      spin = false;
+    window.makiModelSnap = function (w, h, a, e) {
+      spin = false; if (a != null) az = a; if (e != null) el = e;
       renderer.setPixelRatio(1); renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); render();
       var url = cv.toDataURL('image/jpeg', 0.86);
       renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2)); size(); render();

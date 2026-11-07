@@ -247,7 +247,7 @@ a:hover { color: var(--teal); }
 .model-ui button:hover { background: var(--teal-dark); }
 .model-ui span { font-size: calc(var(--u) * 1.5); color: #b9c7d2; background: rgba(13,22,32,.7); padding: calc(var(--u) * .6) calc(var(--u) * 1.4); border-radius: 99px; }
 .model-legend { position: absolute; top: calc(var(--u) * 2); left: calc(var(--u) * 2); display: flex; align-items: center; gap: calc(var(--u) * 1); font-size: calc(var(--u) * 1.4); color: #cfdbe4; background: rgba(13,22,32,.7); padding: calc(var(--u) * .6) calc(var(--u) * 1.2); border-radius: 99px; pointer-events: none; }
-.model-legend i { display: block; width: calc(var(--u) * 12); height: calc(var(--u) * .9); border-radius: 99px; background: linear-gradient(90deg, rgb(226,200,128), rgb(126,172,112), rgb(36,132,156), rgb(22,52,112)); }
+.model-legend i { display: block; width: calc(var(--u) * 12); height: calc(var(--u) * .9); border-radius: 99px; background: linear-gradient(90deg, rgb(250,228,150), rgb(242,168,74), rgb(206,86,56), rgb(112,30,62)); }
 
 /* ---------- index & lists ---------- */
 .cs-index { list-style: none; padding: 0; margin: calc(var(--u) * 2) 0 0; counter-reset: cs; }
