@@ -357,5 +357,71 @@
     }, 200);
   });
 
+  // ---------- cover: the lake ripples gently ----------
+  // A canvas over the cover photo redraws the water in thin rows, each nudged
+  // sideways by a slow wave (bigger near the camera, tiny at the horizon).
+  // The boat and its antennas are masked out so only the water moves.
+  (function water() {
+    var cover = document.getElementById('cover');
+    var img = cover && cover.querySelector('.bg');
+    if (!img || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    // In photo pixels (cover-usv.jpg is 920 x 2000).
+    var HZ = 850, BOAT = [[226, 800, 560, 1200], [185, 1130, 760, 1350]];
+    var cv = document.createElement('canvas');
+    cv.className = 'water'; cv.setAttribute('aria-hidden', 'true');
+    img.parentNode.appendChild(cv);
+    var ctx = cv.getContext('2d'), mask = document.createElement('canvas'), mctx = mask.getContext('2d');
+    var W, H, s, ox, oy, on = false, raf = 0, last = 0;
+
+    function size() {
+      var dpr = Math.min(devicePixelRatio || 1, 1.5);
+      // offsetWidth ignores the slow cover zoom, which the wrapper applies to both layers.
+      W = Math.round(cv.offsetWidth * dpr); H = Math.round(cv.offsetHeight * dpr);
+      if (!W || !H || !img.naturalWidth) return false;
+      cv.width = mask.width = W; cv.height = mask.height = H;
+      var iw = img.naturalWidth, ih = img.naturalHeight, k = iw / 920;
+      s = Math.max(W / iw, H / ih); ox = (W - iw * s) * 0.5; oy = (H - ih * s) * 0.6;
+      // Mask: opaque water, feathered hole around the boat.
+      mctx.clearRect(0, 0, W, H);
+      mctx.fillStyle = '#000'; mctx.fillRect(0, 0, W, H);
+      mctx.globalCompositeOperation = 'destination-out';
+      mctx.filter = 'blur(' + Math.round(10 * s * k + 4) + 'px)';
+      BOAT.forEach(function (b) {
+        mctx.fillRect(ox + b[0] * k * s, oy + b[1] * k * s, (b[2] - b[0]) * k * s, (b[3] - b[1]) * k * s);
+      });
+      mctx.filter = 'none'; mctx.globalCompositeOperation = 'source-over';
+      return true;
+    }
+
+    function frame(t) {
+      raf = on ? requestAnimationFrame(frame) : 0;
+      if (t - last < 33) return; // ~30 fps is plenty for slow water
+      last = t;
+      if (!W && !size()) return;
+      var iw = img.naturalWidth, ih = img.naturalHeight, k = iw / 920, hz = HZ * k;
+      var y0 = Math.max(0, Math.floor(oy + hz * s)), sec = t / 1000, step = 2;
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.clearRect(0, 0, W, H);
+      for (var y = y0; y < H; y += step) {
+        var sy = (y - oy) / s;                       // row in photo pixels
+        var d = Math.max(0, (sy - hz) / (ih - hz));   // 0 at horizon, 1 at bottom
+        var amp = (0.4 + 3.2 * d) * (W / 600);        // pixels of sideways sway
+        var ph = 26 * Math.sqrt(d);                   // ripples widen toward camera
+        var off = amp * (0.7 * Math.sin(ph * 6.3 - sec * 0.9) + 0.3 * Math.sin(ph * 13.1 + sec * 0.6));
+        ctx.drawImage(img, 0, sy, iw, step / s + 0.5, ox + off, y, iw * s, step + 0.5);
+      }
+      // Fade the canvas in from the horizon, then keep the boat still.
+      ctx.globalCompositeOperation = 'destination-in';
+      ctx.drawImage(mask, 0, 0);
+    }
+
+    function start() { if (!on) { on = true; if (!raf) raf = requestAnimationFrame(frame); } }
+    function stop() { on = false; }
+    cover.addEventListener('pg-vis', function (e) { if (e.detail) start(); else stop(); });
+    addEventListener('resize', function () { W = 0; });
+    if (!img.complete) img.addEventListener('load', function () { W = 0; });
+    start();
+  })();
+
   init();
 })();

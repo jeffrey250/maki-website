@@ -119,8 +119,15 @@ a:hover { color: var(--teal); }
 /* ---------- cover / back ---------- */
 .pg-cover, .pg-back { background: var(--night); color: #fff; }
 .pg-cover .pg-in::after, .pg-back .pg-in::after { display: none; }
-.pg-cover .bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; }
-.pg-cover .pg-in::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,18,26,.7) 0%, rgba(10,18,26,.35) 45%, rgba(10,18,26,0) 62%, rgba(10,18,26,.6) 100%); }
+.pg-cover .bg-wrap { position: absolute; inset: 0; overflow: hidden; z-index: 0; }
+.pg-cover .bg, .pg-cover .water { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; }
+.pg-cover .water { pointer-events: none; }
+/* Scrim above the photo (and its water) so the white logo and title stay legible */
+.pg-cover .pg-in::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background:
+  linear-gradient(180deg, rgba(8,14,22,.88) 0%, rgba(8,14,22,.78) 26%, rgba(8,14,22,.5) 40%, rgba(8,14,22,0) 55%, rgba(8,14,22,0) 80%, rgba(8,14,22,.7) 100%); }
+.pg-cover .pg-in > :not(.bg-wrap) { z-index: 2; }
+.pg-cover .cover-logo { filter: drop-shadow(0 2px 8px rgba(0,0,0,.55)); }
+.pg-cover h1, .pg-cover .cover-sub, .pg-cover .cover-foot { text-shadow: 0 2px 12px rgba(0,0,0,.6), 0 1px 2px rgba(0,0,0,.5); }
 .cover-frame {
   position: absolute; left: calc(var(--u) * 9); right: calc(var(--u) * 9); top: calc(var(--u) * 10);
   border-left: calc(var(--u) * .8) solid #fff; padding: calc(var(--u) * 3) 0 calc(var(--u) * 3) calc(var(--u) * 5);
@@ -393,7 +400,7 @@ img.pos-left { object-position: 0 50%; }
 .why span { font-size: calc(var(--u) * 1.55); color: #c4d1db; line-height: 1.35; display: block; }
 
 /* Cover and back cover: slow zoom and sonar ping rings */
-.pg-cover .bg { animation: kenburns 24s ease-in-out infinite alternate; transform-origin: 55% 70%; }
+.pg-cover .bg-wrap { animation: kenburns 24s ease-in-out infinite alternate; transform-origin: 55% 70%; }
 @keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.09); } }
 .sonar { position: absolute; pointer-events: none; width: calc(var(--u) * 60); aspect-ratio: 1; transform: translate(-50%, -50%); }
 .sonar i { position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(113,199,225,.55); opacity: 0; animation: ping 4.5s cubic-bezier(.2,.6,.3,1) infinite; }
@@ -452,11 +459,13 @@ body.print .progress { display: none; }
 @media (max-width: 900px) { .can-fs .bar-btn[data-act="fs"] { display: none; } }
 
 @media (prefers-reduced-motion: reduce) {
-  .pg-cover .bg, .sonar i, .pin-ping { animation: none !important; }
+  .pg-cover .bg-wrap, .sonar i, .pin-ping { animation: none !important; }
+  .water { display: none; }
   body.is-book .pg [data-rise], body.is-strip .pg [data-rise] { opacity: 1; transform: none; animation: none !important; }
 }
 body.print .sonar { display: none; }
-body.print .pg-cover .bg { animation: none; }
+body.print .pg-cover .bg-wrap { animation: none; }
+body.print .water { display: none; }
 .book.is-strip .sonar { width: 300px; }
 .book.is-strip .pg-back .sonar { width: 340px; }
 
