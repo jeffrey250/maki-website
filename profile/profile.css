@@ -479,3 +479,12 @@ body.print .water { display: none; }
 /* Team photo: taller band, anchored high so faces are not cropped */
 .band-img.band-team { height: calc(var(--u) * 46); object-position: 50% 12%; }
 .book.is-strip .band-img.band-team { height: 260px; }
+
+/* At a glance: highlights, then the range of work */
+#at-a-glance .lead { color: #d6e1e9; margin-bottom: calc(var(--u) * 2.6); }
+#at-a-glance .stats { margin-bottom: calc(var(--u) * 2.6); }
+.glance-rows { display: grid; gap: calc(var(--u) * 1.8); margin-bottom: calc(var(--u) * 2.6); }
+.glance-rows h3 { font-family: var(--head); font-size: calc(var(--u) * 1.7); letter-spacing: .14em; text-transform: uppercase; color: var(--teal-light); margin: 0 0 calc(var(--u) * .9); }
+.chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: calc(var(--u) * .8); }
+.chips li { font-size: calc(var(--u) * 1.65); color: #e6eef3; background: rgba(255,255,255,.07); border: 1px solid rgba(113,199,225,.3); border-radius: 99px; padding: calc(var(--u) * .5) calc(var(--u) * 1.4); }
+.book.is-strip .chips li { font-size: 13px; padding: 4px 10px; }

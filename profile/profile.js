@@ -32,7 +32,7 @@
   }
 
   // ---------- motion targets: cards and figures rise in, staggered ----------
-  ['.stats > *', '.badges > *', '.caps > *', '.fleet > *', '.facts > *', '.outcomes > *', '.mosaic > *',
+  ['.stats > *', '.badges > *', '.chips > li', '.caps > *', '.fleet > *', '.facts > *', '.outcomes > *', '.mosaic > *',
    '.logos > *', '.cs-index > li', '.steps > li', '.why > *', '.assure > *', '.duo > *', '.split', '.story',
    '.road-item', '.toc > li', '.contact > li', '.media', '.yt', '.model', '.map > *', '.big-cta'
   ].forEach(function (sel) {
