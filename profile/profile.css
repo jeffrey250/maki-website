@@ -468,3 +468,6 @@ body.print .pg-cover .bg { animation: none; }
 .assure span { font-size: calc(var(--u) * 1.8); color: var(--muted); line-height: 1.4; display: block; }
 .pg-dark .cs-note { font-size: calc(var(--u) * 1.8); color: #9fb0bd; border-left: calc(var(--u) * .5) solid var(--teal); padding-left: calc(var(--u) * 2); margin: calc(var(--u) * -.5) 0 calc(var(--u) * 1); }
 .is-strip .assure { grid-template-columns: 1fr; }
+/* Team photo: taller band, anchored high so faces are not cropped */
+.band-img.band-team { height: calc(var(--u) * 46); object-position: 50% 12%; }
+.book.is-strip .band-img.band-team { height: 260px; }
