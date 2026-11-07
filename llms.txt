@@ -20,7 +20,9 @@ Regional councils, water utilities, environmental scientists, infrastructure man
 
 ## Key facts
 
-- Based in the Waikato, New Zealand, and operates nationally
+- Founded in 2020; based in the Waikato, New Zealand, and operates nationally
+- Team of six engineers, developers and operators
+- SHE Pre-Qual prequalified (safety, health & environment)
 - Founded and led by Jeffrey To (Founder & Managing Director, PhD in Engineering)
 - Fully in-house hardware, electronics, firmware, software and AI development
 - Systems operate up to 2.5 km from controller or indefinitely via cellular connectivity
@@ -49,23 +51,30 @@ Regional councils, water utilities, environmental scientists, infrastructure man
 - About: https://www.maki.nz/about/
 - News & Articles: https://www.maki.nz/blog/
 - Enquire: https://www.maki.nz/enquire/
+- Company Profile 2026 (interactive): https://www.maki.nz/profile/
+- Company Profile 2026 (PDF): https://www.maki.nz/assets/2026-MAKI-Company-Profile.pdf
 - Case Studies: https://www.maki.nz/case-studies/
+- Case Study — Eleven Stormwater Pond Surveys at Ōmokoroa (Western Bay of Plenty District Council): https://www.maki.nz/case-studies/omokoroa-ponds/
 - Case Study — Lakes Mapping for Waikato Regional Council: https://www.maki.nz/case-studies/lakes-mapping/
 - Case Study — Topo-Bathymetric Mapping at Aotea Harbour: https://www.maki.nz/case-studies/aotea-harbour/
 - Case Study — Autonomous Algae Bloom Monitoring: https://www.maki.nz/case-studies/algae-bloom/
 - Case Study — Ngaroto Lake Bathymetric Survey: https://www.maki.nz/case-studies/ngaroto/
-- Case Study — Water Reservoir Inspection with ROV: https://www.maki.nz/case-studies/rov-reservoir/
+- Case Study — Drinking-Water Reservoir Inspection, Westport (Buller District Council): https://www.maki.nz/case-studies/rov-reservoir/
 - Case Study — Sediment Analysis for Stormwater & Wastewater Ponds: https://www.maki.nz/case-studies/sediment-analysis/
 - Case Study — Underwater 3D Mapping & Jetty Survey at Hobsonville Point: https://www.maki.nz/case-studies/hobsonville-jetty/
 
 ## Case studies
+
+### Eleven Stormwater Pond Surveys at Ōmokoroa (2026)
+For Western Bay of Plenty District Council, MĀKI surveyed eleven stormwater ponds and wetlands at Ōmokoroa between June and August 2026, matching the method to each site: multibeam sonar, sonar boat surveys and RTK staff shots. Each pond was delivered as a survey report (water area, volume held and sediment volume) and in a private 3D portal showing ground, water and sediment surfaces with a cross-section tool, and how much of each pond lies close to an actual measurement.
+URL: https://www.maki.nz/case-studies/omokoroa-ponds/
 
 ### Underwater 3D Mapping & Jetty Survey at Hobsonville Point (2026)
 With Glasgow Contractors, on behalf of Auckland Council's Healthy Waters and Flood Resilience department, MĀKI surveyed beneath a jetty at Hobsonville Point, Auckland, using its in-house uncrewed surface vessel (USV) with multibeam sonar — a confined space conventional crewed vessels struggle to reach. RTK drone photogrammetry captured the exposed coastal structures and surrounding topography, and the two datasets were combined into an integrated 3D model, delivered on a tight timeframe.
 URL: https://www.maki.nz/case-studies/hobsonville-jetty/
 
 ### Lakes Mapping for Waikato Regional Council
-MĀKI deployed autonomous USVs to map 12 lakes across the Waikato region for Waikato Regional Council. The project delivered high-resolution bathymetric data, sediment mapping and water quality profiles used to inform freshwater management decisions.
+MĀKI deployed autonomous USVs with multibeam and single-beam sonar to map 26 lakes across the Waikato region for Waikato Regional Council. The project delivered high-resolution bathymetric data, sediment mapping and water quality profiles used to inform freshwater management decisions.
 URL: https://www.maki.nz/case-studies/lakes-mapping/
 
 ### Topo-Bathymetric Mapping at Aotea Harbour
@@ -80,8 +89,8 @@ URL: https://www.maki.nz/case-studies/algae-bloom/
 MĀKI carried out a full bathymetric survey of Ngaroto Lake, producing a high-resolution depth map and sediment volume estimates to support ecological restoration planning.
 URL: https://www.maki.nz/case-studies/ngaroto/
 
-### Water Reservoir Inspection with ROV
-MĀKI deployed an underwater ROV and surface rover to inspect a drinking water reservoir — capturing HD video of submerged walls, floors and inlet/outlet structures without dewatering or confined space entry. The survey enabled asset condition assessment with zero operational disruption.
+### Drinking-Water Reservoir Inspection, Westport (Buller District Council)
+For Buller District Council, MĀKI inspected a drinking-water reservoir in Westport using an underwater ROV inside the reservoir and the MĀKI Rover to carry out the inspection on top of it — without draining the reservoir or sending anyone into a confined space. Video: https://www.youtube.com/watch?v=3tJPJQ17WJo
 URL: https://www.maki.nz/case-studies/rov-reservoir/
 
 ### Sediment Analysis for Stormwater & Wastewater Ponds

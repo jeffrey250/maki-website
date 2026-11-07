@@ -217,6 +217,8 @@ const SITEMAP = [
   ["/case-studies/rov-reservoir/", "case-studies/rov-reservoir/index.html", "yearly", "0.8"],
   ["/case-studies/sediment-analysis/", "case-studies/sediment-analysis/index.html", "yearly", "0.8"],
   ["/case-studies/hobsonville-jetty/", "case-studies/hobsonville-jetty/index.html", "yearly", "0.8"],
+  ["/case-studies/omokoroa-ponds/", "case-studies/omokoroa-ponds/index.html", "yearly", "0.8"],
+  ["/profile/", "profile/index.html", "monthly", "0.8"],
   ["/products/", "products/index.html", "monthly", "0.8"],
   ["/vehicles/", "vehicles/index.html", "monthly", "0.8"],
   ["/recreational/", "recreational/index.html", "monthly", "0.7"],
