@@ -460,7 +460,6 @@ body.print .progress { display: none; }
 
 @media (prefers-reduced-motion: reduce) {
   .pg-cover .bg-wrap, .sonar i, .pin-ping { animation: none !important; }
-  .water { display: none; }
   body.is-book .pg [data-rise], body.is-strip .pg [data-rise] { opacity: 1; transform: none; animation: none !important; }
 }
 body.print .sonar { display: none; }

@@ -364,7 +364,7 @@
   (function water() {
     var cover = document.getElementById('cover');
     var img = cover && cover.querySelector('.bg');
-    if (!img || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!img) return; // slow and gentle, so it runs even with reduced motion on
     // In photo pixels (cover-usv.jpg is 920 x 2000).
     var HZ = 850, BOAT = [[226, 800, 560, 1200], [185, 1130, 760, 1350]];
     var cv = document.createElement('canvas');
@@ -405,10 +405,13 @@
       for (var y = y0; y < H; y += step) {
         var sy = (y - oy) / s;                       // row in photo pixels
         var d = Math.max(0, (sy - hz) / (ih - hz));   // 0 at horizon, 1 at bottom
-        var amp = (0.4 + 3.2 * d) * (W / 600);        // pixels of sideways sway
-        var ph = 26 * Math.sqrt(d);                   // ripples widen toward camera
-        var off = amp * (0.7 * Math.sin(ph * 6.3 - sec * 0.9) + 0.3 * Math.sin(ph * 13.1 + sec * 0.6));
-        ctx.drawImage(img, 0, sy, iw, step / s + 0.5, ox + off, y, iw * s, step + 0.5);
+        var u = W / 600, ph = 30 * Math.sqrt(d);      // ripples widen toward camera
+        var amp = (0.8 + 9 * d) * u;                  // sideways sway, px
+        var off = amp * (0.65 * Math.sin(ph * 5.1 - sec * 1.1) + 0.35 * Math.sin(ph * 11.7 + sec * 0.7));
+        // Rows also bob up and down a little, so reflections stretch and squeeze.
+        var bob = (0.6 + 6 * d) * u * Math.sin(ph * 3.7 - sec * 0.8) / s;
+        var src = Math.min(ih - step / s - 1, Math.max(hz, sy + bob));
+        ctx.drawImage(img, 0, src, iw, step / s + 0.5, ox + off, y, iw * s, step + 0.5);
       }
       // Fade the canvas in from the horizon, then keep the boat still.
       ctx.globalCompositeOperation = 'destination-in';
