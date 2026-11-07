@@ -47,7 +47,7 @@ button { font: inherit; cursor: pointer; }
   border-bottom: 1px solid rgba(255,255,255,.06);
 }
 .bar-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--head); font-size: 15px; letter-spacing: .02em; }
-.bar-brand img { width: 40px; height: 40px; }
+.bar-brand img { width: auto; height: 34px; }
 .bar-brand b { color: var(--teal-light); font-weight: 700; }
 .bar-actions { display: flex; gap: 8px; }
 .bar-btn {
