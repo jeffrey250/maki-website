@@ -580,3 +580,5 @@ h3 { font-weight: 500; }
 .is-strip .wq-grid { grid-template-columns: 1fr; grid-template-rows: none; height: auto; }
 .is-strip .wq-b img, .is-strip .wq-c img { flex: none; aspect-ratio: 4 / 3; }
 .is-strip .wq-a img { flex: none; aspect-ratio: 3 / 4; }
+.wq-b { grid-row: span 2; }
+.wq-b img { object-position: 50% 40%; }
