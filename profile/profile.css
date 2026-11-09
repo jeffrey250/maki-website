@@ -488,3 +488,95 @@ body.print .water { display: none; }
 .chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: calc(var(--u) * .8); }
 .chips li { font-size: calc(var(--u) * 1.65); color: #e6eef3; background: rgba(255,255,255,.07); border: 1px solid rgba(113,199,225,.3); border-radius: 99px; padding: calc(var(--u) * .5) calc(var(--u) * 1.4); }
 .book.is-strip .chips li { font-size: 13px; padding: 4px 10px; }
+
+/* =====================================================================
+   v3: editorial pass. Reads like a printed engineering report rather than
+   a web template: running heads and hairline rules instead of pills, cards
+   and glows; teal kept for links and figures; square-cornered photos.
+   ===================================================================== */
+body { background: var(--desk); }
+.pg-dark { background: var(--night); }
+.pg-back .pg-in { background: var(--night); }
+
+/* Running head: section name with a rule across the page */
+.kicker { display: flex; align-items: center; gap: calc(var(--u) * 1.6); font-family: var(--body); font-weight: 600; font-size: calc(var(--u) * 1.5); letter-spacing: .12em; color: #7c868f; }
+.kicker::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.pg-dark .kicker { color: #8fa0ad; }
+.pg-dark .kicker::after { background: rgba(255,255,255,.16); }
+
+h2 { font-weight: 500; letter-spacing: -.015em; font-size: calc(var(--u) * 5.4); line-height: 1.05; margin: calc(var(--u) * 3.2) 0 calc(var(--u) * 2.6); }
+h2::after, body.is-book .pg h2::after, body.is-strip .pg h2::after, body.is-book .pg.is-in h2::after, body.is-strip .pg.is-in h2::after { display: none; }
+h3 { font-weight: 500; }
+.lead { font-family: var(--body); font-weight: 400; color: #3b4249; font-size: calc(var(--u) * 2.6); line-height: 1.45; }
+.pg-dark .lead, #at-a-glance .lead { color: #d3dde4; }
+.note, .pg-dark .cs-note { border-left: 0; padding-left: 0; font-style: italic; }
+
+/* Photos and media: square corners, like print */
+.media video, .media img, .split img, .story img, .duo img, .yt, .model, .mosaic img, .fleet img, .mosaic-more { border-radius: 2px; }
+.mosaic img:hover { transform: none; filter: brightness(1.08); }
+.logos img { border-radius: 0; border-color: #eceff1; }
+
+/* Cards become ruled entries */
+.cap, .outcomes div, .assure div, .why div { background: none; border: 0; border-top: 1px solid #cfd6dc; border-radius: 0; padding: calc(var(--u) * 1.6) 0 0; color: inherit; }
+.cap:hover { transform: none; border-color: var(--teal); }
+.cap:hover strong { color: var(--teal-dark); }
+.cap i { color: #8a949c; font-weight: 500; }
+.assure div::before { display: none; }
+.why { gap: calc(var(--u) * 2.4); }
+.why div { border-top: 2px solid var(--night); }
+.why strong { color: var(--night); font-weight: 500; }
+.why span { color: var(--muted); }
+.outcomes strong, .assure strong, .cap strong, .fleet strong { font-weight: 500; }
+
+/* Figures: thin rules, not thick teal bars */
+.stat { border-top: 1px solid rgba(255,255,255,.28); }
+.stat b { font-weight: 500; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.facts div { border-top: 1px solid #b9c2c9; }
+.pg-dark .facts div { border-top-color: rgba(255,255,255,.28); }
+.facts b { font-weight: 500; }
+.badge-card { background: none; border: 0; border-top: 1px solid rgba(255,255,255,.28); border-radius: 0; padding: calc(var(--u) * 1.6) 0 0; }
+.badge-card strong { font-weight: 500; }
+
+/* Lists of sectors read as text, not pills */
+.chips { gap: 0; }
+.chips li, .book.is-strip .chips li { background: none; border: 0; border-radius: 0; padding: 0; font-size: calc(var(--u) * 1.9); color: #e6eef3; }
+.book.is-strip .chips li { font-size: 14px; }
+.chips li:not(:last-child)::after { content: "/"; color: #6f8494; margin: 0 calc(var(--u) * 1.1); }
+.glance-rows h3 { font-family: var(--body); font-weight: 600; letter-spacing: .12em; font-size: calc(var(--u) * 1.5); color: #8fa0ad; }
+
+/* Process: numbered rows, no circles or gradient line */
+.steps::before { display: none; }
+.steps li { border-top: 1px solid var(--line); padding-top: calc(var(--u) * 1.6); margin-bottom: calc(var(--u) * 1.6); }
+.steps b { width: auto; height: auto; display: block; border: 0; background: none; border-radius: 0; color: var(--teal-dark); font-weight: 500; font-size: calc(var(--u) * 2.6); line-height: 1.1; }
+.steps h3 { margin-top: 0; }
+
+/* Contents: page numbers in ink, section heads set apart by weight only */
+.toc span { color: #7c868f; font-weight: 500; font-variant-numeric: tabular-nums; }
+.toc a { font-weight: 500; }
+.cs-index a::before { color: #8fa0ad; font-weight: 500; }
+.cs-index b { font-weight: 500; }
+
+/* Buttons: plain rectangles, no glows */
+.bar-btn, .yt-play, .model-ui button, .big-cta, .ctrl, .model-ui span, .model-legend { border-radius: 3px; }
+.ctrl-btn { border-radius: 2px; }
+.big-cta { box-shadow: none; font-weight: 500; }
+.big-cta:hover { transform: none; }
+.yt-play { box-shadow: none; font-weight: 500; background: rgba(13,22,32,.82); }
+.yt:hover .yt-play { transform: translate(-50%, -50%); background: var(--teal-dark); }
+.progress { box-shadow: none; background: var(--teal); height: 2px; }
+.cover-hint { animation: none; border-radius: 3px; }
+
+/* The cover's moving water is enough motion there */
+.pg-cover .sonar { display: none; }
+
+/* Waikato monitoring spread: the two mast photos are tall, so crop them square */
+.wq-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; height: calc(var(--u) * 64); gap: calc(var(--u) * 1.6) calc(var(--u) * 2.4); margin-bottom: calc(var(--u) * 2.4); }
+.wq-grid figure { margin: 0; display: flex; flex-direction: column; min-height: 0; }
+.wq-grid figcaption { font-size: calc(var(--u) * 1.55); color: var(--muted); margin-top: calc(var(--u) * .7); }
+.wq-a { grid-row: span 2; }
+.wq-a img { flex: 1; min-height: 0; width: 100%; object-fit: cover; object-position: 50% 6%; border-radius: 2px; }
+.wq-b img, .wq-c img { flex: 1; min-height: 0; width: 100%; object-fit: cover; border-radius: 2px; }
+.wq-c img { object-fit: contain; background: #fff; border: 1px solid var(--line); }
+.is-strip .wq-grid { grid-template-columns: 1fr; grid-template-rows: none; height: auto; }
+.is-strip .wq-b img, .is-strip .wq-c img { flex: none; aspect-ratio: 4 / 3; }
+.is-strip .wq-a img { flex: none; aspect-ratio: 3 / 4; }
