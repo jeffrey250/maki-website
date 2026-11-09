@@ -570,15 +570,12 @@ h3 { font-weight: 500; }
 .pg-cover .sonar { display: none; }
 
 /* Waikato monitoring spread: the two mast photos are tall, so crop them square */
-.wq-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; height: calc(var(--u) * 64); gap: calc(var(--u) * 1.6) calc(var(--u) * 2.4); margin-bottom: calc(var(--u) * 2.4); }
-.wq-grid figure { margin: 0; display: flex; flex-direction: column; min-height: 0; }
-.wq-grid figcaption { font-size: calc(var(--u) * 1.55); color: var(--muted); margin-top: calc(var(--u) * .7); }
-.wq-a { grid-row: span 2; }
-.wq-a img { flex: 1; min-height: 0; width: 100%; object-fit: cover; object-position: 50% 6%; border-radius: 2px; }
-.wq-b img, .wq-c img { flex: 1; min-height: 0; width: 100%; object-fit: cover; border-radius: 2px; }
-.wq-c img { object-fit: contain; background: #fff; border: 1px solid var(--line); }
-.is-strip .wq-grid { grid-template-columns: 1fr; grid-template-rows: none; height: auto; }
-.is-strip .wq-b img, .is-strip .wq-c img { flex: none; aspect-ratio: 4 / 3; }
-.is-strip .wq-a img { flex: none; aspect-ratio: 3 / 4; }
-.wq-b { grid-row: span 2; }
-.wq-b img { object-position: 50% 40%; }
+.wq-mission { margin: 0 0 calc(var(--u) * 2); }
+.wq-mission img { width: 100%; aspect-ratio: 722 / 482; border-radius: 2px; background: #0c1218; }
+.wq-mission figcaption, .wq-row figcaption { font-size: calc(var(--u) * 1.5); color: var(--muted); margin-top: calc(var(--u) * .7); }
+.wq-row { display: grid; grid-template-columns: calc(var(--u) * 21) calc(var(--u) * 21) 1fr; gap: calc(var(--u) * 2); align-items: start; margin-bottom: calc(var(--u) * 1.6); }
+.wq-row figure { margin: 0; }
+.wq-row img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 10%; border-radius: 2px; }
+.wq-row p { font-size: calc(var(--u) * 1.95); margin: 0; }
+.is-strip .wq-row { grid-template-columns: 1fr 1fr; }
+.is-strip .wq-row p { grid-column: 1 / -1; }
