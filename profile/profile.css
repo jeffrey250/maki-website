@@ -639,3 +639,8 @@ body.print .wq-hud, body.print .wq-route .usv { display: none; }
 body.print .wq-route .line { stroke: #4fd1ee; }
 .book.is-strip .wq-hud { font-size: 11px; width: 46%; padding: 6px 8px; }
 .book.is-strip .wq-hud-head, .book.is-strip .wq-hud-status { font-size: 10px; }
+/* Page 14: show the whole monitoring boat, antenna tips to hulls */
+.band-img.band-boat { height: calc(var(--u) * 42); object-position: 50% 68%; margin-bottom: calc(var(--u) * 2.4); }
+#wrc-monitoring h2 { margin-top: calc(var(--u) * 2.4); margin-bottom: calc(var(--u) * 2); }
+#wrc-monitoring .wq-row { margin-top: calc(var(--u) * 1.6); grid-template-columns: calc(var(--u) * 14.5) calc(var(--u) * 14.5) 1fr; }
+.book.is-strip .band-img.band-boat { height: 250px; }
