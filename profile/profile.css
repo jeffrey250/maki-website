@@ -611,3 +611,5 @@ h3 { font-weight: 500; }
 .sm-axis > div { display: flex; justify-content: space-between; }
 .is-strip .sm-axis { grid-template-columns: 1fr 1fr; }
 .is-strip .sm-axis > div:nth-child(3) { display: none; }
+.wq-route .turn { fill: #0b1620; stroke: #4fd1ee; stroke-width: 3; }
+#wrc-long-range .facts-4 b { white-space: nowrap; }

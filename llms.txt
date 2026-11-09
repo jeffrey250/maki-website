@@ -25,7 +25,7 @@ Regional councils, water utilities, environmental scientists, infrastructure man
 - SHE Pre-Qual prequalified (safety, health & environment)
 - Founded and led by Jeffrey To (Founder & Managing Director, PhD in Engineering)
 - Fully in-house hardware, electronics, firmware, software and AI development
-- Systems operate up to 2.5 km from controller or indefinitely via cellular connectivity
+- Systems operate up to 2.5 km by direct radio, and well beyond that over integrated 4G and Starlink links
 - IP67-rated equipment, biosecurity-compliant decontamination protocols
 - RTK-enabled centimetre-level GPS accuracy
 
