@@ -570,12 +570,44 @@ h3 { font-weight: 500; }
 .pg-cover .sonar { display: none; }
 
 /* Waikato monitoring spread: the two mast photos are tall, so crop them square */
-.wq-mission { margin: 0 0 calc(var(--u) * 2); }
-.wq-mission img { width: 100%; aspect-ratio: 722 / 482; border-radius: 2px; background: #0c1218; }
-.wq-mission figcaption, .wq-row figcaption { font-size: calc(var(--u) * 1.5); color: var(--muted); margin-top: calc(var(--u) * .7); }
 .wq-row { display: grid; grid-template-columns: calc(var(--u) * 21) calc(var(--u) * 21) 1fr; gap: calc(var(--u) * 2); align-items: start; margin-bottom: calc(var(--u) * 1.6); }
 .wq-row figure { margin: 0; }
 .wq-row img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 10%; border-radius: 2px; }
 .wq-row p { font-size: calc(var(--u) * 1.95); margin: 0; }
 .is-strip .wq-row { grid-template-columns: 1fr 1fr; }
 .is-strip .wq-row p { grid-column: 1 / -1; }
+/* Long-distance mission: route map, figures and small multiples */
+.wq-map { margin: 0 0 calc(var(--u) * 1); }
+.wq-map-img { position: relative; }
+.wq-map-img img { width: 100%; aspect-ratio: 1148 / 532; object-fit: cover; border-radius: 2px; background: #0c1218; }
+.wq-map-img span { position: absolute; color: #fff; font-size: calc(var(--u) * 1.45); font-weight: 600; letter-spacing: .06em; text-shadow: 0 1px 3px rgba(0,0,0,.8); pointer-events: none; }
+.wq-scale { right: 2.5%; bottom: 5%; display: flex; flex-direction: column; align-items: flex-end; gap: 2px; width: 97.5%; }
+.wq-scale i { display: block; height: 3px; border: 1.5px solid #fff; border-top: 0; }
+.wq-north { right: 2.5%; top: 5%; }
+.wq-map figcaption { font-size: calc(var(--u) * 1.5); color: var(--muted); margin-top: calc(var(--u) * .7); }
+#wrc-long-range .facts { margin: calc(var(--u) * 1.6) 0 calc(var(--u) * 2.4); }
+.sm-title { font-size: calc(var(--u) * 2); margin-bottom: calc(var(--u) * 1); display: flex; align-items: baseline; gap: calc(var(--u) * 1.2); }
+.sm-title span { font-family: var(--body); font-weight: 600; font-size: calc(var(--u) * 1.35); letter-spacing: .12em; text-transform: uppercase; color: #7c868f; }
+.sm-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: calc(var(--u) * 1.4) calc(var(--u) * 2.4); }
+.sm { margin: 0; }
+.sm figcaption { font-size: calc(var(--u) * 1.5); color: var(--ink); margin-bottom: calc(var(--u) * .4); }
+.sm figcaption i { font-style: normal; color: #8a949c; }
+.sm svg { display: block; width: 100%; height: calc(var(--u) * 5.5); overflow: visible; }
+.sm polyline { fill: none; stroke: var(--teal-dark); stroke-width: 2px; vector-effect: non-scaling-stroke; stroke-linejoin: round; stroke-linecap: round; }
+.sm line { stroke: #cfd6dc; stroke-width: 1px; vector-effect: non-scaling-stroke; }
+.sm-axis { display: grid; grid-template-columns: repeat(3, 1fr); column-gap: calc(var(--u) * 2.4); font-size: calc(var(--u) * 1.35); color: #8a949c; margin: calc(var(--u) * .6) 0 calc(var(--u) * 2); font-variant-numeric: tabular-nums; }
+#wrc-monitoring .wq-row { margin-top: calc(var(--u) * 2.4); grid-template-columns: calc(var(--u) * 17) calc(var(--u) * 17) 1fr; }
+.is-strip .sm-grid { grid-template-columns: 1fr 1fr; }
+.is-strip #wrc-monitoring .wq-row { grid-template-columns: 1fr 1fr; }
+.wq-route { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.wq-route path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.wq-route .halo { stroke: rgba(6,14,22,.55); stroke-width: 9; }
+.wq-route .line { stroke: #4fd1ee; stroke-width: 4; }
+.wq-route .start { fill: #4fd1ee; stroke: #fff; stroke-width: 3; }
+.wq-route .end { fill: #fff; stroke: #4fd1ee; stroke-width: 3; }
+.wq-tag { transform: translate(calc(-100% - 1.2em), -50%); }
+.wq-tag-end { transform: translate(-50%, -190%); }
+.wq-map-img { overflow: hidden; border-radius: 2px; }
+.sm-axis > div { display: flex; justify-content: space-between; }
+.is-strip .sm-axis { grid-template-columns: 1fr 1fr; }
+.is-strip .sm-axis > div:nth-child(3) { display: none; }
