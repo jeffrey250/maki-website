@@ -18,107 +18,151 @@
     <meta name="twitter:description" content="MĀKI surveys stormwater retention ponds, treatment ponds and detention basins across New Zealand using autonomous USVs — delivering accurate sediment volume data, bathymetric maps and condition reports for councils and infrastructure managers.">
     <meta name="twitter:image" content="https://www.maki.nz/assets/media/056-stormwater-pond-hires.jpg">
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
-      "@graph": [
+      "@type": "Service",
+      "@id": "https://www.maki.nz/services/stormwater/#service",
+      "name": "Stormwater & Treatment Pond Surveys",
+      "alternateName": [
+        "Stormwater pond monitoring",
+        "Treatment pond survey",
+        "Detention basin bathymetry",
+        "Stormwater retention pond survey",
+        "Settling pond sediment survey"
+      ],
+      "provider": {
+        "@type": "Organization",
+        "name": "MĀKI Autonomous Systems",
+        "url": "https://www.maki.nz",
+        "telephone": "+64-20-4194-1275",
+        "email": "info@maki.nz",
+        "areaServed": {
+          "@type": "Country",
+          "name": "New Zealand"
+        }
+      },
+      "description": "Autonomous USV-based bathymetric surveys of stormwater retention ponds, treatment ponds, detention basins and settling ponds — providing councils and infrastructure managers with accurate sediment volume data, depth maps and condition reports without diver risk or operational disruption.",
+      "areaServed": {
+        "@type": "Country",
+        "name": "New Zealand"
+      },
+      "url": "https://www.maki.nz/services/stormwater/",
+      "serviceType": [
+        "Bathymetric survey",
+        "Sediment volume assessment",
+        "Stormwater pond monitoring",
+        "Treatment pond condition assessment"
+      ],
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Regional councils, territorial authorities, infrastructure managers, environmental engineers"
+      },
+      "subjectOf": [
         {
-          "@type": "Service",
-          "@id": "https://www.maki.nz/services/stormwater/#service",
-          "name": "Stormwater & Treatment Pond Surveys",
-          "alternateName": ["Stormwater pond monitoring", "Treatment pond survey", "Detention basin bathymetry", "Stormwater retention pond survey", "Settling pond sediment survey"],
-          "provider": {
-            "@type": "Organization",
-            "name": "MĀKI Autonomous Systems",
-            "url": "https://www.maki.nz",
-            "telephone": "+64-20-4194-1275",
-            "email": "info@maki.nz",
-            "areaServed": {"@type": "Country", "name": "New Zealand"}
-          },
-          "description": "Autonomous USV-based bathymetric surveys of stormwater retention ponds, treatment ponds, detention basins and settling ponds — providing councils and infrastructure managers with accurate sediment volume data, depth maps and condition reports without diver risk or operational disruption.",
-          "areaServed": {"@type": "Country", "name": "New Zealand"},
-          "url": "https://www.maki.nz/services/stormwater/",
-          "serviceType": ["Bathymetric survey", "Sediment volume assessment", "Stormwater pond monitoring", "Treatment pond condition assessment"],
-          "audience": {
-            "@type": "Audience",
-            "audienceType": "Regional councils, territorial authorities, infrastructure managers, environmental engineers"
+          "@type": "Article",
+          "headline": "Surveying Eleven Stormwater Ponds and Wetlands at Ōmokoroa",
+          "url": "https://www.maki.nz/case-studies/omokoroa-ponds/"
+        },
+        {
+          "@type": "Article",
+          "headline": "Measuring Sediment in Treatment Ponds Without Draining Them",
+          "url": "https://www.maki.nz/case-studies/sediment-analysis/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How are stormwater ponds and treatment ponds surveyed in New Zealand?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MĀKI uses autonomous surface vessels (USVs) fitted with single-beam or multi-beam sonar and RTK GPS to survey stormwater retention ponds and treatment ponds. The USV navigates a programmed grid pattern across the pond surface, collecting depth measurements at centimetre-level accuracy. No divers, no draining of the pond, and no disruption to operations. The resulting bathymetric data is processed into 3D maps, cross-sections and sediment volume calculations."
           }
         },
         {
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "How are stormwater ponds and treatment ponds surveyed in New Zealand?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "MĀKI uses autonomous surface vessels (USVs) fitted with single-beam or multi-beam sonar and RTK GPS to survey stormwater retention ponds and treatment ponds. The USV navigates a programmed grid pattern across the pond surface, collecting depth measurements at centimetre-level accuracy. No divers, no draining of the pond, and no disruption to operations. The resulting bathymetric data is processed into 3D maps, cross-sections and sediment volume calculations."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Why should councils monitor stormwater ponds and detention basins?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Stormwater retention ponds and detention basins trap sediment, nutrients and pollutants over time. Without regular monitoring, sediment build-up reduces storage capacity — meaning ponds can no longer manage flood flows or retain contaminants effectively. Regular bathymetric surveys allow councils to track sediment accumulation rates, plan desludging operations before capacity is critically reduced, and demonstrate due diligence in managing public infrastructure. Surveys also identify safety concerns such as uneven berms or inlet scour."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What data does a treatment pond or stormwater pond survey provide?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "A MĀKI stormwater or treatment pond survey delivers: a georeferenced bathymetric map of the pond floor, cross-section profiles, current versus design volume calculations, estimated sediment volume and distribution, and a condition report. Data is supplied in standard formats (GIS-compatible, PDF report) suitable for asset management systems, council reporting and dredging contractor briefing."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "How often should stormwater ponds be surveyed?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Most councils survey stormwater ponds every 3–7 years, or after significant weather events. MĀKI recommends an initial baseline survey to establish original design volumes, followed by periodic repeat surveys to calculate sediment accumulation rates. This allows accurate prediction of when desludging will be required — saving councils from either premature dredging or unexpected capacity failures."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Can stormwater and treatment ponds be surveyed without draining them?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes. MĀKI's autonomous USV surveys are conducted with the pond in normal operating condition — no draining, no pumping down, and no disruption to the stormwater or treatment process. The sonar system works through the water column to map the pond floor. This eliminates the safety risks associated with divers entering contaminated water and avoids the cost and disruption of dewatering."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What types of ponds does MĀKI survey?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "MĀKI surveys a wide range of water-filled infrastructure including: stormwater retention ponds, detention basins, sedimentation ponds, treatment ponds (oxidation ponds, aeration ponds, facultative ponds), settling ponds at industrial and agricultural sites, irrigation reservoirs, and council-managed lakes. If there is water in it and a need to understand what is on the bottom, MĀKI can survey it."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Does MĀKI operate across all of New Zealand?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes. MĀKI is based in the Waikato and operates across New Zealand, including for regional councils, territorial authorities and private clients. We have worked with Waikato Regional Council, Ōtorohanga District Council and others across the North Island, and are available nationally."
-              }
-            }
-          ]
+          "@type": "Question",
+          "name": "Why should councils monitor stormwater ponds and detention basins?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Stormwater retention ponds and detention basins trap sediment, nutrients and pollutants over time. Without regular monitoring, sediment build-up reduces storage capacity — meaning ponds can no longer manage flood flows or retain contaminants effectively. Regular bathymetric surveys allow councils to track sediment accumulation rates, plan desludging operations before capacity is critically reduced, and demonstrate due diligence in managing public infrastructure. Surveys also identify safety concerns such as uneven berms or inlet scour."
+          }
         },
         {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.maki.nz/"},
-            {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://www.maki.nz/services/"},
-            {"@type": "ListItem", "position": 3, "name": "Stormwater & Treatment Pond Surveys", "item": "https://www.maki.nz/services/stormwater/"}
-          ]
+          "@type": "Question",
+          "name": "What data does a treatment pond or stormwater pond survey provide?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A MĀKI stormwater or treatment pond survey delivers: a georeferenced bathymetric map of the pond floor, cross-section profiles, current versus design volume calculations, estimated sediment volume and distribution, and a condition report. Data is supplied in standard formats (GIS-compatible, PDF report) suitable for asset management systems, council reporting and dredging contractor briefing."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How often should stormwater ponds be surveyed?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most councils survey stormwater ponds every 3–7 years, or after significant weather events. MĀKI recommends an initial baseline survey to establish original design volumes, followed by periodic repeat surveys to calculate sediment accumulation rates. This allows accurate prediction of when desludging will be required — saving councils from either premature dredging or unexpected capacity failures."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can stormwater and treatment ponds be surveyed without draining them?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. MĀKI's autonomous USV surveys are conducted with the pond in normal operating condition — no draining, no pumping down, and no disruption to the stormwater or treatment process. The sonar system works through the water column to map the pond floor. This eliminates the safety risks associated with divers entering contaminated water and avoids the cost and disruption of dewatering."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What types of ponds does MĀKI survey?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MĀKI surveys a wide range of water-filled infrastructure including: stormwater retention ponds, detention basins, sedimentation ponds, treatment ponds (oxidation ponds, aeration ponds, facultative ponds), settling ponds at industrial and agricultural sites, irrigation reservoirs, and council-managed lakes. If there is water in it and a need to understand what is on the bottom, MĀKI can survey it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does MĀKI operate across all of New Zealand?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. MĀKI is based in the Waikato and operates across New Zealand, including for regional councils, territorial authorities and private clients. We have worked with Waikato Regional Council, Ōtorohanga District Council and others across the North Island, and are available nationally."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.maki.nz/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://www.maki.nz/services/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Stormwater & Treatment Pond Surveys",
+          "item": "https://www.maki.nz/services/stormwater/"
         }
       ]
     }
+  ]
+}
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../styles.css?v=cc6cdb3f">
+    <link rel="stylesheet" href="../../styles.css?v=3cfe7564">
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XFVGYCS8RH"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-XFVGYCS8RH');</script>
@@ -365,7 +409,7 @@
               <a href="/services/topography/">Topography</a>
               <a href="/services/?tab=topobathy">Bathymetry &amp; Topography</a>
               <a href="/services/stormwater/">Stormwater &amp; Treatment Pond Surveys</a>
-              <a href="/services/reservoir/">Water Reservoir Inspection</a>
+              <a href="/services/reservoir/">Water Reservoir Inspection</a><a href="/services/coastal/">Coastal &amp; Underwater Structure Surveys</a>
               <a href="/services/?tab=asset">Asset Management (Inspection)</a>
             </div>
           </div>
@@ -499,6 +543,22 @@
         <p><strong>2. On-site survey.</strong> A MĀKI operator launches the USV from the bank. The vessel autonomously follows the survey grid, collecting sonar depth data and GPS positions across the full pond area. Typical small-to-medium ponds take 1–3 hours to survey.</p>
         <p><strong>3. Data processing.</strong> Raw sonar data is cleaned, georeferenced and processed into a point cloud. Volume calculations compare current depths against design drawings or a reference surface.</p>
         <p><strong>4. Report delivery.</strong> You receive a PDF condition report, georeferenced bathymetric map, cross-section profiles and data files. Turnaround is typically 5–10 business days after the survey.</p>
+      </div>
+
+      <!-- Proven on -->
+      <div class="sw-section">
+        <h2>Proven on real projects</h2>
+        <p>A selection of recent work using this service for New Zealand councils and contractors.</p>
+        <div class="proof-grid">
+          <a class="proof-card" href="/case-studies/omokoroa-ponds/">
+            <img src="/assets/profile/demo-pond-3d.jpg" alt="Eleven stormwater ponds and wetlands" loading="lazy">
+            <div class="proof-card-body"><p class="proof-card-client">Western Bay of Plenty District Council</p><h3>Eleven stormwater ponds and wetlands</h3><p>Each pond surveyed with the method that suited it, delivered with a report and a private 3D portal.</p><span class="proof-card-more">Read the case study &rarr;</span></div>
+          </a>
+          <a class="proof-card" href="/case-studies/sediment-analysis/">
+            <img src="/assets/media/stormwater-tile-thumb.jpg" alt="Sediment measured without draining" loading="lazy">
+            <div class="proof-card-body"><p class="proof-card-client">Stormwater &amp; wastewater ponds</p><h3>Sediment measured without draining</h3><p>Dual-frequency sonar mapped sediment thickness across each pond to plan desludging.</p><span class="proof-card-more">Read the case study &rarr;</span></div>
+          </a>
+        </div>
       </div>
 
       <!-- FAQ -->

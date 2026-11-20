@@ -58,11 +58,12 @@ const services = [
   ["topobathy", "Bathymetry & Topography", "Integrated land and water surveys", A.topobathy, "Combined topo-bathymetric mapping gives clients a single joined picture across water and land, simplifying coastal, lake, wetland and infrastructure projects."],
   ["stormwater", "Stormwater & Treatment Pond Surveys", "Built for councils and infrastructure managers", A.stormwaterPond, "We survey stormwater retention ponds, treatment ponds and detention basins using autonomous surface vessels — giving councils accurate sediment volume data, bathymetric maps and condition reports without diver risk or disruption to operations."],
   ["reservoir", "Water Reservoir Inspection", "Safe inspection without dewatering or confined space entry", asset("reservoir-inspection.png"), "MĀKI deploys underwater ROVs and surface rovers to inspect water reservoir infrastructure — capturing high-resolution video and imagery of submerged walls, floors and inlet/outlet structures without the need to dewater or send staff into confined spaces."],
+  ["coastal", "Coastal & Underwater Structure Surveys", "Seabed, structures and shoreline in one dataset", asset("050-a6a664_1824683c24c14d9cabeb5321d7a9ffc6-mv2.jpg"), "We map the seabed beneath jetties and wharves, harbour channels and sea walls, joining USV bathymetry and RTK drone photogrammetry into one 3D model of the structure and its surroundings."],
   ["asset", "Asset Management (Inspection)", "Smarter infrastructure monitoring", A.asset, "ROVs, USVs, drones and imaging systems inspect hard-to-reach assets including submerged structures, bridges, dams, pipes and monitoring equipment."]
 ];
 
 // Services that have their own page; the rest open in the services page modal.
-const SERVICE_PAGES = {environmental:"/services/environmental", bathymetry:"/services/bathymetry", topography:"/services/topography", stormwater:"/services/stormwater", reservoir:"/services/reservoir"};
+const SERVICE_PAGES = {environmental:"/services/environmental", bathymetry:"/services/bathymetry", topography:"/services/topography", stormwater:"/services/stormwater", reservoir:"/services/reservoir", coastal:"/services/coastal"};
 
 // Related pages for each article: [service key, case study path or ""]. These
 // in-content links tie each article to the service it proves, for readers,

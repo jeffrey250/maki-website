@@ -18,99 +18,149 @@
     <meta name="twitter:description" content="MĀKI conducts high-resolution bathymetric surveys of lakes, ponds, reservoirs, harbours and waterways across New Zealand using autonomous USVs with sonar and RTK GPS — delivering accurate depth maps, volume calculations and 3D models.">
     <meta name="twitter:image" content="https://www.maki.nz/assets/media/094-bathymetry-settling-pond.jpg">
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
-      "@graph": [
+      "@type": "Service",
+      "@id": "https://www.maki.nz/services/bathymetry/#service",
+      "name": "Bathymetry — Underwater Depth Mapping",
+      "alternateName": [
+        "Bathymetric survey NZ",
+        "Lake depth mapping",
+        "USV sonar survey",
+        "Underwater topography survey",
+        "Pond bathymetry",
+        "Reservoir survey"
+      ],
+      "provider": {
+        "@type": "Organization",
+        "name": "MĀKI Autonomous Systems",
+        "url": "https://www.maki.nz",
+        "telephone": "+64-20-4194-1275",
+        "email": "info@maki.nz",
+        "areaServed": {
+          "@type": "Country",
+          "name": "New Zealand"
+        }
+      },
+      "description": "High-resolution bathymetric surveys of lakes, ponds, reservoirs, harbours and waterways using autonomous USVs with sonar and RTK GPS — delivering accurate depth maps, volume calculations and 3D models.",
+      "areaServed": {
+        "@type": "Country",
+        "name": "New Zealand"
+      },
+      "url": "https://www.maki.nz/services/bathymetry/",
+      "serviceType": [
+        "Bathymetric survey",
+        "Lake depth mapping",
+        "Volume calculation",
+        "Underwater terrain mapping"
+      ],
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Regional councils, territorial authorities, infrastructure managers, environmental engineers, researchers"
+      },
+      "subjectOf": [
         {
-          "@type": "Service",
-          "@id": "https://www.maki.nz/services/bathymetry/#service",
-          "name": "Bathymetry — Underwater Depth Mapping",
-          "alternateName": ["Bathymetric survey NZ", "Lake depth mapping", "USV sonar survey", "Underwater topography survey", "Pond bathymetry", "Reservoir survey"],
-          "provider": {
-            "@type": "Organization",
-            "name": "MĀKI Autonomous Systems",
-            "url": "https://www.maki.nz",
-            "telephone": "+64-20-4194-1275",
-            "email": "info@maki.nz",
-            "areaServed": {"@type": "Country", "name": "New Zealand"}
-          },
-          "description": "High-resolution bathymetric surveys of lakes, ponds, reservoirs, harbours and waterways using autonomous USVs with sonar and RTK GPS — delivering accurate depth maps, volume calculations and 3D models.",
-          "areaServed": {"@type": "Country", "name": "New Zealand"},
-          "url": "https://www.maki.nz/services/bathymetry/",
-          "serviceType": ["Bathymetric survey", "Lake depth mapping", "Volume calculation", "Underwater terrain mapping"],
-          "audience": {
-            "@type": "Audience",
-            "audienceType": "Regional councils, territorial authorities, infrastructure managers, environmental engineers, researchers"
+          "@type": "Article",
+          "headline": "Mapping 26 Lakes in One Programme for Waikato Regional Council",
+          "url": "https://www.maki.nz/case-studies/lakes-mapping/"
+        },
+        {
+          "@type": "Article",
+          "headline": "Mapping a 108-Hectare Lake in Three Days: Lake Ngaroto",
+          "url": "https://www.maki.nz/case-studies/ngaroto/"
+        },
+        {
+          "@type": "Article",
+          "headline": "Mapping a Harbour Channel and Stone Wall in One 3D Survey",
+          "url": "https://www.maki.nz/case-studies/aotea-harbour/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a bathymetric survey?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A bathymetric survey maps the underwater terrain of a water body — lakes, ponds, reservoirs, harbours and waterways — using sonar to measure water depth at many points across the survey area. The resulting depth measurements are processed into detailed maps showing the shape of the bed, contour lines, cross-section profiles and volume calculations. MĀKI uses autonomous surface vessels (USVs) equipped with sonar and RTK GPS to collect this data efficiently and accurately."
           }
         },
         {
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "What is a bathymetric survey?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "A bathymetric survey maps the underwater terrain of a water body — lakes, ponds, reservoirs, harbours and waterways — using sonar to measure water depth at many points across the survey area. The resulting depth measurements are processed into detailed maps showing the shape of the bed, contour lines, cross-section profiles and volume calculations. MĀKI uses autonomous surface vessels (USVs) equipped with sonar and RTK GPS to collect this data efficiently and accurately."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What types of water bodies can be surveyed?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "MĀKI can conduct bathymetric surveys of a wide range of water bodies including lakes and peat lakes, ponds and reservoirs, stormwater detention basins, wastewater treatment ponds, farm dams and irrigation ponds, harbours and coastal inlets, rivers and canals. If it holds water and there is a need to understand what is on the bottom, MĀKI can survey it."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What data does a bathymetric survey produce?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "A MĀKI bathymetric survey delivers a georeferenced depth map of the water body bed, current versus design volume calculations, sediment volume estimates, contour lines at user-specified intervals, cross-section profiles, a 3D point cloud model, GIS-compatible data files, and a written report. Data formats are suited to asset management systems, council reporting and dredging contractor briefing."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "How accurate is MĀKI's bathymetric survey?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "MĀKI uses RTK GPS for centimetre-level horizontal positioning accuracy combined with high-resolution sonar achieving depth accuracy of approximately ±5 cm in typical survey conditions. This level of accuracy is suitable for volume calculations, asset management reporting, and compliance monitoring."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Why use an autonomous USV instead of a manned survey boat?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Autonomous USVs offer several advantages over manned survey boats: they can safely access shallow, confined or hazardous areas that manned boats cannot enter; they eliminate risks associated with personnel on contaminated water; they follow precise programmed survey lines for consistent methodology and dense data coverage; and they are significantly lower cost to mobilise and operate than crewed survey vessels."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Does MĀKI operate nationally?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes. MĀKI is based in the Waikato and operates across New Zealand. We have completed bathymetric surveys for Waikato Regional Council, Ōtorohanga District Council and other clients across the North Island, and are available nationally for survey projects of any scale."
-              }
-            }
-          ]
+          "@type": "Question",
+          "name": "What types of water bodies can be surveyed?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MĀKI can conduct bathymetric surveys of a wide range of water bodies including lakes and peat lakes, ponds and reservoirs, stormwater detention basins, wastewater treatment ponds, farm dams and irrigation ponds, harbours and coastal inlets, rivers and canals. If it holds water and there is a need to understand what is on the bottom, MĀKI can survey it."
+          }
         },
         {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.maki.nz/"},
-            {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://www.maki.nz/services/"},
-            {"@type": "ListItem", "position": 3, "name": "Bathymetry", "item": "https://www.maki.nz/services/bathymetry/"}
-          ]
+          "@type": "Question",
+          "name": "What data does a bathymetric survey produce?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A MĀKI bathymetric survey delivers a georeferenced depth map of the water body bed, current versus design volume calculations, sediment volume estimates, contour lines at user-specified intervals, cross-section profiles, a 3D point cloud model, GIS-compatible data files, and a written report. Data formats are suited to asset management systems, council reporting and dredging contractor briefing."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How accurate is MĀKI's bathymetric survey?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MĀKI uses RTK GPS for centimetre-level horizontal positioning accuracy combined with high-resolution sonar achieving depth accuracy of approximately ±5 cm in typical survey conditions. This level of accuracy is suitable for volume calculations, asset management reporting, and compliance monitoring."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why use an autonomous USV instead of a manned survey boat?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Autonomous USVs offer several advantages over manned survey boats: they can safely access shallow, confined or hazardous areas that manned boats cannot enter; they eliminate risks associated with personnel on contaminated water; they follow precise programmed survey lines for consistent methodology and dense data coverage; and they are significantly lower cost to mobilise and operate than crewed survey vessels."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does MĀKI operate nationally?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. MĀKI is based in the Waikato and operates across New Zealand. We have completed bathymetric surveys for Waikato Regional Council, Ōtorohanga District Council and other clients across the North Island, and are available nationally for survey projects of any scale."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.maki.nz/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://www.maki.nz/services/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Bathymetry",
+          "item": "https://www.maki.nz/services/bathymetry/"
         }
       ]
     }
+  ]
+}
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../styles.css?v=cc6cdb3f">
+    <link rel="stylesheet" href="../../styles.css?v=3cfe7564">
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XFVGYCS8RH"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-XFVGYCS8RH');</script>
@@ -357,7 +407,7 @@
               <a href="/services/topography/">Topography</a>
               <a href="/services/?tab=topobathy">Bathymetry &amp; Topography</a>
               <a href="/services/stormwater/">Stormwater &amp; Treatment Pond Surveys</a>
-              <a href="/services/reservoir/">Water Reservoir Inspection</a>
+              <a href="/services/reservoir/">Water Reservoir Inspection</a><a href="/services/coastal/">Coastal &amp; Underwater Structure Surveys</a>
               <a href="/services/?tab=asset">Asset Management (Inspection)</a>
             </div>
           </div>
@@ -478,6 +528,26 @@
         <p><strong>2. Survey.</strong> A MĀKI operator launches the USV from the bank. The vessel autonomously follows the survey grid, collecting sonar depth data and RTK GPS positions across the full survey area. Survey duration depends on water body size — from a few hours for a single pond to multiple days for large lakes.</p>
         <p><strong>3. Processing.</strong> Raw sonar data is cleaned, filtered and georeferenced. Depth measurements are interpolated into a continuous surface model. Volume calculations compare current conditions against a reference surface.</p>
         <p><strong>4. Report.</strong> You receive a PDF report, georeferenced depth map, contour lines, cross-section profiles and GIS-compatible data files. Turnaround is typically 5–10 business days after the survey.</p>
+      </div>
+
+      <!-- Proven on -->
+      <div class="sw-section">
+        <h2>Proven on real projects</h2>
+        <p>A selection of recent work using this service for New Zealand councils and contractors.</p>
+        <div class="proof-grid">
+          <a class="proof-card" href="/case-studies/lakes-mapping/">
+            <img src="/assets/media/095-lakes-mapping-wrc.jpg" alt="26 lakes mapped in one programme" loading="lazy">
+            <div class="proof-card-body"><p class="proof-card-client">Waikato Regional Council</p><h3>26 lakes mapped in one programme</h3><p>Consistent RTK depth grids and 3D models, delivered in the council's GIS formats.</p><span class="proof-card-more">Read the case study &rarr;</span></div>
+          </a>
+          <a class="proof-card" href="/case-studies/ngaroto/">
+            <img src="/assets/media/096-ngaroto-kayak-1.jpg" alt="A 108 ha lake mapped in three days" loading="lazy">
+            <div class="proof-card-body"><p class="proof-card-client">Lake Ngaroto, Waipā</p><h3>A 108 ha lake mapped in three days</h3><p>A quiet autonomous e-kayak worked within motorboat limits and found a 55 m submerged structure.</p><span class="proof-card-more">Read the case study &rarr;</span></div>
+          </a>
+          <a class="proof-card" href="/case-studies/aotea-harbour/">
+            <img src="/assets/media/050-a6a664_1824683c24c14d9cabeb5321d7a9ffc6-mv2.jpg" alt="Harbour channel and stone wall in 3D" loading="lazy">
+            <div class="proof-card-body"><p class="proof-card-client">Ōtorohanga District Council</p><h3>Harbour channel and stone wall in 3D</h3><p>USV bathymetry and drone photogrammetry merged into one dataset across the waterline.</p><span class="proof-card-more">Read the case study &rarr;</span></div>
+          </a>
+        </div>
       </div>
 
       <!-- FAQ -->

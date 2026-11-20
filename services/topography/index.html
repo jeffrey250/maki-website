@@ -18,99 +18,144 @@
     <meta name="twitter:description" content="MĀKI conducts high-resolution topographic surveys using drone photogrammetry and ground control points — delivering digital surface models, orthophotos, contour maps and 3D terrain models for coastal, wetland, shoreline and infrastructure projects across New Zealand.">
     <meta name="twitter:image" content="https://www.maki.nz/assets/media/050-a6a664_1824683c24c14d9cabeb5321d7a9ffc6-mv2.jpg">
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
-      "@graph": [
+      "@type": "Service",
+      "@id": "https://www.maki.nz/services/topography/#service",
+      "name": "Topography — Drone Surveys & Photogrammetry",
+      "alternateName": [
+        "Drone topographic survey NZ",
+        "Photogrammetry survey New Zealand",
+        "Digital surface model",
+        "Drone land mapping",
+        "Shoreline survey drone",
+        "Aerial survey NZ"
+      ],
+      "provider": {
+        "@type": "Organization",
+        "name": "MĀKI Autonomous Systems",
+        "url": "https://www.maki.nz",
+        "telephone": "+64-20-4194-1275",
+        "email": "info@maki.nz",
+        "areaServed": {
+          "@type": "Country",
+          "name": "New Zealand"
+        }
+      },
+      "description": "High-resolution topographic surveys using drone photogrammetry and ground control points — delivering digital surface models, orthophotos, contour maps and 3D terrain models for coastal, wetland, shoreline and infrastructure projects across New Zealand.",
+      "areaServed": {
+        "@type": "Country",
+        "name": "New Zealand"
+      },
+      "url": "https://www.maki.nz/services/topography/",
+      "serviceType": [
+        "Drone topographic survey",
+        "Photogrammetry",
+        "Digital surface model",
+        "Shoreline mapping"
+      ],
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Regional councils, territorial authorities, infrastructure managers, coastal engineers, environmental planners"
+      },
+      "subjectOf": [
         {
-          "@type": "Service",
-          "@id": "https://www.maki.nz/services/topography/#service",
-          "name": "Topography — Drone Surveys & Photogrammetry",
-          "alternateName": ["Drone topographic survey NZ", "Photogrammetry survey New Zealand", "Digital surface model", "Drone land mapping", "Shoreline survey drone", "Aerial survey NZ"],
-          "provider": {
-            "@type": "Organization",
-            "name": "MĀKI Autonomous Systems",
-            "url": "https://www.maki.nz",
-            "telephone": "+64-20-4194-1275",
-            "email": "info@maki.nz",
-            "areaServed": {"@type": "Country", "name": "New Zealand"}
-          },
-          "description": "High-resolution topographic surveys using drone photogrammetry and ground control points — delivering digital surface models, orthophotos, contour maps and 3D terrain models for coastal, wetland, shoreline and infrastructure projects across New Zealand.",
-          "areaServed": {"@type": "Country", "name": "New Zealand"},
-          "url": "https://www.maki.nz/services/topography/",
-          "serviceType": ["Drone topographic survey", "Photogrammetry", "Digital surface model", "Shoreline mapping"],
-          "audience": {
-            "@type": "Audience",
-            "audienceType": "Regional councils, territorial authorities, infrastructure managers, coastal engineers, environmental planners"
+          "@type": "Article",
+          "headline": "Mapping a Harbour Channel and Stone Wall in One 3D Survey",
+          "url": "https://www.maki.nz/case-studies/aotea-harbour/"
+        },
+        {
+          "@type": "Article",
+          "headline": "Surveying Under a Jetty: Multibeam and Drone at Hobsonville Point",
+          "url": "https://www.maki.nz/case-studies/hobsonville-jetty/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is drone photogrammetry?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Drone photogrammetry is a survey technique where a drone captures hundreds of overlapping aerial photographs of the ground below. These images are processed using specialised software to extract 3D coordinates from the overlapping pixels, generating a dense 3D point cloud, a digital surface model (DSM), a digital terrain model (DTM), and a georeferenced orthophoto — an accurate aerial image corrected for perspective distortion."
           }
         },
         {
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "What is drone photogrammetry?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Drone photogrammetry is a survey technique where a drone captures hundreds of overlapping aerial photographs of the ground below. These images are processed using specialised software to extract 3D coordinates from the overlapping pixels, generating a dense 3D point cloud, a digital surface model (DSM), a digital terrain model (DTM), and a georeferenced orthophoto — an accurate aerial image corrected for perspective distortion."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What data does a topographic survey deliver?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "A MĀKI topographic drone survey delivers a high-resolution orthophoto, digital surface model (DSM), digital terrain model (DTM), contour lines at user-specified intervals, 3D point cloud, volume calculations, and GIS-compatible output files — all accompanied by a written report."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What are topographic surveys used for?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Topographic surveys support a wide range of applications including: shoreline and coastal erosion monitoring, infrastructure planning and earthwork volume calculations, wetland and estuarine mapping for resource consent, construction site surveying, coastal asset management, vegetation and land cover mapping, and post-event impact assessment after flood or landslip events."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "How accurate is drone topographic mapping?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "With an RTK or PPK-capable drone and ground control points (GCPs), MĀKI achieves sub-5 cm horizontal accuracy and better than 10 cm vertical accuracy in typical survey conditions. Accuracy depends on flight altitude, GCP placement, and terrain complexity."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Can you combine topography with bathymetry?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes. MĀKI can combine drone topographic survey with USV bathymetric survey to produce a seamless topo-bathymetric dataset covering both above-water land and the underwater bed in a single coordinate system. This is ideal for harbours, coastal lakes, estuaries and wetlands where understanding the full cross-section from land to underwater is required."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Does MĀKI operate nationally?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes. MĀKI is based in the Waikato and operates across New Zealand. We are available nationally for topographic and topo-bathymetric survey projects of any scale."
-              }
-            }
-          ]
+          "@type": "Question",
+          "name": "What data does a topographic survey deliver?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A MĀKI topographic drone survey delivers a high-resolution orthophoto, digital surface model (DSM), digital terrain model (DTM), contour lines at user-specified intervals, 3D point cloud, volume calculations, and GIS-compatible output files — all accompanied by a written report."
+          }
         },
         {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.maki.nz/"},
-            {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://www.maki.nz/services/"},
-            {"@type": "ListItem", "position": 3, "name": "Topography", "item": "https://www.maki.nz/services/topography/"}
-          ]
+          "@type": "Question",
+          "name": "What are topographic surveys used for?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Topographic surveys support a wide range of applications including: shoreline and coastal erosion monitoring, infrastructure planning and earthwork volume calculations, wetland and estuarine mapping for resource consent, construction site surveying, coastal asset management, vegetation and land cover mapping, and post-event impact assessment after flood or landslip events."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How accurate is drone topographic mapping?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "With an RTK or PPK-capable drone and ground control points (GCPs), MĀKI achieves sub-5 cm horizontal accuracy and better than 10 cm vertical accuracy in typical survey conditions. Accuracy depends on flight altitude, GCP placement, and terrain complexity."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you combine topography with bathymetry?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. MĀKI can combine drone topographic survey with USV bathymetric survey to produce a seamless topo-bathymetric dataset covering both above-water land and the underwater bed in a single coordinate system. This is ideal for harbours, coastal lakes, estuaries and wetlands where understanding the full cross-section from land to underwater is required."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does MĀKI operate nationally?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. MĀKI is based in the Waikato and operates across New Zealand. We are available nationally for topographic and topo-bathymetric survey projects of any scale."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.maki.nz/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://www.maki.nz/services/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Topography",
+          "item": "https://www.maki.nz/services/topography/"
         }
       ]
     }
+  ]
+}
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../styles.css?v=cc6cdb3f">
+    <link rel="stylesheet" href="../../styles.css?v=3cfe7564">
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XFVGYCS8RH"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-XFVGYCS8RH');</script>
@@ -357,7 +402,7 @@
               <a href="/services/topography/">Topography</a>
               <a href="/services/?tab=topobathy">Bathymetry &amp; Topography</a>
               <a href="/services/stormwater/">Stormwater &amp; Treatment Pond Surveys</a>
-              <a href="/services/reservoir/">Water Reservoir Inspection</a>
+              <a href="/services/reservoir/">Water Reservoir Inspection</a><a href="/services/coastal/">Coastal &amp; Underwater Structure Surveys</a>
               <a href="/services/?tab=asset">Asset Management (Inspection)</a>
             </div>
           </div>
@@ -478,6 +523,22 @@
         <p><strong>2. Drone flight.</strong> The drone flies a pre-programmed grid at the specified altitude, capturing overlapping nadir and oblique images of the survey area. Flight duration depends on site size — most sites are completed within a single session.</p>
         <p><strong>3. Point cloud processing.</strong> Drone images and GCP coordinates are processed using photogrammetry software to produce a dense 3D point cloud, from which the DSM, DTM, orthophoto and contours are derived.</p>
         <p><strong>4. Report delivery.</strong> You receive a PDF report, georeferenced orthophoto, DSM, DTM, contour lines and GIS-compatible data files. Turnaround is typically 5–10 business days after the survey.</p>
+      </div>
+
+      <!-- Proven on -->
+      <div class="sw-section">
+        <h2>Proven on real projects</h2>
+        <p>A selection of recent work using this service for New Zealand councils and contractors.</p>
+        <div class="proof-grid">
+          <a class="proof-card" href="/case-studies/aotea-harbour/">
+            <img src="/assets/media/050-a6a664_1824683c24c14d9cabeb5321d7a9ffc6-mv2.jpg" alt="Harbour channel and stone wall in 3D" loading="lazy">
+            <div class="proof-card-body"><p class="proof-card-client">Ōtorohanga District Council</p><h3>Harbour channel and stone wall in 3D</h3><p>USV bathymetry and drone photogrammetry merged into one dataset across the waterline.</p><span class="proof-card-more">Read the case study &rarr;</span></div>
+          </a>
+          <a class="proof-card" href="/case-studies/hobsonville-jetty/">
+            <img src="/assets/media/hobsonville-bathymetry-model.jpg" alt="Seabed mapped beneath a jetty" loading="lazy">
+            <div class="proof-card-body"><p class="proof-card-client">Auckland Council · with Glasgow Contractors</p><h3>Seabed mapped beneath a jetty</h3><p>A multibeam USV under the jetty and an RTK drone above, combined into one 3D model.</p><span class="proof-card-more">Read the case study &rarr;</span></div>
+          </a>
+        </div>
       </div>
 
       <!-- FAQ -->

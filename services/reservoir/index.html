@@ -18,117 +18,124 @@
     <meta name="twitter:description" content="Underwater ROV and surface rover inspection of water reservoirs, tanks and submerged structures across New Zealand — no dewatering, no confined space entry.">
     <meta name="twitter:image" content="https://www.maki.nz/assets/media/reservoir-inspection.png">
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
-      "@graph": [
+      "@type": "Service",
+      "@id": "https://www.maki.nz/services/reservoir/#service",
+      "name": "Water Reservoir Inspection",
+      "alternateName": [
+        "Reservoir ROV inspection",
+        "Underwater reservoir inspection",
+        "Water tank inspection",
+        "Reservoir condition assessment"
+      ],
+      "provider": {
+        "@type": "Organization",
+        "name": "MĀKI Autonomous Systems",
+        "url": "https://www.maki.nz",
+        "telephone": "+64-20-4194-1275",
+        "email": "info@maki.nz"
+      },
+      "description": "Underwater ROV and surface rover inspection of water reservoirs and submerged infrastructure, capturing high-definition video and imagery of walls, floors and inlet/outlet structures without dewatering or confined space entry.",
+      "areaServed": {
+        "@type": "Country",
+        "name": "New Zealand"
+      },
+      "url": "https://www.maki.nz/services/reservoir/",
+      "serviceType": [
+        "Underwater ROV inspection",
+        "Reservoir condition assessment",
+        "Confined space inspection alternative"
+      ],
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Water utilities, councils, infrastructure and asset managers"
+      },
+      "subjectOf": [
         {
-          "@type": "Service",
-          "@id": "https://www.maki.nz/services/reservoir/#service",
-          "name": "Water Reservoir Inspection",
-          "alternateName": [
-            "Reservoir ROV inspection",
-            "Underwater reservoir inspection",
-            "Water tank inspection",
-            "Reservoir condition assessment"
-          ],
-          "provider": {
-            "@type": "Organization",
-            "name": "MĀKI Autonomous Systems",
-            "url": "https://www.maki.nz",
-            "telephone": "+64-20-4194-1275",
-            "email": "info@maki.nz"
-          },
-          "description": "Underwater ROV and surface rover inspection of water reservoirs and submerged infrastructure, capturing high-definition video and imagery of walls, floors and inlet/outlet structures without dewatering or confined space entry.",
-          "areaServed": {
-            "@type": "Country",
-            "name": "New Zealand"
-          },
-          "url": "https://www.maki.nz/services/reservoir/",
-          "serviceType": [
-            "Underwater ROV inspection",
-            "Reservoir condition assessment",
-            "Confined space inspection alternative"
-          ],
-          "audience": {
-            "@type": "Audience",
-            "audienceType": "Water utilities, councils, infrastructure and asset managers"
+          "@type": "Article",
+          "headline": "Inspecting a Drinking-Water Reservoir Without Draining It",
+          "url": "https://www.maki.nz/case-studies/rov-reservoir/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can a water reservoir be inspected without draining it?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. MĀKI inspects reservoirs while they remain in service. An underwater ROV captures high-definition video and imagery of the floor, walls and submerged structures through the water, so the reservoir does not need to be taken offline or dewatered."
           }
         },
         {
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "Can a water reservoir be inspected without draining it?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes. MĀKI inspects reservoirs while they remain in service. An underwater ROV captures high-definition video and imagery of the floor, walls and submerged structures through the water, so the reservoir does not need to be taken offline or dewatered."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Does anyone need to enter the reservoir?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "No. The ROV and surface rover are operated from outside the reservoir, removing the need for staff to enter a confined, potentially oxygen-depleted space."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What does a reservoir inspection deliver?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "A visual record of the reservoir's internal condition from waterline to floor: high-definition video and still imagery of walls, floor, inlet screens, outlet valves and access structures, ready for condition reporting, maintenance planning and renewal programmes."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What else can MĀKI inspect underwater?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "As well as water reservoirs, MĀKI inspects tanks, pipes, dams, stormwater structures and other confined or submerged assets using ROVs, USVs, drones and imaging systems."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Where does MĀKI operate?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "MĀKI is based in the Waikato and operates nationally across New Zealand."
-              }
-            }
-          ]
+          "@type": "Question",
+          "name": "Does anyone need to enter the reservoir?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The ROV and surface rover are operated from outside the reservoir, removing the need for staff to enter a confined, potentially oxygen-depleted space."
+          }
         },
         {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Home",
-              "item": "https://www.maki.nz/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Services",
-              "item": "https://www.maki.nz/services/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "name": "Water Reservoir Inspection",
-              "item": "https://www.maki.nz/services/reservoir/"
-            }
-          ]
+          "@type": "Question",
+          "name": "What does a reservoir inspection deliver?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A visual record of the reservoir's internal condition from waterline to floor: high-definition video and still imagery of walls, floor, inlet screens, outlet valves and access structures, ready for condition reporting, maintenance planning and renewal programmes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What else can MĀKI inspect underwater?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "As well as water reservoirs, MĀKI inspects tanks, pipes, dams, stormwater structures and other confined or submerged assets using ROVs, USVs, drones and imaging systems."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where does MĀKI operate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MĀKI is based in the Waikato and operates nationally across New Zealand."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.maki.nz/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://www.maki.nz/services/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Water Reservoir Inspection",
+          "item": "https://www.maki.nz/services/reservoir/"
         }
       ]
     }
+  ]
+}
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../styles.css?v=cc6cdb3f">
+    <link rel="stylesheet" href="../../styles.css?v=3cfe7564">
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XFVGYCS8RH"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-XFVGYCS8RH');</script>
@@ -375,7 +382,7 @@
               <a href="/services/topography/">Topography</a>
               <a href="/services/?tab=topobathy">Bathymetry &amp; Topography</a>
               <a href="/services/stormwater/">Stormwater &amp; Treatment Pond Surveys</a>
-              <a href="/services/reservoir/">Water Reservoir Inspection</a>
+              <a href="/services/reservoir/">Water Reservoir Inspection</a><a href="/services/coastal/">Coastal &amp; Underwater Structure Surveys</a>
               <a href="/services/?tab=asset">Asset Management (Inspection)</a>
             </div>
           </div>
@@ -497,6 +504,18 @@
         <p><strong>2. Underwater inspection.</strong> The ROV is deployed into the reservoir and navigates the submerged zone, recording the floor, walls and submerged infrastructure. The live feed lets the team direct the ROV to anything that needs a closer look.</p>
         <p><strong>3. Waterline inspection.</strong> The surface rover records the internal walls and access structures at and above the waterline, completing the picture from waterline to floor.</p>
         <p><strong>4. Delivery.</strong> You receive the video and imagery record for condition reporting and maintenance planning.</p>
+      </div>
+
+      <!-- Proven on -->
+      <div class="sw-section">
+        <h2>Proven on real projects</h2>
+        <p>A selection of recent work using this service for New Zealand councils and contractors.</p>
+        <div class="proof-grid">
+          <a class="proof-card" href="/case-studies/rov-reservoir/">
+            <img src="/assets/media/reservoir-rov-inside.jpg" alt="A reservoir inspected without draining" loading="lazy">
+            <div class="proof-card-body"><p class="proof-card-client">Buller District Council</p><h3>A reservoir inspected without draining</h3><p>An ROV inside and a rover on top gave an HD record, with nobody entering the tank.</p><span class="proof-card-more">Read the case study &rarr;</span></div>
+          </a>
+        </div>
       </div>
 
       <!-- FAQ -->

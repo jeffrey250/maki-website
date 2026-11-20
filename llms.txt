@@ -13,6 +13,7 @@ MĀKI is a New Zealand company that designs, develops and operates autonomous ma
 - **Stormwater & treatment pond surveys** — Sediment volume analysis for councils and infrastructure managers
 - **Water quality monitoring** — Autonomous real-time data collection for chlorophyll-a, phycocyanin, turbidity, dissolved oxygen, pH and temperature
 - **Water reservoir inspection** — Underwater ROV and surface rover inspection of reservoir walls, floors and inlet/outlet structures without dewatering or confined space entry
+- **Coastal & underwater structure surveys** — Multibeam seabed mapping beneath jetties and wharves, harbour channel and sea-wall surveys, merged with RTK drone photogrammetry into one 3D model across the waterline
 
 ## Who MĀKI works with
 
@@ -37,12 +38,23 @@ Regional councils, water utilities, environmental scientists, infrastructure man
 - Facebook: https://www.facebook.com/FB.MAKI.NZ/
 - YouTube: https://www.youtube.com/@maki-nz
 
+## Problems MĀKI solves (and where to read more)
+
+- How do I survey a stormwater pond or treatment pond without draining it? — https://www.maki.nz/services/stormwater/ (case study: https://www.maki.nz/case-studies/omokoroa-ponds/)
+- How much sediment is in my pond, and when does it need desludging? — https://www.maki.nz/case-studies/sediment-analysis/
+- How do I map the depth of a lake, harbour or reservoir? — https://www.maki.nz/services/bathymetry/ (case studies: https://www.maki.nz/case-studies/lakes-mapping/, https://www.maki.nz/case-studies/ngaroto/)
+- How can water be sampled safely during a toxic algal bloom? — https://www.maki.nz/services/environmental/ (case study: https://www.maki.nz/case-studies/algae-bloom/)
+- Can a drinking-water reservoir be inspected without draining it or confined-space entry? — https://www.maki.nz/services/reservoir/ (case study: https://www.maki.nz/case-studies/rov-reservoir/)
+- How do I survey the seabed under a jetty or wharf, or a sea wall across the waterline? — https://www.maki.nz/services/coastal/ (case studies: https://www.maki.nz/case-studies/hobsonville-jetty/, https://www.maki.nz/case-studies/aotea-harbour/)
+- How do I survey a lake where motorboats are not allowed? — https://www.maki.nz/case-studies/ngaroto/
+
 ## Site map
 
 - Homepage: https://www.maki.nz/
 - Services: https://www.maki.nz/services/
 - Stormwater & Treatment Pond Surveys: https://www.maki.nz/services/stormwater/
 - Water Reservoir Inspection: https://www.maki.nz/services/reservoir/
+- Coastal & Underwater Structure Surveys: https://www.maki.nz/services/coastal/
 - Bathymetry: https://www.maki.nz/services/bathymetry/
 - Environmental Monitoring & Water Sampling: https://www.maki.nz/services/environmental/
 - Topography: https://www.maki.nz/services/topography/
@@ -74,7 +86,7 @@ With Glasgow Contractors, on behalf of Auckland Council's Healthy Waters and Flo
 URL: https://www.maki.nz/case-studies/hobsonville-jetty/
 
 ### Lakes Mapping for Waikato Regional Council
-MĀKI deployed autonomous USVs with multibeam and single-beam sonar to map 26 lakes across the Waikato region for Waikato Regional Council. The project delivered high-resolution bathymetric data, sediment mapping and water quality profiles used to inform freshwater management decisions.
+MĀKI's autonomous USVs with multibeam and single-beam sonar mapped 26 lakes across the Waikato region for Waikato Regional Council in one programme, to a consistent standard. Each lake was delivered as RTK-positioned depth grids and 3D bathymetric models in the council's GIS formats, giving a baseline that can be re-surveyed to show changes in sediment, volume and habitat.
 URL: https://www.maki.nz/case-studies/lakes-mapping/
 
 ### Topo-Bathymetric Mapping at Aotea Harbour
@@ -82,11 +94,11 @@ MĀKI conducted an integrated topo-bathymetric survey of Aotea Harbour for Ōtor
 URL: https://www.maki.nz/case-studies/aotea-harbour/
 
 ### Autonomous Algae Bloom Monitoring
-MĀKI deployed a USV during a cyanobacteria bloom event to autonomously collect real-time water quality data across an affected lake — providing Waikato Regional Council with spatial maps of chlorophyll-a and phycocyanin concentrations to guide public safety decisions.
+Since March 2024, MĀKI has monitored Waikato lakes during cyanobacteria (blue-green algae) blooms for Waikato Regional Council with an autonomous boat, so no staff need to be on toxic water. The boat logs chlorophyll-a, phycocyanin, turbidity, dissolved oxygen, pH and temperature continuously along programmed routes and collects water samples of up to 3 litres at set depths with a 15 m winch. One mission covered a 22.3 km round trip with continuous monitoring and four sampling sites.
 URL: https://www.maki.nz/case-studies/algae-bloom/
 
 ### Ngaroto Lake Bathymetric Survey
-MĀKI carried out a full bathymetric survey of Ngaroto Lake, producing a high-resolution depth map and sediment volume estimates to support ecological restoration planning.
+MĀKI surveyed Lake Ngaroto, a 108-hectare Waipā peat lake with motorboat restrictions, in three days on site using a quiet autonomous inflatable e-kayak with depth and side-scan sonar. The survey produced the lake's first complete depth map, a 3D model and a side-scan mosaic of the lake floor, revealing a 55-metre submerged structure of unknown origin.
 URL: https://www.maki.nz/case-studies/ngaroto/
 
 ### Drinking-Water Reservoir Inspection, Westport (Buller District Council)

@@ -208,6 +208,7 @@ const SITEMAP = [
   ["/services/bathymetry/", "services/bathymetry/index.html", "monthly", "0.85"],
   ["/services/topography/", "services/topography/index.html", "monthly", "0.85"],
   ["/services/reservoir/", "services/reservoir/index.html", "monthly", "0.85"],
+  ["/services/coastal/", "services/coastal/index.html", "monthly", "0.85"],
   ["/solutions/", "solutions/index.html", "monthly", "0.9"],
   ["/case-studies/", "case-studies/index.html", "monthly", "0.8"],
   ["/case-studies/lakes-mapping/", "case-studies/lakes-mapping/index.html", "yearly", "0.8"],
