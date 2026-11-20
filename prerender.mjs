@@ -268,6 +268,37 @@ for (const [, file] of SITEMAP.filter(([p]) => /^\/case-studies\/[^/]+\/$/.test(
 console.log(`case-study dateModified refreshed in ${dated} file(s).`);
 
 // ---------------------------------------------------------------------------
+// RSS feed of the articles (blog/feed.xml), so feed readers, news aggregators
+// and AI crawlers pick up new posts without re-crawling the whole site.
+// ---------------------------------------------------------------------------
+{
+  const appSrc = readFileSync(join(root, "app.js"), "utf8");
+  const block = appSrc.slice(appSrc.indexOf("const posts = ["));
+  const field = (chunk, key) => {
+    const m = chunk.match(new RegExp(`\\b${key}:\\s*"((?:[^"\\\\]|\\\\.)*)"`));
+    return m ? m[1].replace(/\\"/g, '"') : "";
+  };
+  const xml = (s) => s.replace(/&(?!(?:amp|lt|gt|quot|#\d+);)/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const items = block.split(/\n  \{\n/).slice(1).map((chunk) => ({
+    slug: field(chunk, "slug"), title: field(chunk, "title"), date: field(chunk, "date"), excerpt: field(chunk, "excerpt"),
+  })).filter((p) => p.slug && p.title);
+  const rss = items.map((p) => {
+    const url = `https://www.maki.nz/post/${p.slug}/`;
+    const d = new Date(p.date + " 12:00 GMT+1200");
+    return `    <item>\n      <title>${xml(p.title)}</title>\n      <link>${url}</link>\n      <guid isPermaLink="true">${url}</guid>\n` +
+      (isNaN(d) ? "" : `      <pubDate>${d.toUTCString()}</pubDate>\n`) +
+      `      <description>${xml(p.excerpt)}</description>\n    </item>`;
+  }).join("\n");
+  writeFileSync(join(root, "blog", "feed.xml"),
+    `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n  <channel>\n` +
+    `    <title>MĀKI News &amp; Articles</title>\n    <link>https://www.maki.nz/blog/</link>\n` +
+    `    <atom:link href="https://www.maki.nz/blog/feed.xml" rel="self" type="application/rss+xml"/>\n` +
+    `    <description>Projects, case studies and news from MĀKI Autonomous Systems, New Zealand.</description>\n    <language>en-nz</language>\n` +
+    `${rss}\n  </channel>\n</rss>\n`);
+  console.log(`blog/feed.xml written with ${items.length} articles.`);
+}
+
+// ---------------------------------------------------------------------------
 // Cache busting
 //
 // Pages had drifted to three different ?v= values for the same two files, so a

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MĀKI News &amp; Articles</title>
+    <link>https://www.maki.nz/blog/</link>
+    <atom:link href="https://www.maki.nz/blog/feed.xml" rel="self" type="application/rss+xml"/>
+    <description>Projects, case studies and news from MĀKI Autonomous Systems, New Zealand.</description>
+    <language>en-nz</language>
+    <item>
+      <title>Underwater 3D Mapping and Jetty Survey at Hobsonville Point</title>
+      <link>https://www.maki.nz/post/underwater-3d-mapping-and-jetty-survey-at-hobsonville-point/</link>
+      <guid isPermaLink="true">https://www.maki.nz/post/underwater-3d-mapping-and-jetty-survey-at-hobsonville-point/</guid>
+      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
+      <description>How do you survey underneath a jetty where conventional boats struggle to access? MĀKI combined multibeam USV bathymetry with RTK drone photogrammetry at Hobsonville Point, Auckland.</description>
+    </item>
+    <item>
+      <title>Building Smart Monitoring for Remote Environments: MAKI's IoT AI Camera Solution</title>
+      <link>https://www.maki.nz/post/building-smart-monitoring-for-remote-environments-maki-s-iot-ai-camera-solution/</link>
+      <guid isPermaLink="true">https://www.maki.nz/post/building-smart-monitoring-for-remote-environments-maki-s-iot-ai-camera-solution/</guid>
+      <pubDate>Tue, 07 Apr 2026 00:00:00 GMT</pubDate>
+      <description>A custom IoT AI camera solution for remote monitoring where power, connectivity, access and environmental conditions make standard systems unsuitable.</description>
+    </item>
+    <item>
+      <title>Final Testing Completed: Integrated Marine IoT Monitoring System</title>
+      <link>https://www.maki.nz/post/final-testing-completed-integrated-marine-iot-monitoring-system/</link>
+      <guid isPermaLink="true">https://www.maki.nz/post/final-testing-completed-integrated-marine-iot-monitoring-system/</guid>
+      <pubDate>Sat, 10 Jan 2026 00:00:00 GMT</pubDate>
+      <description>Final testing is complete for an in-house marine IoT platform integrating water-quality sensors, underwater camera footage and onboard lighting.</description>
+    </item>
+    <item>
+      <title>MAKI at Freshwater Conference 2025 - Connections, Innovation, and New Possibilities</title>
+      <link>https://www.maki.nz/post/maki-at-freshwater-conference-2025-connections-innovation-and-new-possibilities/</link>
+      <guid isPermaLink="true">https://www.maki.nz/post/maki-at-freshwater-conference-2025-connections-innovation-and-new-possibilities/</guid>
+      <pubDate>Thu, 04 Dec 2025 00:00:00 GMT</pubDate>
+      <description>MĀKI exhibited at Freshwater Conference 2025, sharing autonomous boat, ROV, mapping and monitoring capabilities with councils, researchers and environmental scientists.</description>
+    </item>
+    <item>
+      <title>Topo-Bathymetric Mapping at Aotea Harbour</title>
+      <link>https://www.maki.nz/post/topo-bathymetric-mapping-at-aotea-harbour/</link>
+      <guid isPermaLink="true">https://www.maki.nz/post/topo-bathymetric-mapping-at-aotea-harbour/</guid>
+      <pubDate>Wed, 20 Aug 2025 00:00:00 GMT</pubDate>
+      <description>MĀKI completed a topo-bathymetry survey at Aotea Harbour for Ōtorohanga District Council using RTK bathymetry and drone photogrammetry.</description>
+    </item>
+    <item>
+      <title>Autonomous Water Monitoring and Sampling During Algae Bloom Events</title>
+      <link>https://www.maki.nz/post/autonomous-water-monitoring-and-sampling-during-algae-bloom-events/</link>
+      <guid isPermaLink="true">https://www.maki.nz/post/autonomous-water-monitoring-and-sampling-during-algae-bloom-events/</guid>
+      <pubDate>Sun, 20 Jul 2025 00:00:00 GMT</pubDate>
+      <description>MĀKI collaborated with Waikato Regional Council to deploy MĀKI Boat V2 for autonomous water-quality monitoring and sampling during algae bloom events.</description>
+    </item>
+    <item>
+      <title>MĀKI Makes the News at Fieldays 2025</title>
+      <link>https://www.maki.nz/post/maki-makes-the-news-at-fieldays-2025/</link>
+      <guid isPermaLink="true">https://www.maki.nz/post/maki-makes-the-news-at-fieldays-2025/</guid>
+      <pubDate>Tue, 17 Jun 2025 00:00:00 GMT</pubDate>
+      <description>MĀKI was featured in a national Newsroom story following Fieldays 2025 — spotlighted among innovative enterprises contributing to New Zealand's rural sector development.</description>
+    </item>
+    <item>
+      <title>Advancements in Bathymetry Mapping for Efficient Settling Pond Management</title>
+      <link>https://www.maki.nz/post/advancements-in-bathymetry-mapping-for-efficient-settling-pond-management/</link>
+      <guid isPermaLink="true">https://www.maki.nz/post/advancements-in-bathymetry-mapping-for-efficient-settling-pond-management/</guid>
+      <pubDate>Tue, 13 May 2025 00:00:00 GMT</pubDate>
+      <description>In recent years, bathymetry mapping has emerged as an essential tool for settling pond management — allowing owners and operators to evaluate operations effectively, saving both time and resources.</description>
+    </item>
+    <item>
+      <title>MĀKI's Breakthrough in Autonomous Water Quality Monitoring</title>
+      <link>https://www.maki.nz/post/maki-s-breakthrough-in-autonomous-water-quality-monitoring/</link>
+      <guid isPermaLink="true">https://www.maki.nz/post/maki-s-breakthrough-in-autonomous-water-quality-monitoring/</guid>
+      <pubDate>Sun, 05 May 2024 00:00:00 GMT</pubDate>
+      <description>In March 2024, MĀKI partnered with the Waikato Regional Council on a pioneering autonomous water quality data collection initiative during a hazardous algae bloom event.</description>
+    </item>
+    <item>
+      <title>Lakes Mapping for Waikato Regional Council</title>
+      <link>https://www.maki.nz/post/lakes-mapping-for-waikato-regional-council/</link>
+      <guid isPermaLink="true">https://www.maki.nz/post/lakes-mapping-for-waikato-regional-council/</guid>
+      <pubDate>Sat, 31 Dec 2022 00:00:00 GMT</pubDate>
+      <description>MĀKI is now contracted to conduct lakes bathymetric mapping for the Waikato Regional Council, using in-house autonomous boats to efficiently and accurately gather data from the region's lakes.</description>
+    </item>
+    <item>
+      <title>Ngaroto Lake Scanning</title>
+      <link>https://www.maki.nz/post/ngaroto-lake-scanning/</link>
+      <guid isPermaLink="true">https://www.maki.nz/post/ngaroto-lake-scanning/</guid>
+      <pubDate>Sun, 27 Feb 2022 00:00:00 GMT</pubDate>
+      <description>The MĀKI team conducted field trials at Lake Ngaroto using a new CHIRP MEGA SI GPS scanner mounted on an inflatable e-kayak — producing comprehensive bathymetric mapping, 3D models and side-scan imagery.</description>
+    </item>
+  </channel>
+</rss>

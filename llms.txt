@@ -61,7 +61,7 @@ Regional councils, water utilities, environmental scientists, infrastructure man
 - Solutions: https://www.maki.nz/solutions/
 - Products: https://www.maki.nz/products/
 - About: https://www.maki.nz/about/
-- News & Articles: https://www.maki.nz/blog/
+- News & Articles: https://www.maki.nz/blog/ (RSS: https://www.maki.nz/blog/feed.xml)
 - Enquire: https://www.maki.nz/enquire/
 - Company Profile 2026 (interactive): https://www.maki.nz/profile/
 - Company Profile 2026 (PDF): https://www.maki.nz/assets/2026-MAKI-Company-Profile.pdf
